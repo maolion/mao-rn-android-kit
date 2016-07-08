@@ -45,3 +45,5 @@ android/keystores/debug.keystore
 .flowconfig
 .watchmanconfig
 .vscode
+dist
+src/tsconfig.json

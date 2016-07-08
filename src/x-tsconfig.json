@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "es2015",
+        "declaration": false,
+        "noImplicitAny": true,
+        "removeComments": true,
+        "noEmitOnError": false,
+        "preserveConstEnums" : true,
+        "noLib": false,
+        "sourceMap": false,
+        "experimentalDecorators": true,
+        "jsx": "react"
+    },
+    "exclude" : [
+        "node_modules",
+        ".vscode",
+        "android",
+        "devtools",
+        "dist",
+        "ios"
+    ],
+    "fileGlobs": [
+        "../typings/index.d.ts",
+        "../typings/interfaces.d.ts",
+        "./**/*.{ts,tsx}"
+    ],
+    "files": [
+    ],
+    "compileOnSave" : false
+}

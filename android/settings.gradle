@@ -1,3 +1,5 @@
 rootProject.name = 'MaoRNAndroidKit'
 
-include ':app'
+include ':app', ':mao-rn-android-kit'
+
+project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../node_modules/mao-rn-android-kitx/android/kits')
