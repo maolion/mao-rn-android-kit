@@ -14,3 +14,5 @@ android/gradlew.bat
 android/local.properties
 android/MaoRNAndroidKit.iml
 android/settings.gradle
+android/kits/kits.iml
+android/kits/proguard-rules.pro
