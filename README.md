@@ -48,7 +48,7 @@ import com.maornandroidkit.kits.KitPackage; // <-- 导入模块
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             ...
-            new LibsPackage() // <--- 将 LibsPackage 实例 添加在这
+            new KitPackage() // <--- 将 LibsPackage 实例 添加在这
         );
     }
 ...
