@@ -2,10 +2,10 @@
 index.android.js
 src/
 devtools/
-android/app
-android/build
-android/gradle
-android/keystores
+android/app/
+android/build/
+android/gradle/
+android/keystores/
 android/android.iml
 android/build.gradle
 android/gradle.properties
