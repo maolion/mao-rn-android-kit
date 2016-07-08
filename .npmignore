@@ -2,5 +2,15 @@
 index.android.js
 src/
 devtools/
-android/
-!android/kits/
+android/app
+android/build
+android/gradle
+android/keystores
+android/android.iml
+android/build.gradle
+android/gradle.properties
+android/gradlew
+android/gradlew.bat
+android/local.properties
+android/MaoRNAndroidKit.iml
+android/settings.gradle
