@@ -43,7 +43,7 @@ v27版本的目标文件地址是 ```android/app/src/main/your.domain/MainActive
 ```
 ...
 
-import com.maornandroidkit.kits.KitPackage; // <-- 导入模块
+import com.maornandroidkit.kits.KitsPackage; // <-- 导入模块
 
 ...
 
@@ -51,7 +51,7 @@ import com.maornandroidkit.kits.KitPackage; // <-- 导入模块
     protected List<ReactPackage> getPackages() {
         return Arrays.<ReactPackage>asList(
             ...
-            new KitPackage() // <--- 将 LibsPackage 实例 添加在这
+            new KitsPackage() // <--- 将 LibsPackage 实例 添加在这
         );
     }
 ...
