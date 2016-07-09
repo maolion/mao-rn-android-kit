@@ -47,3 +47,5 @@ android/keystores/debug.keystore
 .vscode
 dist
 src/tsconfig.json
+typings/global/
+typings/index.d.ts

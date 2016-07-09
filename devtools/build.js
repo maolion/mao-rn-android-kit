@@ -21,15 +21,15 @@ tsc(Constants.SOURCE_DIR, {
 
                 main: 'mao-rn-android-kit/index',
                 externs: [
-                    '../typings/interfaces.d.ts', 
-                    '../typings/index.d.ts', 
+                    './interfaces.d.ts', 
                 ],
-                out: Path.join(Constants.OUTPUT_DIR, 'mao-rn-android-kit.d.ts') 
+                out: Path.join(Constants.OUTPUT_DIR, 'index.d.ts') 
             })
                 .then(resolve)
         });
     })
     .then(() => {
+        FS.copySync(Path.join(Constants.CWD, 'typings/interfaces.d.ts'), Path.join(Constants.CWD, 'dist/interfaces.d.ts'));
         process.exit(0);
     })
     .fail(reason => {
