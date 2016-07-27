@@ -18,7 +18,16 @@ import {
     AppBarLayoutAndroid,
     TabLayoutAndroid,
     NestedScrollViewAndroid,
-} from './dist/index';
+} from './dist/index';// 注:这里的引入方式只是组件开发环境中的使用方式
+
+/* 注:实际引用方式
+import {
+    CoordinatorLayoutAndroid,
+    AppBarLayoutAndroid,
+    TabLayoutAndroid,
+    NestedScrollViewAndroid,
+} from 'mao-rn-android-kit';
+ */
 
 class App extends Component<any, any> {
     componentDidMount() {

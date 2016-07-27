@@ -130,6 +130,9 @@ fitsSystemWindows: boolean;
 //选项卡项目
 tabs: { text: string }[];
 
+//选项卡字体大小
+tabTextSize: number;
+
 //选项卡项目默认字体颜色 
 tabTextColor: string;
 

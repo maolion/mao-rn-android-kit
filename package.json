@@ -1,6 +1,6 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "author" : "maolion",
   "description": "mao-rn-android-kit 用React Native 中使用的一些Android原生模块/组件",
   "keywords": [
@@ -32,7 +32,7 @@
     "prepublish": "npm run build-ts"
   },
   "dependencies": {
-    "thenfail": "^0.4.8"
+    "thenfail": "^0.4.0"
   },
   "devDependencies": {
     "react": "15.2.0",
