@@ -17,4 +17,7 @@ android/settings.gradle
 android/kits/kits.iml
 android/kits/proguard-rules.pro
 demo.gif
-devtools/local-debug.js
+devtools/
+tsconfig.json
+typings.json
+typings/
