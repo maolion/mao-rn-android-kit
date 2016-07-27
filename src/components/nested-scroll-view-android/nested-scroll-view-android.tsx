@@ -36,7 +36,6 @@ class NestedScrollViewAndroid
     constructor(props: NestedScrollViewAndroidProps, context: any) {
         super(props, context);
         this.state = (this as typeof ScrollResponder.Mixin).scrollResponderMixinGetInitialState();
-        console.log((this as any)._subscribableSubscriptions);
     }
 
     setNativeProps(props: Object) {

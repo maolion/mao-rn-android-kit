@@ -14,6 +14,7 @@ export interface Tab {
 
 export interface TabLayoutAndroidProps extends ViewProperties {
     tabs?: Tab[];
+    tabTextSize?: number;
     tabTextColor?: string;
     tabSelectedTextColor?: string;
     tabIndicatorColor?: string;
@@ -33,6 +34,7 @@ export default class TabLayoutAndroid extends Component<TabLayoutAndroidProps, a
             text: PropTypes.string.isRequired
         })),
         tabTextColor: PropTypes.string,
+        tabTextSize: PropTypes.number,
         tabSelectedTextColor: PropTypes.string,
         tabIndicatorColor: PropTypes.string,
         tabIndicatorHeight: PropTypes.number,

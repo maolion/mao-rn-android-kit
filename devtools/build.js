@@ -29,7 +29,7 @@ tsc(Constants.SOURCE_DIR, {
         });
     })
     .then(() => {
-        FS.copySync(Path.join(Constants.CWD, 'typings/interfaces.d.ts'), Path.join(Constants.CWD, 'dist/interfaces.d.ts'));
+        FS.copySync(Path.join(Constants.CWD, 'typings/interfaces.d.ts'), Path.join(Constants.OUTPUT_DIR, 'interfaces.d.ts'));
         process.exit(0);
     })
     .fail(reason => {

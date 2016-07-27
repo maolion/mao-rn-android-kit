@@ -29,7 +29,7 @@ export default class Layout {
         if (!childrelLayoutParams.length) {
             return;
         }
-        console.log(childrelLayoutParams);
+        
         UIManager.dispatchViewManagerCommand(
             findNodeHandle(component),
             manager.Commands.setChildrenLayoutParams,

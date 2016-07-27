@@ -49,3 +49,4 @@ dist
 src/tsconfig.json
 typings/global/
 typings/index.d.ts
+devtools/local-debug.js

@@ -18,9 +18,7 @@ import {
     AppBarLayoutAndroid,
     TabLayoutAndroid,
     NestedScrollViewAndroid,
-} from 'mao-rn-android-kitx';
-console.log(require("mao-rn-android-kitx"));
-console.log(AppBarLayoutAndroid); 
+} from './dist/index';
 
 class App extends Component<any, any> {
     componentDidMount() {
@@ -62,6 +60,10 @@ class App extends Component<any, any> {
                         <TabLayoutAndroid 
                             ref={(component) => this.tabLayout = component}
                             tabMode="scrollable"
+                            tabSelectedTextColor="red"
+                            tabIndicatorColor="red"
+                            tabIndicatorHeight={10}
+                            tabTextSize={16}
                              />
                     </AppBarLayoutAndroid>
                     <ViewPagerAndroid
