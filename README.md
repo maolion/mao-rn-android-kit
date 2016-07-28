@@ -21,8 +21,11 @@
 
 #### 第二步、配置你项目中的 ```android/settings.gradle``` 文件
 ```
-include ..., ':mao-rn-android-kit'
+....
+
+include ':mao-rn-android-kit'
 project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../node_modules/mao-rn-android-kit/android/kits')
+
 ```
 
 #### 第三步、配置你项目中的 ```android/app/build.gradle``` 文件

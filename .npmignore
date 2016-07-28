@@ -16,6 +16,7 @@ android/MaoRNAndroidKit.iml
 android/settings.gradle
 android/kits/kits.iml
 android/kits/proguard-rules.pro
+android/kits/build/
 demo.gif
 devtools/
 tsconfig.json
