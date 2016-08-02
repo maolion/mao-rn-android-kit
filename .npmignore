@@ -17,6 +17,8 @@ android/settings.gradle
 android/kits/kits.iml
 android/kits/proguard-rules.pro
 android/kits/build/
+android/.idea/
+android/.gradle/
 demo.gif
 devtools/
 tsconfig.json
