@@ -24,6 +24,7 @@ devtools/
 tsconfig.json
 typings.json
 typings/
+.vscode/
 .buckconfig
 .flowconfig
 .npmignore
