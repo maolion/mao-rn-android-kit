@@ -1,5 +1,6 @@
 package com.maornandroidkit.kits.widgets;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -136,8 +137,6 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
                 .getColorForState(MyTabLayout.getEmptyStateSet(), color);
 
         this.tabTextSelectedColor = color;
-        Console.log(this.tabTextNormalColor + "<<<<<<");
-        Console.log(this.tabTextSelectedColor + "<1234");
         this.setTabTextColor(this.view.getSelectedTabPosition(), color);
         //this.view.setTabTextColors(normalColor, color);
     }
@@ -189,25 +188,32 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
 
     private void populateTabLayoutWithTabs(ReadableArray tabs) {
         try {
+            final int selectedTabPosition = this.viewPager != null ?
+                    this.viewPager.getCurrentItem() : 0;
+
             for (int i = 0, size = tabs.size(); i < size; i++) {
                 ReadableMap tabMap = tabs.getMap(i);
                 TabLayout.Tab tab = view.newTab();
                 if (tabMap.hasKey("text")) {
                     //tab.setText(tabMap.getString("text"));
-                    View tabView = LayoutInflater.from(this.view.getContext()).inflate(R.layout.custom_tab, null);
+                    View tabView = LayoutInflater.from(
+                            this.view.getContext()).inflate(R.layout.custom_tab, null
+                    );
                     TextView textView = (TextView) tabView.findViewById(R.id.tab_title);
                     textView.setText(tabMap.getString("text"));
                     tab.setCustomView(tabView);
                     tabView = (View) tabView.getParent();
                     tabView.setOnClickListener(this.tabClickListener);
                     tabView.setTag(i);
+
+                    if (selectedTabPosition == i) {
+                        this.setSelectedTabStyle(tabView);
+                    } else {
+                        this.setUnselectTabStyle(tabView);
+                    }
                 }
 
                 this.view.addTab(tab);
-
-                if (this.tabTextNormalColor != 0) {
-                    this.setTabTextColor(i, this.tabTextNormalColor);
-                }
             }
             if (this.tabTextSize != 0) {
                 this.updateTabTextSize();
@@ -263,16 +269,12 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         this.view.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                if (_this.tabTextSelectedColor != 0) {
-                    _this.setTabTextColor(tab.getPosition(), _this.tabTextSelectedColor);
-                }
+                _this.setSelectedTabStyle(_this.getTabView(tab.getPosition()));
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                if (_this.tabTextNormalColor != 0) {
-                    _this.setTabTextColor(tab.getPosition(), _this.tabTextNormalColor);
-                }
+                _this.setUnselectTabStyle(_this.getTabView(tab.getPosition()));
             }
 
             @Override
@@ -281,7 +283,40 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         });
     }
 
+    private void setSelectedTabStyle(View tabView) {
+        if (tabView == null) {
+            return;
+        }
 
+        TextView textView = (TextView) tabView.findViewById(R.id.tab_title);
+        if (textView == null) {
+            return;
+        }
+
+        if (this.tabTextSelectedColor != 0) {
+            textView.setTextColor(this.tabTextSelectedColor);
+        }
+
+        textView.setTypeface(null, Typeface.BOLD);
+    }
+
+
+    private void setUnselectTabStyle(View tabView) {
+        if (tabView == null) {
+            return;
+        }
+
+        TextView textView = (TextView) tabView.findViewById(R.id.tab_title);
+        if (textView == null) {
+            return;
+        }
+
+        if (this.tabTextNormalColor != 0) {
+            textView.setTextColor(this.tabTextNormalColor);
+        }
+
+        textView.setTypeface(null, Typeface.NORMAL);
+    }
     private void setTabTextColor(int position, int color) {
         View tabView = this.getTabView(position);
         if (tabView == null) {
@@ -293,6 +328,7 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         }
         textView.setTextColor(color);
     }
+
 
     private View getTabView(int position) {
         TabLayout.Tab tab;
