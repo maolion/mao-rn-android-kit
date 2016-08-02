@@ -22,3 +22,7 @@ devtools/
 tsconfig.json
 typings.json
 typings/
+.buckconfig
+.flowconfig
+.npmignore
+.watchmanconfig
