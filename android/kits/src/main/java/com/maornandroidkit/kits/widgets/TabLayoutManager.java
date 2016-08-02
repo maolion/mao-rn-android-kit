@@ -301,7 +301,7 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         if (this.tabTextSelectedColor != 0) {
             textView.setTextColor(this.tabTextSelectedColor);
         }
-        
+
         //textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
     }
 
