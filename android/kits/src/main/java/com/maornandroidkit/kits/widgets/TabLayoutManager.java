@@ -194,9 +194,10 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
             for (int i = 0, size = tabs.size(); i < size; i++) {
                 ReadableMap tabMap = tabs.getMap(i);
                 TabLayout.Tab tab = view.newTab();
+                View tabView = null;
                 if (tabMap.hasKey("text")) {
                     //tab.setText(tabMap.getString("text"));
-                    View tabView = LayoutInflater.from(
+                    tabView = LayoutInflater.from(
                             this.view.getContext()).inflate(R.layout.custom_tab, null
                     );
                     TextView textView = (TextView) tabView.findViewById(R.id.tab_title);
@@ -205,15 +206,19 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
                     tabView = (View) tabView.getParent();
                     tabView.setOnClickListener(this.tabClickListener);
                     tabView.setTag(i);
-
-                    if (selectedTabPosition == i) {
-                        this.setSelectedTabStyle(tabView);
-                    } else {
-                        this.setUnselectTabStyle(tabView);
-                    }
                 }
 
                 this.view.addTab(tab);
+
+                if (tabView == null) {
+                    continue;
+                }
+
+                if (selectedTabPosition == i) {
+                    this.setSelectedTabStyle(tabView);
+                } else {
+                    this.setUnselectTabStyle(tabView);
+                }
             }
             if (this.tabTextSize != 0) {
                 this.updateTabTextSize();
@@ -296,8 +301,8 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         if (this.tabTextSelectedColor != 0) {
             textView.setTextColor(this.tabTextSelectedColor);
         }
-
-        textView.setTypeface(null, Typeface.BOLD);
+        
+        //textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
     }
 
 
@@ -315,7 +320,7 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
             textView.setTextColor(this.tabTextNormalColor);
         }
 
-        textView.setTypeface(null, Typeface.NORMAL);
+        //textView.setTypeface(textView.getTypeface(), Typeface.NORMAL);
     }
     private void setTabTextColor(int position, int color) {
         View tabView = this.getTabView(position);
