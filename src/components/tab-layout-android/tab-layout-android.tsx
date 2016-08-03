@@ -24,7 +24,7 @@ export interface TabLayoutAndroidProps extends ViewProperties {
     activeTabStyle?: Dictionary<any>;
 }
 
-type SizeParam = number | "match_parent" | "wrap_content";
+export type SizeParam = number | "match_parent" | "wrap_content";
 
 const Commands = UIManager.MaoKitsTabLayoutAndroid.Commands;
 const SETUP_VIEW_PAGER = Commands.setupViewPager;
