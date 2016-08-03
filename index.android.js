@@ -44,6 +44,8 @@ class App extends Component<any, any> {
             { text: "tab9" },
             { text: "tab10" },
         ]);
+
+        //this.tabLayout.setViewSize(920);
     }
     
     render() {

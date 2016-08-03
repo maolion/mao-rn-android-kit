@@ -7,6 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -44,6 +46,7 @@ class MyTabLayout extends TabLayout {
 public class TabLayoutManager extends ViewGroupManager<TabLayout> {
     private static final String NAME = "MaoKitsTabLayoutAndroid";
     private static final int COMMAND_SETUP_VIEW_PAGER = 1;
+    private static final int COMMAND_SET_VIEW_SIZE = 2;
 
     private TabLayout view;
     private ViewPager viewPager;
@@ -71,7 +74,9 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
     public Map<String, Integer>getCommandsMap() {
         return MapBuilder.of(
                 "setupViewPager",
-                TabLayoutManager.COMMAND_SETUP_VIEW_PAGER
+                TabLayoutManager.COMMAND_SETUP_VIEW_PAGER,
+                "setViewSize",
+                TabLayoutManager.COMMAND_SET_VIEW_SIZE
         );
     }
 
@@ -80,6 +85,9 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         switch (commandType) {
             case TabLayoutManager.COMMAND_SETUP_VIEW_PAGER:
                 this.setupViewPager(args.getInt(0), args.getArray(1));
+                break;
+            case TabLayoutManager.COMMAND_SET_VIEW_SIZE:
+                this.setSize(args.getMap(0));
                 break;
             default:
                 throw new JSApplicationIllegalArgumentException(String.format(
@@ -128,6 +136,7 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         int selectedColor = this.view.getTabTextColors()
                 .getColorForState(MyTabLayout.getSelectedStateSet(), color);
         this.view.setTabTextColors(color, selectedColor);
+
     }
 
 
@@ -366,4 +375,36 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         }
     }
 
+    private void setSize(ReadableMap sizeMap) {
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) this.view.getLayoutParams();
+
+        if (sizeMap.hasKey("width")) {
+            try {
+                String widthStr = sizeMap.getString("width");
+                if ("match_parent".equals(widthStr)) {
+                    params.width = ViewGroup.LayoutParams.MATCH_PARENT;
+
+                } else if ("wrap_parent".equals(widthStr)) {
+                    params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                }
+            } catch (Exception e) {
+                params.width = sizeMap.getInt("width");
+            }
+        }
+
+        if (sizeMap.hasKey("height")) {
+            try {
+                String heightStr = sizeMap.getString("height");
+                if ("match_parent".equals(heightStr)) {
+                    params.height = ViewGroup.LayoutParams.MATCH_PARENT;
+                } else if ("wrap_parent".equals(heightStr)) {
+                    params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                }
+            } catch (Exception e) {
+                params.height = sizeMap.getInt("height");
+            }
+        }
+
+        this.view.setLayoutParams(params);
+    }
 }

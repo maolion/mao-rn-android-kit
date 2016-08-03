@@ -24,8 +24,11 @@ export interface TabLayoutAndroidProps extends ViewProperties {
     activeTabStyle?: Dictionary<any>;
 }
 
+type SizeParam = number | "match_parent" | "wrap_content";
+
 const Commands = UIManager.MaoKitsTabLayoutAndroid.Commands;
 const SETUP_VIEW_PAGER = Commands.setupViewPager;
+const SET_VIEW_SIZE = Commands.setViewSize;
 
 export default class TabLayoutAndroid extends Component<TabLayoutAndroidProps, any> {
 
@@ -69,6 +72,23 @@ export default class TabLayoutAndroid extends Component<TabLayoutAndroidProps, a
             SETUP_VIEW_PAGER,
             [viewPagerID, tabs]
         );  
+    }
+
+    setViewSize(width: SizeParam, height?: SizeParam) {
+        let sizeMap: Dictionary<SizeParam> = {};
+        if (width != undefined) {
+            sizeMap["width"] = width;
+        }
+
+        if (height != undefined) {
+            sizeMap["height"] = height;
+        }
+        
+        UIManager.dispatchViewManagerCommand(
+            findNodeHandle(this),
+            SET_VIEW_SIZE,
+            [sizeMap]
+        );
     }
 
     private _childrenWithOverridenStyle() {

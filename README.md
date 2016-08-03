@@ -160,6 +160,9 @@ tabGravity: "center" | "fill";
 ```
 //绑定 viewPager
 setViewPager(viewPager: ViewPagerAndroid, tabs?: {text: string}[]);
+
+//设置 宽高尺寸
+setViewSize(width: number | "wrap_content" | "match_parent", height?: number | "wrap_content" | "match_parent");
 ```
 
 ----
