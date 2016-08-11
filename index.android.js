@@ -45,7 +45,7 @@ class App extends Component<any, any> {
             { text: "tab10" },
         ]);
 
-        //this.tabLayout.setViewSize(920);
+        //this.tabLayout.setViewSize(100);
     }
     
     render() {
@@ -56,6 +56,9 @@ class App extends Component<any, any> {
                     ref={(component) => this.coordinatorLayout = component}
                     fitsSystemWindows={false} >
                     <AppBarLayoutAndroid
+                        layoutParams={{
+                            height: 94
+                        }}
                         style={{ backgroundColor:"#fff000" }}  >
                         <ToolbarAndroid
                             layoutParams={{
@@ -65,17 +68,19 @@ class App extends Component<any, any> {
                                     AppBarLayoutAndroid.SCROLL_FLAG_SNAP
                                )
                             }}
-                            style={{ height: 50 }}>
+                            style={{ height: 50, padding: 0 }}>
                             <View><Text>Hello,world</Text></View>
                         </ToolbarAndroid>
-                        <TabLayoutAndroid 
-                            ref={(component) => this.tabLayout = component}
-                            tabMode="scrollable"
-                            tabSelectedTextColor="red"
-                            tabIndicatorColor="red"
-                            tabIndicatorHeight={10}
-                            tabTextSize={16}
-                             />
+                            <TabLayoutAndroid 
+                                ref={(component) => this.tabLayout = component}
+                                tabMode="scrollable"
+                                tabSelectedTextColor="red"
+                                tabIndicatorColor="red"
+                                tabIndicatorHeight={1}
+                                tabTextSize={16}
+                                tabSidePadding={10}
+                                tabHeight={38} 
+                                />
                     </AppBarLayoutAndroid>
                     <ViewPagerAndroid
                         ref={(compoent) => this.viewPager = compoent}

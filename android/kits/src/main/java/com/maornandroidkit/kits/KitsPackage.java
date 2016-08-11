@@ -5,10 +5,10 @@ import com.facebook.react.bridge.JavaScriptModule;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
-import com.maornandroidkit.kits.widgets.AppBarLayoutManager;
-import com.maornandroidkit.kits.widgets.CoordinatorLayoutManager;
-import com.maornandroidkit.kits.widgets.NestedScrollViewManager;
-import com.maornandroidkit.kits.widgets.TabLayoutManager;
+import com.maornandroidkit.kits.managers.AppBarLayoutManager;
+import com.maornandroidkit.kits.managers.CoordinatorLayoutManager;
+import com.maornandroidkit.kits.managers.NestedScrollViewManager;
+import com.maornandroidkit.kits.managers.TabLayoutManager;
 
 import java.util.Arrays;
 import java.util.Collections;

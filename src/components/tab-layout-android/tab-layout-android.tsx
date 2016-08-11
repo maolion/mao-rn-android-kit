@@ -22,6 +22,8 @@ export interface TabLayoutAndroidProps extends ViewProperties {
     tabMode?: "scrollable" | "fixed";
     tabGravity?: "center" | "fill";
     activeTabStyle?: Dictionary<any>;
+    tabHeight?: number;
+    tabSidePadding?: number;
 }
 
 export type SizeParam = number | "match_parent" | "wrap_content";
@@ -43,6 +45,8 @@ export default class TabLayoutAndroid extends Component<TabLayoutAndroidProps, a
         tabIndicatorHeight: PropTypes.number,
         tabMode: PropTypes.oneOf(["scrollable", "fixed"]),
         tabGravity: PropTypes.oneOf(["center", "fill"]),
+        tabHeight: PropTypes.number,
+        tabSidePadding: PropTypes.number,
         activeTabStyle: PropTypes.object
     });
 

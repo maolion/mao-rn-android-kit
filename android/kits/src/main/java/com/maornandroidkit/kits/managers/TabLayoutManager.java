@@ -1,54 +1,35 @@
-package com.maornandroidkit.kits.widgets;
-import android.content.Context;
-import android.graphics.Typeface;
+package com.maornandroidkit.kits.managers;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.react.bridge.JSApplicationIllegalArgumentException;
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.common.MapBuilder;
+import com.facebook.react.uimanager.PixelUtil;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.maornandroidkit.kits.Console;
 import com.maornandroidkit.kits.R;
+import com.maornandroidkit.kits.Utils;
+import com.maornandroidkit.kits.widgets.MTabLayout;
 
-import org.w3c.dom.Text;
 
 import java.util.Map;
-import java.util.zip.Inflater;
 
-class MyTabLayout extends TabLayout {
-
-    public static int[] getSelectedStateSet() {
-        return TabLayout.SELECTED_STATE_SET;
-    }
-
-    public static int[] getEmptyStateSet() {
-        return TabLayout.EMPTY_STATE_SET;
-    }
-
-    public MyTabLayout(Context context) {
-        super(context);
-    }
-
-}
-
-public class TabLayoutManager extends ViewGroupManager<TabLayout> {
+public class TabLayoutManager extends ViewGroupManager<MTabLayout> {
     private static final String NAME = "MaoKitsTabLayoutAndroid";
     private static final int COMMAND_SETUP_VIEW_PAGER = 1;
     private static final int COMMAND_SET_VIEW_SIZE = 2;
 
-    private TabLayout view;
+    private MTabLayout view;
     private ViewPager viewPager;
     private TabLayout.TabLayoutOnPageChangeListener tabPageChangeListener;
     private ViewPager.OnPageChangeListener viewPagerPageChangeListener;
@@ -57,14 +38,21 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
     private int tabTextNormalColor;
     private int tabTextSelectedColor;
     private float tabTextSize;
+    private int tabSidePadding;
 
     public String getName() {
         return TabLayoutManager.NAME;
     }
 
+    public TabLayoutManager() {
+        this.tabSidePadding = Utils.dpToPx(10);
+    }
+
     @Override
-    public TabLayout createViewInstance(ThemedReactContext reactContext) {
-        this.view = new TabLayout(reactContext);
+    public MTabLayout createViewInstance(ThemedReactContext reactContext) {
+        this.view = (MTabLayout) LayoutInflater.from(reactContext)
+                .inflate(R.layout.m_tab_layout, null);
+
         this.initListeners();
 
         return this.view;
@@ -81,7 +69,7 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
     }
 
     @Override
-    public void receiveCommand(TabLayout view, int commandType, @Nullable ReadableArray args) {
+    public void receiveCommand(MTabLayout view, int commandType, @Nullable ReadableArray args) {
         switch (commandType) {
             case TabLayoutManager.COMMAND_SETUP_VIEW_PAGER:
                 this.setupViewPager(args.getInt(0), args.getArray(1));
@@ -98,84 +86,83 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         }
     }
 
-    @Override
-    public void addView(TabLayout view, View child, int index) {
-        this.view.addTab(this.view.newTab().setCustomView(child));
-    }
-
-    @Override
-    public int getChildCount(TabLayout view) {
-        return this.view.getTabCount();
-    }
-
-    @Override
-    public View getChildAt(TabLayout view, int index) {
-        TabLayout.Tab tab = this.view.getTabAt(index);
-        return tab.getCustomView();
-    }
-
-    @Override
-    public void removeViewAt(TabLayout view, int index) {
-        this.view.removeTabAt(index);
-    }
-
     @ReactProp(name = "tabs")
-    public void setTabs(TabLayout view, ReadableArray tabs) {
+    public void setTabs(MTabLayout view, ReadableArray tabs) {
         this.view.removeAllTabs();
         this.populateTabLayoutWithTabs(tabs);
     }
 
     @ReactProp(name = "tabTextSize")
-    public void setTabTextSize(TabLayout view, float textSize) {
+    public void setTabTextSize(MTabLayout view, int textSize) {
         this.tabTextSize = textSize;
         this.updateTabTextSize();
     }
 
     @ReactProp(name = "tabTextColor", customType = "Color")
-    public void setTabTextColor(TabLayout view, int color) {
+    public void setTabTextColor(MTabLayout view, int color) {
         int selectedColor = this.view.getTabTextColors()
-                .getColorForState(MyTabLayout.getSelectedStateSet(), color);
+                .getColorForState(MTabLayout.getSelectedStateSet(), color);
         this.view.setTabTextColors(color, selectedColor);
 
     }
 
 
     @ReactProp(name = "tabSelectedTextColor", customType = "Color")
-    public void setTabSelectedTextColor(TabLayout view, int color) {
+    public void setTabSelectedTextColor(MTabLayout view, int color) {
         this.tabTextNormalColor = view.getTabTextColors()
-                .getColorForState(MyTabLayout.getEmptyStateSet(), color);
+                .getColorForState(MTabLayout.getEmptyStateSet(), color);
 
         this.tabTextSelectedColor = color;
         this.setTabTextColor(this.view.getSelectedTabPosition(), color);
-        //this.view.setTabTextColors(normalColor, color);
     }
 
     @ReactProp(name = "tabIndicatorColor", customType = "Color")
-    public void setSelectedTabIndicatorColor(TabLayout view, int color) {
+    public void setSelectedTabIndicatorColor(MTabLayout view, int color) {
         this.view.setSelectedTabIndicatorColor(color);
     }
 
     @ReactProp(name = "tabIndicatorHeight")
-    public void setSelectedTabIndicatorHeight(TabLayout view, int height) {
-        this.view.setSelectedTabIndicatorHeight(height);
+    public void setSelectedTabIndicatorHeight(MTabLayout view, int height) {
+        this.view.setSelectedTabIndicatorHeight(Utils.dpToPx(height));
     }
 
     @ReactProp(name = "tabGravity")
-    public void setTabGravity(TabLayout view, String gravity) {
+    public void setTabGravity(MTabLayout view, String gravity) {
         if ("center".equals(gravity)) {
-            this.view.setTabGravity(TabLayout.GRAVITY_CENTER);
+            this.view.setTabGravity(MTabLayout.GRAVITY_CENTER);
         } else if ("fill".equals(gravity)){
-            this.view.setTabGravity(TabLayout.GRAVITY_FILL);
+            this.view.setTabGravity(MTabLayout.GRAVITY_FILL);
         }
     }
 
     @ReactProp(name = "tabMode")
-    public void setTabMode(TabLayout view, String mode) {
+    public void setTabMode(MTabLayout view, String mode) {
         if ("fixed".equals(mode)) {
-            this.view.setTabMode(TabLayout.MODE_FIXED);
+            this.view.setTabMode(MTabLayout.MODE_FIXED);
         } else if ("scrollable".equals(mode)) {
-            this.view.setTabMode(TabLayout.MODE_SCROLLABLE);
+            this.view.setTabMode(MTabLayout.MODE_SCROLLABLE);
         }
+    }
+
+    @ReactProp(name = "tabSidePadding")
+    public void setTabSidePadding(MTabLayout view, int padding) {
+        padding = Utils.dpToPx(padding);
+        this.tabSidePadding = padding;
+
+        for (int i = 0, l = this.view.getTabCount(); i < l; i++) {
+            View tabView = this.getTabView(i);
+
+            if (tabView == null) {
+                return;
+            }
+
+            tabView.setPadding(padding, 0, padding, 0);
+        }
+    }
+
+    @ReactProp(name = "tabHeight")
+    public void setHeight(MTabLayout view, int height) {
+        this.view.setHeight(Utils.dpToPx(height));
     }
 
     public boolean needsCustomLayoutForChildren() {
@@ -184,11 +171,11 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
 
     private void setupViewPager(int viewPagerId, @Nullable ReadableArray tabs) {
         ViewPager viewPager = (ViewPager)this.view.getRootView().findViewById(viewPagerId);
-        //this.view.setupWithViewPager(viewPager);
         this.viewPager = viewPager;
+
         viewPager.addOnPageChangeListener(this.tabPageChangeListener);
         viewPager.addOnPageChangeListener(this.viewPagerPageChangeListener);
-        Console.log("tabs.size() = "+ (tabs != null ? tabs.size() : 0));
+
         if (tabs != null) {
             this.view.removeAllTabs();
             this.populateTabLayoutWithTabs(tabs);
@@ -203,11 +190,12 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
             for (int i = 0, size = tabs.size(); i < size; i++) {
                 ReadableMap tabMap = tabs.getMap(i);
                 TabLayout.Tab tab = view.newTab();
+
                 View tabView = null;
                 if (tabMap.hasKey("text")) {
                     //tab.setText(tabMap.getString("text"));
                     tabView = LayoutInflater.from(
-                            this.view.getContext()).inflate(R.layout.custom_tab, null
+                            this.view.getContext()).inflate(R.layout.m_tab_layout_default_tab_view, null
                     );
                     TextView textView = (TextView) tabView.findViewById(R.id.tab_title);
                     textView.setText(tabMap.getString("text"));
@@ -228,6 +216,8 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
                 } else {
                     this.setUnselectTabStyle(tabView);
                 }
+
+                tabView.setPadding(this.tabSidePadding, 0, this.tabSidePadding, 0);
             }
             if (this.tabTextSize != 0) {
                 this.updateTabTextSize();
@@ -310,8 +300,6 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         if (this.tabTextSelectedColor != 0) {
             textView.setTextColor(this.tabTextSelectedColor);
         }
-
-        //textView.setTypeface(textView.getTypeface(), Typeface.BOLD);
     }
 
 
@@ -328,9 +316,8 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
         if (this.tabTextNormalColor != 0) {
             textView.setTextColor(this.tabTextNormalColor);
         }
-
-        //textView.setTypeface(textView.getTypeface(), Typeface.NORMAL);
     }
+
     private void setTabTextColor(int position, int color) {
         View tabView = this.getTabView(position);
         if (tabView == null) {
@@ -388,7 +375,7 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
                     params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
                 }
             } catch (Exception e) {
-                params.width = sizeMap.getInt("width");
+                params.width = Utils.dpToPx(sizeMap.getInt("width"));
             }
         }
 
@@ -401,7 +388,7 @@ public class TabLayoutManager extends ViewGroupManager<TabLayout> {
                     params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                 }
             } catch (Exception e) {
-                params.height = sizeMap.getInt("height");
+                params.height = Utils.dpToPx(sizeMap.getInt("height"));
             }
         }
 

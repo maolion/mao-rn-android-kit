@@ -154,6 +154,12 @@ tabMode: "scrollale" | "fixed";
 //选卡布局位置
 tabGravity: "center" | "fill";
 
+//选项卡高度
+tabHeight: number;
+
+//选项卡侧边(左右边)边距
+tabSidePadding: number;
+
 ```
 
 方法
