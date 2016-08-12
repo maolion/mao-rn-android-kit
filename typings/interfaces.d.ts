@@ -11,7 +11,7 @@ declare namespace __React {
     
     export function findNodeHandle(component: Component<any, any>): any;
     export function requireNativeComponent(viewName: string, componentInterface: NativeComponentInterface|ComponentClass<any>, extraConfig?: any): React.ClassicComponentClass<any>;
-
+    export var NativeModules: any;
     export let UIManager: any;
 }
 

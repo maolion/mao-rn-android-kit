@@ -1,15 +1,15 @@
 import * as React from 'react';
-import AppBarLayoutAndroid from './components/appbar-layout-android/appbar-layout-android';
-import CoordinatorLayoutAndroid from './components/coordinator-layout-android/coordinator-layout-android';
-import NestedScrollViewAndroid from './components/nested-scroll-view-android/nested-scroll-view-android';
-import TabLayoutAndroid from './components/tab-layout-android/tab-layout-android';
-
+import AppBarLayoutAndroid from './components/appbar-layout/appbar-layout';
+import CoordinatorLayoutAndroid from './components/coordinator-layout/coordinator-layout';
+import NestedScrollViewAndroid from './components/nested-scroll-view/nested-scroll-view';
+import TabLayoutAndroid from './components/tab-layout/tab-layout';
+import * as ExtraDimensionsAndroid from './components/extra-dimensions/extra-dimensions';
 (global as any).React = React;
 
 export { 
     AppBarLayoutAndroid, 
     CoordinatorLayoutAndroid,
     NestedScrollViewAndroid,
-    TabLayoutAndroid
+    TabLayoutAndroid,
+    ExtraDimensionsAndroid
 };
-

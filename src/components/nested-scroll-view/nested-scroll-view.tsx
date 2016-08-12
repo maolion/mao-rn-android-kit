@@ -15,15 +15,15 @@ import * as ScrollResponder from 'react-native/Libraries/Components/ScrollRespon
 
 import { reactMixins } from '../../utils/helpers';
 
-export interface NestedScrollViewAndroidProps extends ScrollViewProperties {
+export interface NestedScrollViewProps extends ScrollViewProperties {
     showVerticalScrollIndicator?: boolean;
     removeClippedSubviews?: boolean;
     onContentSizeChange?: (width: number, height: number) => void;
 }
 
 @reactMixins([ScrollResponder.Mixin])
-class NestedScrollViewAndroid 
-    extends Component<NestedScrollViewAndroidProps, any>
+class NestedScrollView 
+    extends Component<NestedScrollViewProps, any>
 {
     
     static propTypes = Object.assign({}, ScrollView.propTypes, {
@@ -33,7 +33,7 @@ class NestedScrollViewAndroid
     private _scrollView: NativeComponent;
     private _innerView: Component<any, any>;
 
-    constructor(props: NestedScrollViewAndroidProps, context: any) {
+    constructor(props: NestedScrollViewProps, context: any) {
         super(props, context);
         this.state = (this as typeof ScrollResponder.Mixin).scrollResponderMixinGetInitialState();
     }
@@ -114,7 +114,7 @@ class NestedScrollViewAndroid
         const onRefreshStart: any = this.props.onRefreshStart;
 
         return (
-            <RCTNestedScrollViewAndroid
+            <RCTNestedScrollView
                 {...this.props}
                 {...eventProps}
                 style={[styles.base, this.props.style]}
@@ -140,7 +140,7 @@ class NestedScrollViewAndroid
                 >
                     {this.props.children}
                 </View>
-            </RCTNestedScrollViewAndroid>);
+            </RCTNestedScrollView>);
     }
     
     private _handleContentOnLayout(event: any) {
@@ -149,9 +149,9 @@ class NestedScrollViewAndroid
     }
 }
 
-const RCTNestedScrollViewAndroid:any = requireNativeComponent(
+const RCTNestedScrollView:any = requireNativeComponent(
     'MaoKitsNestedScrollViewAndroid',
-    NestedScrollViewAndroid,
+    NestedScrollView,
     {
         nativeOnly: {}
     }
@@ -167,4 +167,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NestedScrollViewAndroid;
+export default NestedScrollView;

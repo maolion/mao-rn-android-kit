@@ -12,7 +12,7 @@ export interface Tab {
     text: string;
 }
 
-export interface TabLayoutAndroidProps extends ViewProperties {
+export interface TabLayoutProps extends ViewProperties {
     tabs?: Tab[];
     tabTextSize?: number;
     tabTextColor?: string;
@@ -32,7 +32,7 @@ const Commands = UIManager.MaoKitsTabLayoutAndroid.Commands;
 const SETUP_VIEW_PAGER = Commands.setupViewPager;
 const SET_VIEW_SIZE = Commands.setViewSize;
 
-export default class TabLayoutAndroid extends Component<TabLayoutAndroidProps, any> {
+export default class TabLayout extends Component<TabLayoutProps, any> {
 
     static propTypes = Object.assign({}, View.propTypes, {
         tabs: PropTypes.arrayOf(PropTypes.shape({
@@ -53,14 +53,14 @@ export default class TabLayoutAndroid extends Component<TabLayoutAndroidProps, a
 
     render() {
         return (
-            <RCTTabLayoutAndroid 
+            <RCTTabLayout 
                  {...this.props}
                  style={[
                      { height: 48 },
                      this.props.style
                  ]}>
                  {this._childrenWithOverridenStyle()}
-            </RCTTabLayoutAndroid>
+            </RCTTabLayout>
         );
     }
 
@@ -125,9 +125,9 @@ export default class TabLayoutAndroid extends Component<TabLayoutAndroidProps, a
     }
 }
 
-const RCTTabLayoutAndroid: any = requireNativeComponent(
+const RCTTabLayout: any = requireNativeComponent(
     "MaoKitsTabLayoutAndroid", 
-    TabLayoutAndroid,
+    TabLayout,
     {
         nativeOnly: {}
     }

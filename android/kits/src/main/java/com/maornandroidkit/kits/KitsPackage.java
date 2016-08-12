@@ -9,6 +9,7 @@ import com.maornandroidkit.kits.managers.AppBarLayoutManager;
 import com.maornandroidkit.kits.managers.CoordinatorLayoutManager;
 import com.maornandroidkit.kits.managers.NestedScrollViewManager;
 import com.maornandroidkit.kits.managers.TabLayoutManager;
+import com.maornandroidkit.kits.modules.ExtraDimensionsModule;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,7 +18,9 @@ import java.util.List;
 public class KitsPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Collections.emptyList();
+        return Arrays.<NativeModule>asList(
+                new ExtraDimensionsModule(reactContext)
+        );
     }
 
     @Override

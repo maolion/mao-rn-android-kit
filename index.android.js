@@ -18,6 +18,7 @@ import {
     AppBarLayoutAndroid,
     TabLayoutAndroid,
     NestedScrollViewAndroid,
+    ExtraDimensionsAndroid
 } from './dist/index';// 注:这里的引入方式只是组件开发环境中的使用方式
 
 /* 注:实际引用方式
@@ -26,8 +27,11 @@ import {
     AppBarLayoutAndroid,
     TabLayoutAndroid,
     NestedScrollViewAndroid,
+    ExtraDimensionsAndroid
 } from 'mao-rn-android-kit';
  */
+
+
 
 class App extends Component<any, any> {
     componentDidMount() {
@@ -147,6 +151,41 @@ const styles = StyleSheet.create({
         marginBottom: 5
     }
 });
+
+console.log(
+    'screen width:', 
+    ExtraDimensionsAndroid.getScreenWidth()
+);
+
+console.log(
+    'screen height:', 
+    ExtraDimensionsAndroid.getScreenHeight()
+);
+
+console.log(
+    'status bar height:', 
+    ExtraDimensionsAndroid.getStatusBarHeight()
+);
+
+console.log(
+    'soft menu bar height:', 
+    ExtraDimensionsAndroid.getSoftMenuBarHeight()
+);
+
+console.log(
+    'smart bar height:', 
+    ExtraDimensionsAndroid.getSmartBarHeight()
+);
+
+console.log(
+    'app client height:', 
+    ExtraDimensionsAndroid.getAppClientHeight()
+);
+
+console.log(
+    'app client width:', 
+    ExtraDimensionsAndroid.getAppClientWidth()
+);
 
 AppRegistry.registerComponent('MaoRNAndroidKit', () => App);
 

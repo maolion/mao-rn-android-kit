@@ -6,12 +6,16 @@
 
 ---- 
 
-包含
+包含组件
 
 - CoordinatorLayout
 - AppBarLayout
 - TabLayout
 - NestedScrollView
+
+包含模块
+
+- ExtraDimensions
 
 -----
 
@@ -69,6 +73,7 @@ import {
     AppBarLayoutAndroid,
     TabLayoutAndroid,
     NestedScrollViewAndroid,
+    ExtraDimensionsAndroid
 } from 'mao-rn-android-kit';
 
 
@@ -190,6 +195,34 @@ showVerticalScrollIndicator: boolean;
 
 ----
 
+### ExtraDimensionsAndroid
+
+方法
+```
+//获取设备实际屏幕高度
+getScreenHeight(): number;
+
+//获取设备实际屏幕宽度
+getScreenWidth(): number;
+
+// 获取魅族SmartBar高度
+getSmartBarHeight(): number;
+
+// 获取软键盘导航按钮高度
+getSoftMenuBarHeight(): number;
+
+// 获取状态栏高度
+getStatusBarHeight(): number;
+
+// 获取APP可视容器宽度
+getAppClientWidth(): number;
+
+// 获取APP可视容器高度
+getAppClientHeight(): number;
+```
+----
+
 参考过:
 
 - [react-native-android-design-support](https://github.com/Neson/react-native-android-design-support)
+- [react-native-extra-dimensions-android](https://github.com/BelinChung/react-native-extra-dimensions-android)
