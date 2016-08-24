@@ -12,10 +12,12 @@
 - AppBarLayout
 - TabLayout
 - NestedScrollView
+- PopupWindow
 
 包含模块
 
 - ExtraDimensions
+- Gravity
 
 -----
 
@@ -221,6 +223,38 @@ getAppClientWidth(): number;
 getAppClientHeight(): number;
 ```
 ----
+
+### PopupWindowAndroid
+
+方法
+```
+// 将弹出窗口显示在指定窗口下方
+showAsDropdown(viewId: Component, x: number, y: number): void;
+
+// 将弹出窗口显示在指定位置
+showAsLocation(gravity: number, x: number, y: number): void;
+
+// 隐藏弹出窗口
+hide(): void;
+```
+
+属性
+```
+// focusable
+focusable?: boolea;
+
+// 弹出窗口内是否接收触摸事件
+touchable?: boolea;
+
+// 点击弹出窗口外时 是否隐藏弹出窗口
+outsideTouchable?: boolean; 
+```
+
+----
+
+### GravityAndroid
+
+[Gravity](https://developer.android.com/reference/android/view/Gravity.html)
 
 参考过:
 

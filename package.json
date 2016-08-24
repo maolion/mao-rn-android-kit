@@ -7,12 +7,16 @@
     "mao-rn-android-kit",
     "react-native",
     "react native",
-    "react-native android",
-    "react native android",
-    "react-native android support design",
-    "react native android support design",
-    "react-native support design",
-    "react native support design"
+    "android",
+    "support design",
+    "AppBarLayout",
+    "NestedScrollView",
+    "CoordinatorLayout",
+    "PopupWindowAndroid",
+    "NestedScrollView",
+    "PopupWindow",
+    "Gravity",
+    "Dimensions"
   ],
   "bugs": {
     "url": "https://github.com/maolion/mao-rn-android-kit/issues"
