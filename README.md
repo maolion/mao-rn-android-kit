@@ -2,7 +2,7 @@
 
 用React Native 中使用的一些Android原生模块/组件
 
-![cover](http://7xi3xn.com1.z0.glb.clouddn.com/demo.gif)
+![cover](demo.gif)
 
 ---- 
 
