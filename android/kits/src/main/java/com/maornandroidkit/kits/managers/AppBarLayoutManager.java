@@ -20,7 +20,6 @@ public class AppBarLayoutManager extends ViewGroupManager<AppBarLayout> {
     public static final String NAME = "MaoKitsAppBarLayoutAndroid";
     public static final int COMMAND_SET_CHILDREN_LAYOUT_PARAMS = 1;
 
-    private AppBarLayout view;
 
     @Override
     public String getName() {
@@ -29,13 +28,13 @@ public class AppBarLayoutManager extends ViewGroupManager<AppBarLayout> {
 
     @Override
     public AppBarLayout createViewInstance(ThemedReactContext context) {
-        this.view = new AppBarLayout(context);
-        this.view.setLayoutParams(new AppBarLayout.LayoutParams(
+        AppBarLayout view = new AppBarLayout(context);
+        view.setLayoutParams(new AppBarLayout.LayoutParams(
                 AppBarLayout.LayoutParams.MATCH_PARENT,
                 AppBarLayout.LayoutParams.WRAP_CONTENT
         ));
 
-        return this.view;
+        return view;
     }
 
     @Override
@@ -50,7 +49,7 @@ public class AppBarLayoutManager extends ViewGroupManager<AppBarLayout> {
     public void receiveCommand(AppBarLayout view, int commandType, @Nullable ReadableArray args) {
         switch (commandType) {
             case AppBarLayoutManager.COMMAND_SET_CHILDREN_LAYOUT_PARAMS:
-                this.setChildrenLayoutParamsCommand(args.getArray(0));
+                this.setChildrenLayoutParamsCommand(view, args.getArray(0));
                 break;
             default:
                 throw new JSApplicationIllegalArgumentException(String.format(
@@ -75,19 +74,19 @@ public class AppBarLayoutManager extends ViewGroupManager<AppBarLayout> {
 
     @ReactProp(name = "fitsSystemWindows")
     public void setFitsSystemWindows(AppBarLayout view, boolean fitsSystemWindows) {
-        this.view.setFitsSystemWindows(fitsSystemWindows);
+        view.setFitsSystemWindows(fitsSystemWindows);
     }
 
     public boolean needsCustomLayoutForChildren() {
         return true;
     }
 
-    private void setChildrenLayoutParamsCommand(@Nullable ReadableArray params) {
+    private void setChildrenLayoutParamsCommand(AppBarLayout view, @Nullable ReadableArray params) {
         for (int i = 0, size = params.size(); i < size; i++) {
             ReadableMap paramMap = params.getMap(i);
-            View view = this.view.getChildAt(paramMap.getInt("childIndex"));
+            View childView = view.getChildAt(paramMap.getInt("childIndex"));
 
-            AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) view.getLayoutParams();
+            AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) childView.getLayoutParams();
 
             int width = layoutParams.width;
             int height = layoutParams.height;
@@ -124,7 +123,7 @@ public class AppBarLayoutManager extends ViewGroupManager<AppBarLayout> {
                 layoutParams.setScrollFlags(paramMap.getInt("scrollFlags"));
             }
 
-            view.setLayoutParams(layoutParams);
+            childView.setLayoutParams(layoutParams);
         }
     }
 }

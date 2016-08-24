@@ -16,3 +16,5 @@ public class Console {
     }
 }
 
+// 需要一个view用来做自定义视图接收器
+

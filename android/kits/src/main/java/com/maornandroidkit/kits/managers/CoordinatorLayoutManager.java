@@ -24,7 +24,6 @@ public class CoordinatorLayoutManager extends ViewGroupManager<CoordinatorLayout
     public static final int COMMAND_SET_CHILDREN_LAYOUT_PARAMS = 1;
     public static final int COMMAND_SET_SCROLLING_VIEW_BEHAVIOR = 2;
 
-    private CoordinatorLayout view;
 
     @Override
     public String getName() {
@@ -33,12 +32,12 @@ public class CoordinatorLayoutManager extends ViewGroupManager<CoordinatorLayout
 
     @Override
     public CoordinatorLayout createViewInstance(ThemedReactContext context) {
-        this.view = new CoordinatorLayout(context);
-        this.view.setLayoutParams(new CoordinatorLayout.LayoutParams(
+        CoordinatorLayout layout = new CoordinatorLayout(context);
+        layout.setLayoutParams(new CoordinatorLayout.LayoutParams(
                 CoordinatorLayout.LayoutParams.MATCH_PARENT,
                 CoordinatorLayout.LayoutParams.MATCH_PARENT
         ));
-        return this.view;
+        return layout;
     }
 
     @Override
@@ -52,13 +51,13 @@ public class CoordinatorLayoutManager extends ViewGroupManager<CoordinatorLayout
     }
 
     @Override
-    public void receiveCommand(CoordinatorLayout view, int commandType, @Nullable ReadableArray args) {
+    public void receiveCommand(CoordinatorLayout layout, int commandType, @Nullable ReadableArray args) {
         switch (commandType) {
             case CoordinatorLayoutManager.COMMAND_SET_CHILDREN_LAYOUT_PARAMS:
-                this.setChildrenLayoutParamsCommand(args.getArray(0));
+                this.setChildrenLayoutParamsCommand(layout, args.getArray(0));
                 break;
             case CoordinatorLayoutManager.COMMAND_SET_SCROLLING_VIEW_BEHAVIOR:
-                this.setScrollingViewBehavior(args.getInt(0));
+                this.setScrollingViewBehavior(layout, args.getInt(0));
                 break;
             default:
                 throw new JSApplicationIllegalArgumentException(String.format(
@@ -70,19 +69,19 @@ public class CoordinatorLayoutManager extends ViewGroupManager<CoordinatorLayout
     }
 
     @ReactProp(name = "fitsSystemWindows")
-    public void setFitsSystemWindows(CoordinatorLayout view, boolean fitsSystemWindows) {
-        this.view.setFitsSystemWindows(fitsSystemWindows);
+    public void setFitsSystemWindows(CoordinatorLayout layout, boolean fitsSystemWindows) {
+        layout.setFitsSystemWindows(fitsSystemWindows);
     }
 
     public boolean needsCustomLayoutForChildren() {
         return true;
     }
 
-    private void setChildrenLayoutParamsCommand(@Nullable ReadableArray params) {
+    private void setChildrenLayoutParamsCommand(CoordinatorLayout layout, @Nullable ReadableArray params) {
         for (int i = 0, size = params.size(); i < size; i++) {
             ReadableMap paramMap = params.getMap(i);
-            View view = this.view.getChildAt(paramMap.getInt("childIndex"));
-            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams)view.getLayoutParams();
+            View childView = layout.getChildAt(paramMap.getInt("childIndex"));
+            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams)childView.getLayoutParams();
             int width = layoutParams.width;
             int height = layoutParams.height;
 
@@ -112,13 +111,13 @@ public class CoordinatorLayoutManager extends ViewGroupManager<CoordinatorLayout
                 }
             }
 
-            view.setLayoutParams(new CoordinatorLayout.LayoutParams(width, height));
+            childView.setLayoutParams(new CoordinatorLayout.LayoutParams(width, height));
         }
     }
 
-    private void setScrollingViewBehavior(int viewId) {
+    private void setScrollingViewBehavior(CoordinatorLayout layout, int viewId) {
         try {
-            View view = this.view.getRootView().findViewById(viewId);
+            View view = layout.getRootView().findViewById(viewId);
             CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams) view.getLayoutParams();
             params.setBehavior(new AppBarLayout.ScrollingViewBehavior());
             view.requestLayout();

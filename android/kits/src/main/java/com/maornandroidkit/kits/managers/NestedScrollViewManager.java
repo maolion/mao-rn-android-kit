@@ -1,6 +1,7 @@
 package com.maornandroidkit.kits.managers;
 
 import android.support.annotation.Nullable;
+import android.support.v4.widget.NestedScrollView;
 import android.view.ViewGroup;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -20,7 +21,6 @@ public class NestedScrollViewManager
 {
     private static final String NAME = "MaoKitsNestedScrollViewAndroid";
 
-    private MNestedScrollView view;
 
 
     @Override
@@ -30,12 +30,13 @@ public class NestedScrollViewManager
 
     @Override
     public MNestedScrollView createViewInstance(ThemedReactContext context) {
-        this.view = new MNestedScrollView(context);
-        this.view.setLayoutParams(new ViewGroup.LayoutParams(
+        MNestedScrollView view = new MNestedScrollView(context);
+        view.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
         ));
-        return this.view;
+
+        return view;
     }
 
     @Override
@@ -61,9 +62,9 @@ public class NestedScrollViewManager
         int y = data.mDestY;
 
         if (data.mAnimated) {
-            this.view.smoothScrollTo(x, y);
+            view.smoothScrollTo(x, y);
         } else {
-            this.view.scrollTo(x, y);
+            view.scrollTo(x, y);
         }
     }
 
@@ -83,11 +84,11 @@ public class NestedScrollViewManager
 
     @ReactProp(name = "showVerticalScrollIndicator")
     public void setShowVerticalScrollIndicator(MNestedScrollView view, boolean value) {
-        this.view.setVerticalScrollBarEnabled(value);
+        view.setVerticalScrollBarEnabled(value);
     }
 
     @ReactProp(name = ReactClippingViewGroupHelper.PROP_REMOVE_CLIPPED_SUBVIEWS)
     public void setRemoveClippedSubviews(MNestedScrollView view, boolean removeClippedSubviews) {
-        this.view.setRemoveClippedSubviews(removeClippedSubviews);
+        view.setRemoveClippedSubviews(removeClippedSubviews);
     }
 }

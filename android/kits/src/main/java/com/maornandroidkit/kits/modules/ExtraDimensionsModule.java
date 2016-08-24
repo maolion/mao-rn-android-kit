@@ -29,6 +29,7 @@ public class ExtraDimensionsModule extends ReactContextBaseJavaModule implements
         super(reactContext);
         this.reactContext = reactContext;
         this.reactContext.addLifecycleEventListener(this);
+
     }
 
     @Override

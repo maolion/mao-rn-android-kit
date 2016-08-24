@@ -1,7 +1,7 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.2.0",
-  "author" : "maolion",
+  "version": "0.2.1",
+  "author": "maolion",
   "description": "mao-rn-android-kit 用React Native 中使用的一些Android原生模块/组件",
   "keywords": [
     "mao-rn-android-kit",
@@ -21,25 +21,27 @@
   "typings": "mao-m-android-kit.d.ts",
   "license": "MIT",
   "repository": {
-		"type": "git",
-		"url": "https://github.com/maolion/mao-rn-android-kit.git"
-	},
+    "type": "git",
+    "url": "https://github.com/maolion/mao-rn-android-kit.git"
+  },
   "homepage": "https://github.com/maolion/mao-rn-android-kit",
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "debug-ts": "node -harmony devtools/debug.js",
     "build-ts": "node -harmony devtools/build.js",
-    "prepublish": "npm run build-ts"
+    "prepublish": "npm run build-ts",
+    "postinstall": "rndebugger-open"
   },
   "dependencies": {
     "thenfail": "^0.4.0"
   },
   "devDependencies": {
+    "chokidar": "^1.6.0",
+    "fs-extra": "^0.30.0",
     "react": "15.2.0",
     "react-native": "^0.29.0",
-    "chokidar": "^1.6.0",
-    "xdts-generator": "^1.0.0",
-    "fs-extra": "^0.30.0",
-    "typescript": "^1.8.10"
+    "react-native-debugger-open": "^0.3.1",
+    "typescript": "^1.8.10",
+    "xdts-generator": "^1.0.0"
   }
 }

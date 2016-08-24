@@ -8,6 +8,7 @@ import {
     View,
     Dimensions,
     ViewPagerAndroid,
+    TouchableHighlight,
     ToolbarAndroid
 } from 'react-native';
 
@@ -18,7 +19,9 @@ import {
     AppBarLayoutAndroid,
     TabLayoutAndroid,
     NestedScrollViewAndroid,
-    ExtraDimensionsAndroid
+    ExtraDimensionsAndroid,
+    PopupWindowAndroid,
+    GravityAndroid
 } from './dist/index';// 注:这里的引入方式只是组件开发环境中的使用方式
 
 /* 注:实际引用方式
@@ -27,7 +30,9 @@ import {
     AppBarLayoutAndroid,
     TabLayoutAndroid,
     NestedScrollViewAndroid,
-    ExtraDimensionsAndroid
+    ExtraDimensionsAndroid,
+    PopupWindowAndroid,
+    GravityAndroid
 } from 'mao-rn-android-kit';
  */
 
@@ -47,13 +52,41 @@ class App extends Component<any, any> {
             { text: "tab8" },
             { text: "tab9" },
             { text: "tab10" },
+            { text : "tab11" },
+            { text: "tab12" },
+            { text: "tab13" },
+            { text: "tab14" },
+            { text: "tab15" },
+            { text: "tab16" },
+            { text: "tab17" },
+            { text: "tab18" },
+            { text: "tab19" },
+            { text: "tab20" },
         ]);
-
-        //this.tabLayout.setViewSize(100);
     }
     
     render() {
-
+    //     return (
+    //         <View style={styles.container} >
+    //             <View style={{ marginLeft: 150, width: 100, height: 50, backgroundColor: "blue" }}>
+    //                 <TouchableHighlight ref={compoennt => this.xxx = compoennt} onPress={() => {
+    //                     this._x.show(this.xxx);
+    //                     console.log("fuck");
+    //                 }}>
+    //                     <Text>Hello,world</Text>
+    //                 </TouchableHighlight>
+    //             </View>
+    //             <Test ref={component => this._x = component}>
+    //                 <View style={{ width: 100, backgroundColor: "transparent", paddingTop: 20 }}>
+    //                     <View style={{ borderRadius: 4, backgroundColor: "rgba(0, 0, 0, .6)" }}>
+    //                         <Text style={{ color: "#fff", height: 30 }}>Hello,world</Text>
+    //                         <Text>Hello,xxxxworld</Text>
+    //                     </View>
+    //                 </View>
+    //             </Test>
+    //             <View style={{ backgroundColor: "red", height: 100 }}></View>
+    //         </View>
+    //     );
         return (
             <View style={styles.container}>
                 <CoordinatorLayoutAndroid
@@ -64,27 +97,58 @@ class App extends Component<any, any> {
                             height: 94
                         }}
                         style={{ backgroundColor:"#fff000" }}  >
-                        <ToolbarAndroid
+                        <View
                             layoutParams={{
+                                height: 56,
                                 scrollFlags: (
                                     AppBarLayoutAndroid.SCROLL_FLAG_SCROLL | 
                                     AppBarLayoutAndroid.SCROLL_FLAG_ENTRY_ALWAYS |
                                     AppBarLayoutAndroid.SCROLL_FLAG_SNAP
                                )
                             }}
-                            style={{ height: 50, padding: 0 }}>
-                            <View><Text>Hello,world</Text></View>
-                        </ToolbarAndroid>
-                            <TabLayoutAndroid 
-                                ref={(component) => this.tabLayout = component}
-                                tabMode="scrollable"
-                                tabSelectedTextColor="red"
-                                tabIndicatorColor="red"
-                                tabIndicatorHeight={1}
-                                tabTextSize={16}
-                                tabSidePadding={10}
-                                tabHeight={38} 
-                                />
+                            style={{ flexDirection: "row", height: 50, paddingLeft: 10, paddingRight: 10, backgroundColor: "transparent", justifyContent: "center" }}
+                        >
+                            <View style={{ flex: 1, justifyContent: "center"}}>
+                                <Text>Hello, World</Text>
+                            </View>
+                            <View style={{ marginLeft: 10, justifyContent: "center", alignItems: "center" }}>
+                                <TouchableHighlight 
+                                    underlayColor="rgba(0, 0, 0, .1)" 
+                                    style={{ padding: 15 }} 
+                                    onPress={() => this.popupWindow1.showAsLocation(GravityAndroid.BOTTOM, 0, 0)} >
+                                    <Text>A</Text>
+                                </TouchableHighlight>
+                                
+                            </View>
+                            <View style={{ marginLeft: 10, justifyContent: "center", alignItems: "center" }}>
+                                <TouchableHighlight 
+                                    ref="dropdown_toggle"
+                                    underlayColor="rgba(0, 0, 0, .1)" 
+                                    style={{ padding: 15 }} 
+                                    onPress={() => this.popupWindow2.showAsDropdown(this.refs['dropdown_toggle'], 0, 56)} >
+                                    <Text>B</Text>
+                                </TouchableHighlight>
+                            </View>
+
+                            <PopupWindowAndroid ref={component => this.popupWindow1 = component}>
+                                <View style={{ backgroundColor: "rgba(0, 0, 0, .9)", width: ExtraDimensionsAndroid.getAppClientWidth(), height: 200 }}>
+                                </View>
+                            </PopupWindowAndroid>
+                            <PopupWindowAndroid ref={component => this.popupWindow2 = component}>
+                                    <View style={{ backgroundColor: "rgba(0, 0, 0, .9)",  width: 150, height: 200 }}>
+                                        
+                                    </View>
+                            </PopupWindowAndroid>
+                        </View>
+                        <TabLayoutAndroid 
+                            ref={(component) => this.tabLayout = component}
+                            tabMode="scrollable"
+                            tabSelectedTextColor="red"
+                            tabIndicatorColor="red"
+                            tabIndicatorHeight={1}
+                            tabTextSize={16}
+                            tabSidePadding={10}
+                            tabHeight={38} />
                     </AppBarLayoutAndroid>
                     <ViewPagerAndroid
                         ref={(compoent) => this.viewPager = compoent}
@@ -94,14 +158,14 @@ class App extends Component<any, any> {
                     </ViewPagerAndroid>
                     
                 </CoordinatorLayoutAndroid>
-
+                
             </View>
         );
     }
 
     getPages() {
         const pages = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 20; i++) {
             pages.push(<View key={i}>
                 <NestedScrollViewAndroid 
                     style={{
@@ -186,6 +250,10 @@ console.log(
     'app client width:', 
     ExtraDimensionsAndroid.getAppClientWidth()
 );
+
+if (__DEV__) {
+  require('react-native/Libraries/Devtools/setupDevtools')();
+}
 
 AppRegistry.registerComponent('MaoRNAndroidKit', () => App);
 
