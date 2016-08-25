@@ -1,6 +1,6 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "maolion",
   "description": "mao-rn-android-kit 用React Native 中使用的一些Android原生模块/组件",
   "keywords": [
@@ -34,7 +34,7 @@
     "debug-ts": "node -harmony devtools/debug.js",
     "build-ts": "node -harmony devtools/build.js",
     "prepublish": "npm run build-ts",
-    "postinstall": "rndebugger-open"
+    "_postinstall": "rndebugger-open"
   },
   "dependencies": {
     "thenfail": "^0.4.0"
