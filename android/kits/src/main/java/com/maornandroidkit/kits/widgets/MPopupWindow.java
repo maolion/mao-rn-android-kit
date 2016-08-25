@@ -41,7 +41,6 @@ public class MPopupWindow extends LinearLayout {
         this.pop.setFocusable(true);
         this.pop.setOutsideTouchable(true);
         this.pop.dismiss();
-        Console.log("Fuck");
     }
 
     public void showPopAsDropdown(int viewId, int x, int y) {
@@ -50,13 +49,11 @@ public class MPopupWindow extends LinearLayout {
             this.showPopAsLocation(Gravity.START, x, y);
             return;
         }
-        Console.log("show dropdown" + this.popView.getChildCount());
         this.resize(x, y);
         this.pop.showAsDropDown(anchor);
     }
 
     public void showPopAsLocation(int gravity, int x, int y) {
-        Console.log("show location" + this.popView.getChildCount());
         this.resize(x, y);
         this.pop.showAtLocation(
                 this.getRootView(),
