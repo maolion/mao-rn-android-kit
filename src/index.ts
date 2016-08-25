@@ -6,7 +6,7 @@ import TabLayoutAndroid from './components/tab-layout/tab-layout';
 import PopupWindowAndroid from './components/popupwindow/popupwindow';
 import GravityAndroid from './components/gravity/gravity';
 import * as ExtraDimensionsAndroid from './components/extra-dimensions/extra-dimensions';
-import * as types from './components/types';
+import * as Types from './components/types';
 
 (global as any).React = React;
 
@@ -18,5 +18,5 @@ export {
     TabLayoutAndroid,
     ExtraDimensionsAndroid,
     GravityAndroid,
-    types
+    Types
 };
