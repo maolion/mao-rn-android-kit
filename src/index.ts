@@ -4,8 +4,10 @@ import CoordinatorLayoutAndroid from './components/coordinator-layout/coordinato
 import NestedScrollViewAndroid from './components/nested-scroll-view/nested-scroll-view';
 import TabLayoutAndroid from './components/tab-layout/tab-layout';
 import PopupWindowAndroid from './components/popupwindow/popupwindow';
-import * as ExtraDimensionsAndroid from './components/extra-dimensions/extra-dimensions';
 import GravityAndroid from './components/gravity/gravity';
+import * as ExtraDimensionsAndroid from './components/extra-dimensions/extra-dimensions';
+import * as types from './components/types';
+
 (global as any).React = React;
 
 export { 
@@ -15,5 +17,6 @@ export {
     NestedScrollViewAndroid,
     TabLayoutAndroid,
     ExtraDimensionsAndroid,
-    GravityAndroid
+    GravityAndroid,
+    types
 };
