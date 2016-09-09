@@ -35,6 +35,9 @@ tsc(Constants.SOURCE_DIR, {
         });
     })
     .then(() => {
+        var content = FS.readFileSync(Path.join(Constants.OUTPUT_DIR, 'index.d.ts'), 'utf8');
+        content = content.replace(/mao-rn-android-kit\/src/g, 'mao-rn-android-kit');
+        FS.writeFileSync(Path.join(Constants.OUTPUT_DIR, 'index.d.ts'), content);
         process.exit(0);
     })
     .fail(reason => {
