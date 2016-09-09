@@ -14,7 +14,7 @@ const Commands = MaoKitsPopupWindowAndroid.Commands;
 const COMMAND_SHOW_POPUP_AS_DROPDOWN = Commands.showPopupAsDropdown;
 const COMMAND_SHOW_POPUP_AS_LOCALTION = Commands.showPopupAsLocation;
 const COMMAND_HIDE_POPUP = Commands.hidePopup;
-let N = 0;
+
 export default class PopupWindow 
     extends Component<PopupWindowProps, any> 
 {
@@ -28,7 +28,6 @@ export default class PopupWindow
         return (
             <RCTPopupWindow 
                 {...this.props}
-                key={N++}
                 style={styles.container}
             >
             {this.props.children}
@@ -45,7 +44,6 @@ export default class PopupWindow
     }
 
     showAsLocation(gravity: number, x: number = 0, y: number = 0) {
-        console.log(gravity);
         UIManager.dispatchViewManagerCommand(
             findNodeHandle(this),
             COMMAND_SHOW_POPUP_AS_LOCALTION,
@@ -75,8 +73,8 @@ const styles = StyleSheet.create({
         position: "absolute",
         overflow: "visible",
         opacity: 0,
-        //height: 0,
-        //width: 999,
+        height: 0,
+        width: 999,
         top: -9999999,
         backgroundColor: 'transparent'
     } as ViewStyle

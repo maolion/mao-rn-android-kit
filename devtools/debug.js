@@ -1,11 +1,12 @@
+var FS = require('fs-extra');
 var tsc = require('./tsc');
 var Constants = require('./constants');
 
 console.log('debug starting...');
 
-tsc(Constants.SOURCE_DIR, {
+tsc(Constants.CWD, {
     watch: true,
-    outDir: Constants.OUTPUT_DIR
+    outDir: Constants.DEBUG_OUTPUT_DIR
 })
     .fail(reason => {
         var message = reason && (reason.stack || reason.message) || reason || 'unknown error';

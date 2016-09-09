@@ -30,7 +30,7 @@
 ....
 
 include ':mao-rn-android-kit'
-project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../node_modules/mao-rn-android-kit/android/kits')
+project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../node_modules/mao-rn-android-kit/android')
 
 ```
 
@@ -52,7 +52,7 @@ v27版本的目标文件地址是 ```android/app/src/main/your.domain/MainActive
 ```
 ...
 
-import com.maornandroidkit.kits.KitsPackage; // <-- 导入模块
+import com.maornandroidkit.KitsPackage; // <-- 导入模块
 
 ...
 
@@ -84,6 +84,18 @@ import {
 ```
 
 ------
+
+## 查看Demo
+
+demo 位于 ```example/``` 目录下
+
+```
+# > mao-rn-android-kit/
+$ cd example/
+$ npm install
+$ react-native run-android
+```
+-----
 
 ## API
 

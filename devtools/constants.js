@@ -7,3 +7,4 @@ exports.DEVTOOLS_DIR     = Path.join(exports.CWD, 'devtools');
 
 exports.SOURCE_DIR       = Path.join(exports.CWD, 'src');
 exports.OUTPUT_DIR       = Path.join(exports.CWD, 'dist');
+exports.DEBUG_OUTPUT_DIR = Path.join(exports.CWD, 'example/node_modules/mao-rn-android-kit');

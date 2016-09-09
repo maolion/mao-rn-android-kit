@@ -1,0 +1,10 @@
+rootProject.name = 'example'
+
+include ':app'
+
+include ':mao-rn-android-kit'
+project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../../android/')
+
+//
+//include ':react-native'
+//project(':react-native').projectDir = new File(settingsDir, '../node_modules/react-native/ReactAndroid')

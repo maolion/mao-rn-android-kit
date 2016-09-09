@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.maornandroidkit.widgets.MTabLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="false"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:tabPaddingBottom="0dp"
+    app:tabPaddingEnd="0dp"
+    app:tabPaddingStart="0dp"
+    app:tabPaddingTop="0dp"
+    app:tabMinWidth="0dp"
+    >
+
+</com.maornandroidkit.widgets.MTabLayout>
