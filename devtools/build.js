@@ -14,7 +14,7 @@ tsc(Constants.SOURCE_DIR, {
 })
     .then(() => {
         return new Promise((resolve, reject) => {
-            console.log('generator mao-rn-android-kit.d.ts');
+            console.log('generator mao-rn-android-kit typings file');
             dtsGenerator({
                 name: 'mao-rn-android-kit',
                 baseDir: Constants.CWD,
@@ -24,7 +24,7 @@ tsc(Constants.SOURCE_DIR, {
                     Path.join(Constants.CWD, 'typings/interfaces.d.ts')
                 ],
                 main: 'mao-rn-android-kit/src/index',
-                excludes: [
+                exclude: [
                     'node_modules/**/*.d.ts',
                     'typings/globals/**/*.d.ts',
                     'typings/index.d.ts'
