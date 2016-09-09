@@ -51,7 +51,6 @@ public class MPopupWindow extends ReactViewGroup {
 
     public MPopupWindow(Context context) {
         super(context);
-        Console.log("fuck");
         mReactContext = (ReactContext) context;
 
         mPopupWindowContentView = new PopupWindowContentView(context);

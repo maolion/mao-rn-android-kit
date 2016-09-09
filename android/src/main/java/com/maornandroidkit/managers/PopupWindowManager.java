@@ -29,9 +29,7 @@ public class PopupWindowManager extends ViewGroupManager<MPopupWindow> {
     public static final int COMMAND_SHOW_POPUP_AS_DROPDOWN = 1;
     public static final int COMMAND_SHOW_POPUP_AS_LOCATION = 2;
     public static final int COMMAND_HIDE_POPUP = 3;
-    public PopupWindowManager() {
-        Console.log("hello,world");
-    }
+
     public String getName() {
         return PopupWindowManager.NAME;
     }
@@ -112,13 +110,4 @@ public class PopupWindowManager extends ViewGroupManager<MPopupWindow> {
             ));
         }
     }
-
-//    @ReactProp(name = "pointerEvents")
-//    public void setPointerEvents(ReactViewGroup view, @Nullable String pointerEventsStr) {
-//        if (pointerEventsStr != null) {
-//            PointerEvents pointerEvents =
-//                    PointerEvents.valueOf(pointerEventsStr.toUpperCase(Locale.US).replace("-", "_"));
-//            view.setPointerEvents(pointerEvents);
-//        }
-//    }
 }
