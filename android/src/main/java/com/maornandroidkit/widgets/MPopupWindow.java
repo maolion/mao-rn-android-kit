@@ -160,7 +160,7 @@ public class MPopupWindow extends ReactViewGroup {
                     "onlyChild must be passed a children with exactly one child"
             );
         }
-        
+
         super.addView(child, index);
     }
 }
