@@ -123,15 +123,17 @@ public class MPopupWindow extends ReactViewGroup {
     }
     public void initPopupWindowContentView() {
         if (!mPopupWindowContentViewInited) {
-            for (int i = 0, l = this.getChildCount(); i < l; i++) {
-                View view = this.getChildAt(i);
-                this.removeView(view);
-                mPopupWindowContentView.addView(view);
+            View view = this.getChildAt(0);
+            if (view == null) {
+                return;
             }
+            this.removeView(view);
 
+            mPopupWindowContentView.addView(view);
             mPopupWindowContentViewInited = true;
         }
     }
+
     @Override
     public void setFocusable(boolean focusable) {
         this.mPopupWindow.setFocusable(focusable);
@@ -149,5 +151,16 @@ public class MPopupWindow extends ReactViewGroup {
         EventDispatcher eventDispatcher = mReactContext.getNativeModule(UIManagerModule.class)
                 .getEventDispatcher();
         mJSTouchDispatcher.handleTouchEvent(event, eventDispatcher);
+    }
+
+    @Override
+    public void addView(View child, int index) {
+        if (this.getChildCount() > 1) {
+            throw new JSApplicationIllegalArgumentException(
+                    "onlyChild must be passed a children with exactly one child"
+            );
+        }
+        
+        super.addView(child, index);
     }
 }
