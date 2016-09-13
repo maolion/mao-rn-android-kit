@@ -23,7 +23,6 @@ import java.util.Locale;
 import java.util.Map;
 
 public class PopupWindowManager extends ViewGroupManager<MPopupWindow> {
-    private  static int n = 0;
     public static final String NAME = "MaoKitsPopupWindowAndroid";
 
     public static final int COMMAND_SHOW_POPUP_AS_DROPDOWN = 1;

@@ -9,6 +9,7 @@ import com.maornandroidkit.managers.AppBarLayoutManager;
 import com.maornandroidkit.managers.CoordinatorLayoutManager;
 import com.maornandroidkit.managers.NestedScrollViewManager;
 import com.maornandroidkit.managers.PopupWindowManager;
+import com.maornandroidkit.managers.RecyclerViewManager;
 import com.maornandroidkit.managers.TabLayoutManager;
 import com.maornandroidkit.modules.ExtraDimensionsModule;
 import com.maornandroidkit.modules.GravityModule;
@@ -38,7 +39,8 @@ public class KitsPackage implements ReactPackage {
                 new AppBarLayoutManager(),
                 new TabLayoutManager(),
                 new NestedScrollViewManager(),
-                new PopupWindowManager()
+                new PopupWindowManager(),
+                new RecyclerViewManager()
         );
     }
 }

@@ -68,7 +68,7 @@ class NestedScrollView
         if ((global as any).__DEV__) {
             if (this.props.onScroll && !this.props.scrollEventThrottle) {
                 console.log(
-                'You specified `onScroll` on a <ScrollView> but not ' +
+                'You specified `onScroll` on a <NestedScrollViewAndroid> but not ' +
                 '`scrollEventThrottle`. You will only receive one event. ' +
                 'Using `16` you get all the events but be aware that it may ' +
                 'cause frame drops, use a bigger number if you don\'t need as ' +

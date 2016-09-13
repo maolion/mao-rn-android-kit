@@ -1,6 +1,6 @@
 # mao-rn-android-kit
 
-用React Native 中使用的一些Android原生模块/组件
+用于 React Native 中使用的一些Android原生模块/组件
 
 ![cover](demo.gif)
 
@@ -79,7 +79,7 @@ import {
 } from 'mao-rn-android-kit';
 
 
-// 详细请看 源码中的 index.android.js 使用例子
+// 详细请看 源码中的 example/index.android.js 使用例子
 
 ```
 
