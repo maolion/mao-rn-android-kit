@@ -1,6 +1,6 @@
 # mao-rn-android-kit
 
-用React Native 中使用的一些Android原生模块/组件
+为 React Native 开发 提供的一些Android原生模块/组件
 
 ![cover](demo.gif)
 
