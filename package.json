@@ -22,7 +22,7 @@
     "url": "https://github.com/maolion/mao-rn-android-kit/issues"
   },
   "main": "./dist/index.js",
-  "typings": "mao-m-android-kit.d.ts",
+  "typings": "./dist/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -30,17 +30,19 @@
   },
   "homepage": "https://github.com/maolion/mao-rn-android-kit",
   "scripts": {
-    "debug-ts": "node -harmony devtools/debug.js",
-    "build-ts": "node -harmony devtools/build.js",
-    "prepublish": "npm run build-ts"
+    "debug": "node -harmony devtools/debug.js",
+    "build": "node -harmony devtools/build.js",
+    "prepublish": "npm run build"
   },
   "dependencies": {
-    "thenfail": "^0.4.12"
+    "react-mixins-decorator": "^0.1.5",
+    "thenfail": "^0.4.12",
+    "x-dts-generator": "^1.0.6"
   },
   "devDependencies": {
     "chokidar": "^1.6.0",
     "fs-extra": "^0.30.0",
-    "typescript": "^1.8.10",
+    "typescript": "^2.0.2",
     "x-dts-generator": "^1.0.0"
   }
 }

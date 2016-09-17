@@ -2,7 +2,7 @@
   "name": "mao-rn-android-kit",
   "main": "./dist/index.d.ts",
   "globalDependencies": {
-    "react": "registry:dt/react#0.14.0+20160630100702",
+    "react": "registry:dt/react#0.14.0+20160829191040",
     "react-native": "registry:dt/react-native#0.27.0+20160619030006"
   }
 }

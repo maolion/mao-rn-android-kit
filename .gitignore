@@ -45,12 +45,3 @@ android/keystores/debug.keystore
 .flowconfig
 .watchmanconfig
 .vscode
-dist
-src/tsconfig.json
-typings/global/
-typings/index.d.ts
-devtools/local-debug.js
-typings/globals/react/index.d.ts
-typings/globals/react/typings.json
-typings/globals/react-native/index.d.ts
-typings/globals/react-native/typings.json

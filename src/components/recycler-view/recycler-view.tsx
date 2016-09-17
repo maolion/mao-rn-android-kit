@@ -1,5 +1,4 @@
 import { Component, PropTypes } from 'react';
-
 import { 
     requireNativeComponent, 
     StyleSheet, 
@@ -13,17 +12,18 @@ import {
 } from 'react-native';
 
 import * as ScrollResponder from 'react-native/Libraries/Components/ScrollResponder';
+
 import reactMixins from 'react-mixins-decorator';
 
-export interface NestedScrollViewProps extends ScrollViewProperties {
+export interface RecyclerViewProps extends ScrollViewProperties {
     showVerticalScrollIndicator?: boolean;
     removeClippedSubviews?: boolean;
     onContentSizeChange?: (width: number, height: number) => void;
 }
 
 @reactMixins([ScrollResponder.Mixin])
-class NestedScrollView 
-    extends Component<NestedScrollViewProps, any>
+class RecyclerView 
+    extends Component<RecyclerViewProps, any>
 {
     
     static propTypes = Object.assign({}, ScrollView.propTypes, {
@@ -33,7 +33,7 @@ class NestedScrollView
     private _scrollView: NativeComponent;
     private _innerView: Component<any, any>;
 
-    constructor(props: NestedScrollViewProps, context: any) {
+    constructor(props: RecyclerViewProps, context: any) {
         super(props, context);
         this.state = (this as typeof ScrollResponder.Mixin).scrollResponderMixinGetInitialState();
     }
@@ -68,7 +68,7 @@ class NestedScrollView
         if ((global as any).__DEV__) {
             if (this.props.onScroll && !this.props.scrollEventThrottle) {
                 console.log(
-                'You specified `onScroll` on a <NestedScrollViewAndroid> but not ' +
+                'You specified `onScroll` on a <RecyclerViewAndroid> but not ' +
                 '`scrollEventThrottle`. You will only receive one event. ' +
                 'Using `16` you get all the events but be aware that it may ' +
                 'cause frame drops, use a bigger number if you don\'t need as ' +
@@ -114,7 +114,7 @@ class NestedScrollView
         const onRefreshStart: any = this.props.onRefreshStart;
 
         return (
-            <RCTNestedScrollView
+            <RCTRecyclerView
                 {...this.props}
                 {...eventProps}
                 style={[styles.base, this.props.style]}
@@ -140,7 +140,7 @@ class NestedScrollView
                 >
                     {this.props.children}
                 </View>
-            </RCTNestedScrollView>);
+            </RCTRecyclerView>);
     }
     
     private _handleContentOnLayout(event: any) {
@@ -149,9 +149,9 @@ class NestedScrollView
     }
 }
 
-const RCTNestedScrollView:any = requireNativeComponent(
-    'MaoKitsNestedScrollViewAndroid',
-    NestedScrollView,
+const RCTRecyclerView:any = requireNativeComponent(
+    'MaoKitsRecyclerViewAndroid',
+    RecyclerView,
     {
         nativeOnly: {}
     }
@@ -167,4 +167,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default NestedScrollView;
+export default RecyclerView;
