@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react';
+
 import { 
     requireNativeComponent, 
     StyleSheet, 
@@ -12,8 +13,7 @@ import {
 } from 'react-native';
 
 import * as ScrollResponder from 'react-native/Libraries/Components/ScrollResponder';
-
-import { reactMixins } from '../../utils/helpers';
+import reactMixins from 'react-mixins-decorator';
 
 export interface NestedScrollViewProps extends ScrollViewProperties {
     showVerticalScrollIndicator?: boolean;
@@ -68,7 +68,7 @@ class NestedScrollView
         if ((global as any).__DEV__) {
             if (this.props.onScroll && !this.props.scrollEventThrottle) {
                 console.log(
-                'You specified `onScroll` on a <ScrollView> but not ' +
+                'You specified `onScroll` on a <NestedScrollViewAndroid> but not ' +
                 '`scrollEventThrottle`. You will only receive one event. ' +
                 'Using `16` you get all the events but be aware that it may ' +
                 'cause frame drops, use a bigger number if you don\'t need as ' +

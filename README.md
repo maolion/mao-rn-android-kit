@@ -79,7 +79,7 @@ import {
 } from 'mao-rn-android-kit';
 
 
-// 详细请看 源码中的 index.android.js 使用例子
+// 详细请看 源码中的 example/index.android.js 使用例子
 
 ```
 

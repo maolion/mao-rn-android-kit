@@ -3583,7 +3583,11 @@ declare namespace  __React {
         OS: PlatformOSType,
 
         // only documented in PlatformSpecificInformation.md
+<<<<<<< HEAD
         select({PlatformOSType: any}): any
+=======
+        select(option: {PlatformOSType: any}): any
+>>>>>>> scrollview
     }
 
     export interface DeviceEventSubscriptionStatic {

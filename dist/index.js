@@ -7,16 +7,5 @@ import PopupWindowAndroid from './components/popupwindow/popupwindow';
 import GravityAndroid from './components/gravity/gravity';
 import * as ExtraDimensionsAndroid from './components/extra-dimensions/extra-dimensions';
 import * as Types from './components/types';
-
-(global as any).React = React;
-
-export {
-    PopupWindowAndroid,
-    AppBarLayoutAndroid, 
-    CoordinatorLayoutAndroid,
-    NestedScrollViewAndroid,
-    TabLayoutAndroid,
-    ExtraDimensionsAndroid,
-    GravityAndroid,
-    Types
-};
+global.React = React;
+export { PopupWindowAndroid, AppBarLayoutAndroid, CoordinatorLayoutAndroid, NestedScrollViewAndroid, TabLayoutAndroid, ExtraDimensionsAndroid, GravityAndroid, Types };
