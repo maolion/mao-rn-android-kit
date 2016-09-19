@@ -1,14 +1,8 @@
 {
   "resolution": "main",
   "tree": {
-<<<<<<< HEAD
-    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/402097684899fb9ff125e85638cc14499bb6e0a3/react/react.d.ts",
-    "raw": "registry:dt/react#0.14.0+20160630100702",
-    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/402097684899fb9ff125e85638cc14499bb6e0a3/react/react.d.ts"
-=======
     "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/327d35fb7a24c60b4f829a3902a37d2e582269c9/react/react.d.ts",
     "raw": "registry:dt/react#0.14.0+20160829191040",
     "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/327d35fb7a24c60b4f829a3902a37d2e582269c9/react/react.d.ts"
->>>>>>> scrollview
   }
 }
