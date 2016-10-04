@@ -1,13 +1,16 @@
 package com.maornandroidkit.widgets;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.react.bridge.ReadableArray;
@@ -26,18 +29,18 @@ public class MTabLayout extends TabLayout {
         return TabLayout.EMPTY_STATE_SET;
     }
 
-    private int height;
+    private int mHeight;
 
 
-    private ViewPager viewPager;
-    private TabLayout.TabLayoutOnPageChangeListener tabPageChangeListener;
-    private ViewPager.OnPageChangeListener viewPagerPageChangeListener;
-    private boolean removedTabPageChangeListener;
-    private View.OnClickListener tabClickListener;
-    private int tabTextNormalColor;
-    private int tabTextSelectedColor;
-    private float tabTextSize;
-    private int tabSidePadding;
+    private ViewPager mViewPager;
+    private TabLayout.TabLayoutOnPageChangeListener mTabPageChangeListener;
+    private ViewPager.OnPageChangeListener mViewPagerPageChangeListener;
+    private boolean mRemovedTabPageChangeListener;
+    private View.OnClickListener mTabClickListener;
+    private int mTabTextNormalColor = Color.argb(60, 0, 0, 0);
+    private int mTabTextSelectedColor = Color.argb(100, 0, 0, 0);
+    private float mTabTextSize;
+    private int mTabSidePadding;
 
     public MTabLayout(Context context) {
         this(context, null);
@@ -45,15 +48,15 @@ public class MTabLayout extends TabLayout {
 
     public MTabLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        this.tabSidePadding = Utils.dpToPx(10);
-        this.initListeners();
+        mTabSidePadding = Utils.dpToPx(10);
+        initListeners();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        if (this.height != 0) {
+        if (mHeight != 0) {
             heightMeasureSpec = MeasureSpec.makeMeasureSpec(
-                    this.height,
+                    mHeight,
                     MeasureSpec.EXACTLY
             );
         }
@@ -62,16 +65,16 @@ public class MTabLayout extends TabLayout {
     }
 
     public void setHeight(int height) {
-        this.height = Utils.dpToPx(height);
-        this.requestLayout();
+        mHeight = Utils.dpToPx(height);
+        requestLayout();
     }
 
     public void setTabSidePadding(int padding) {
         padding = Utils.dpToPx(padding);
-        this.tabSidePadding = padding;
+        mTabSidePadding = padding;
 
-        for (int i = 0, l = this.getTabCount(); i < l; i++) {
-            View tabView = this.getTabView(i);
+        for (int i = 0, l = getTabCount(); i < l; i++) {
+            View tabView = getTabView(i);
 
             if (tabView == null) {
                 return;
@@ -82,7 +85,7 @@ public class MTabLayout extends TabLayout {
     }
 
     public void setSize(ReadableMap sizeMap) {
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) this.getLayoutParams();
+        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) getLayoutParams();
 
         if (sizeMap.hasKey("width")) {
             try {
@@ -111,119 +114,127 @@ public class MTabLayout extends TabLayout {
             }
         }
 
-        this.setLayoutParams(params);
+        setLayoutParams(params);
     }
 
     public void setTabTextSize(int textSize) {
-        this.tabTextSize = textSize;
-        this.updateTabTextSize();
+        mTabTextSize = textSize;
+        updateTabTextSize();
     }
 
     public void setTabSelectedTextColor(int color) {
-        this.tabTextNormalColor = this.getTabTextColors()
-                .getColorForState(MTabLayout.getEmptyStateSet(), color);
-
-        this.tabTextSelectedColor = color;
-        this.setTabTextColor(this.getSelectedTabPosition(), color);
+        mTabTextSelectedColor = color;
+        updateTabTextColor();
     }
 
     public void setTabTextColor(int color) {
-        int selectedColor = this.getTabTextColors()
-                .getColorForState(MTabLayout.getSelectedStateSet(), color);
-        this.setTabTextColors(color, selectedColor);
+        mTabTextNormalColor = color;
+        updateTabTextColor();
     }
 
     public void setupViewPager(int viewPagerId, @Nullable ReadableArray tabs) {
-        ViewPager viewPager = (ViewPager)this.getRootView().findViewById(viewPagerId);
-        this.viewPager = viewPager;
+        ViewPager viewPager = (ViewPager)getRootView().findViewById(viewPagerId);
+        mViewPager = viewPager;
 
-        viewPager.addOnPageChangeListener(this.tabPageChangeListener);
-        viewPager.addOnPageChangeListener(this.viewPagerPageChangeListener);
+        viewPager.addOnPageChangeListener(mTabPageChangeListener);
+        viewPager.addOnPageChangeListener(mViewPagerPageChangeListener);
 
         if (tabs != null) {
-            this.removeAllTabs();
-            this.setTabs(tabs);
+            removeAllTabs();
+            setTabs(tabs);
         }
     }
 
 
     public void setTabs(ReadableArray tabs) {
         try {
-            final int selectedTabPosition = this.viewPager != null ?
-                    this.viewPager.getCurrentItem() : 0;
+            final int selectedTabPosition = mViewPager != null ?
+                    mViewPager.getCurrentItem() : 0;
 
             for (int i = 0, size = tabs.size(); i < size; i++) {
                 ReadableMap tabMap = tabs.getMap(i);
-                TabLayout.Tab tab = this.newTab();
+                TabLayout.Tab tab = newTab();
 
                 View tabView = null;
                 if (tabMap.hasKey("text")) {
                     //tab.setText(tabMap.getString("text"));
                     tabView = LayoutInflater.from(
-                            this.getContext()).inflate(R.layout.m_tab_layout_default_tab_view, null
+                            getContext()).inflate(R.layout.m_tab_layout_default_tab_view, null
                     );
                     TextView textView = (TextView) tabView.findViewById(R.id.tab_title);
                     textView.setText(tabMap.getString("text"));
                     tab.setCustomView(tabView);
                     tabView = (View) tabView.getParent();
-                    tabView.setOnClickListener(this.tabClickListener);
+                    tabView.setOnClickListener(mTabClickListener);
                     tabView.setTag(i);
                 }
 
-                this.addTab(tab);
+                addTab(tab);
 
+                //Log.i("debug", "hello");
                 if (tabView == null) {
                     continue;
                 }
 
                 if (selectedTabPosition == i) {
-                    this.setSelectedTabStyle(tabView);
+                    setSelectedTabStyle(tabView);
                 } else {
-                    this.setUnselectTabStyle(tabView);
+                    setUnselectTabStyle(tabView);
                 }
 
-                tabView.setPadding(this.tabSidePadding, 0, this.tabSidePadding, 0);
+                tabView.setPadding(mTabSidePadding, 0, mTabSidePadding, 0);
             }
-            if (this.tabTextSize != 0) {
-                this.updateTabTextSize();
+            if (mTabTextSize != 0) {
+                updateTabTextSize();
             }
         } catch (Exception e) {
             //TODO: handle exception
+        }
+
+        ViewGroup tabWrap =  (ViewGroup) getChildAt(0);
+        for (int i = 0, l = tabWrap.getChildCount(); i < l; i++) {
+            ViewGroup viewGroup = (ViewGroup) tabWrap.getChildAt(i);
+            for (int i2 = 0, l2 = viewGroup.getChildCount(); i2 < l2; i2++) {
+                View view = viewGroup.getChildAt(i2);
+                if (view instanceof LinearLayout) {
+                    continue;
+                }
+                viewGroup.removeView(view);
+            }
         }
     }
 
 
     private void initListeners() {
-        final MTabLayout _this = this;
-        this.removedTabPageChangeListener = false;
-        this.tabPageChangeListener = new TabLayout.TabLayoutOnPageChangeListener(this);
+        mRemovedTabPageChangeListener = false;
+        mTabPageChangeListener = new TabLayout.TabLayoutOnPageChangeListener(this);
 
-        this.tabClickListener = new View.OnClickListener() {
+        mTabClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int tabIndex = (int) view.getTag();
-                if (_this.viewPager == null) {
+                if (mViewPager == null) {
                     return;
                 }
 
-                if (_this.viewPager.getCurrentItem() == tabIndex) {
+                if (mViewPager.getCurrentItem() == tabIndex) {
                     return;
                 }
 
-                _this.removedTabPageChangeListener = true;
-                _this.viewPager.removeOnPageChangeListener(_this.tabPageChangeListener);
-                _this.viewPager.setCurrentItem(tabIndex, true);
+                mRemovedTabPageChangeListener = true;
+                mViewPager.removeOnPageChangeListener(mTabPageChangeListener);
+                mViewPager.setCurrentItem(tabIndex, true);
             }
         };
 
-        this.viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
+        mViewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrollStateChanged(int state) {
-                if (!_this.removedTabPageChangeListener || state != 0 || _this.viewPager == null) {
+                if (!mRemovedTabPageChangeListener || state != 0 || mViewPager == null) {
                     return;
                 }
-                _this.removedTabPageChangeListener = false;
-                _this.viewPager.addOnPageChangeListener(_this.tabPageChangeListener);
+                mRemovedTabPageChangeListener = false;
+                mViewPager.addOnPageChangeListener(mTabPageChangeListener);
             }
 
             @Override
@@ -236,15 +247,15 @@ public class MTabLayout extends TabLayout {
         };
 
 
-        this.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                _this.setSelectedTabStyle(_this.getTabView(tab.getPosition()));
+                setSelectedTabStyle(getTabView(tab.getPosition()));
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                _this.setUnselectTabStyle(_this.getTabView(tab.getPosition()));
+                setUnselectTabStyle(getTabView(tab.getPosition()));
             }
 
             @Override
@@ -264,13 +275,14 @@ public class MTabLayout extends TabLayout {
             return;
         }
 
-        if (this.tabTextSelectedColor != 0) {
-            textView.setTextColor(this.tabTextSelectedColor);
+        if (mTabTextSelectedColor != 0) {
+            textView.setTextColor(mTabTextSelectedColor);
         }
     }
 
 
     private void setUnselectTabStyle(View tabView) {
+
         if (tabView == null) {
             return;
         }
@@ -280,13 +292,12 @@ public class MTabLayout extends TabLayout {
             return;
         }
 
-        if (this.tabTextNormalColor != 0) {
-            textView.setTextColor(this.tabTextNormalColor);
+        if (mTabTextNormalColor != 0) {
+            textView.setTextColor(mTabTextNormalColor);
         }
     }
-
     private void setTabTextColor(int position, int color) {
-        View tabView = this.getTabView(position);
+        View tabView = getTabView(position);
         if (tabView == null) {
             return;
         }
@@ -301,7 +312,7 @@ public class MTabLayout extends TabLayout {
     private View getTabView(int position) {
         TabLayout.Tab tab;
         try {
-            tab = this.getTabAt(position);
+            tab = getTabAt(position);
         } catch (Exception e) {
             return null;
         }
@@ -313,8 +324,8 @@ public class MTabLayout extends TabLayout {
     }
 
     private void updateTabTextSize() {
-        for (int i = 0, l = this.getTabCount(); i < l; i++) {
-            View tabView = this.getTabView(i);
+        for (int i = 0, l = getTabCount(); i < l; i++) {
+            View tabView = getTabView(i);
             if (tabView == null) {
                 return;
             }
@@ -325,8 +336,29 @@ public class MTabLayout extends TabLayout {
                 return;
             }
 
-            textView.setTextSize(this.tabTextSize);
+            textView.setTextSize(mTabTextSize);
         }
     }
+
+    private void updateTabTextColor() {
+        for (int i = 0, l = getTabCount(); i < l; i++) {
+            View tabView = getTabView(i);
+            if (tabView == null) {
+                return;
+            }
+
+            TextView textView = (TextView) tabView.findViewById(R.id.tab_title);
+
+            if (textView == null) {
+                return;
+            }
+            if (getSelectedTabPosition() == i && mTabTextSelectedColor != 0) {
+                textView.setTextColor(mTabTextSelectedColor);
+            } else if (mTabTextNormalColor != 0) {
+                textView.setTextColor(mTabTextNormalColor);
+            }
+        }
+    }
+
 
 }
