@@ -194,12 +194,12 @@ public class MTabLayout extends TabLayout {
         ViewGroup tabWrap =  (ViewGroup) getChildAt(0);
         for (int i = 0, l = tabWrap.getChildCount(); i < l; i++) {
             ViewGroup viewGroup = (ViewGroup) tabWrap.getChildAt(i);
-            for (int i2 = 0, l2 = viewGroup.getChildCount(); i2 < l2; i2++) {
+            for (int i2 = viewGroup.getChildCount(); --i2 >= 0; ) {
                 View view = viewGroup.getChildAt(i2);
                 if (view instanceof LinearLayout) {
                     continue;
                 }
-                viewGroup.removeView(view);
+                viewGroup.removeViewAt(i2);
             }
         }
     }
