@@ -53,7 +53,7 @@ public class TabLayoutManager extends ViewGroupManager<MTabLayout> {
     public void receiveCommand(MTabLayout view, int commandType, @Nullable ReadableArray args) {
         switch (commandType) {
             case TabLayoutManager.COMMAND_SETUP_VIEW_PAGER:
-                view.setupViewPager(args.getInt(0), args.getArray(1));
+                view.setupViewPager(args.getInt(0), args.getArray(1), args.getBoolean(2));
                 break;
             case TabLayoutManager.COMMAND_SET_VIEW_SIZE:
                 view.setSize(args.getMap(0));

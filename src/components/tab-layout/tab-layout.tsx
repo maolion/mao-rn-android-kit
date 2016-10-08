@@ -58,13 +58,11 @@ export default class TabLayout extends Component<TabLayoutProps, any> {
                  style={[
                      { height: 48 },
                      this.props.style
-                 ]}>
-                 {this._childrenWithOverridenStyle()}
-            </RCTTabLayout>
+                 ]} />
         );
     }
 
-    setViewPager(viewPager: ViewPagerAndroidStatic, tabs?: Tab[]) {
+    setViewPager(viewPager: ViewPagerAndroidStatic, tabs: Tab[], smoothScroll: boolean = true) {
         if (!viewPager) {
             return;
         }
@@ -74,7 +72,7 @@ export default class TabLayout extends Component<TabLayoutProps, any> {
         UIManager.dispatchViewManagerCommand(
             findNodeHandle(this),
             SETUP_VIEW_PAGER,
-            [viewPagerID, tabs]
+            [viewPagerID, tabs, smoothScroll]
         );  
     }
 
@@ -93,35 +91,6 @@ export default class TabLayout extends Component<TabLayoutProps, any> {
             SET_VIEW_SIZE,
             [sizeMap]
         );
-    }
-
-    private _childrenWithOverridenStyle() {
-        if (!this.props.children) {
-            return;
-        }
-
-        return Children.map(this.props.children, (child: any, index: any) => {
-            let newProps = Object.assign({
-                key: index,
-                style: [
-                    {
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    }, 
-                    child.props.style, 
-                    this.props.activeTabStyle
-                ]
-            }, child.props);
-
-            if (child.type &&
-                child.type.displayName &&
-                (child.type.displayName !== 'RCTView') &&
-                (child.type.displayName !== 'View')) {
-                console.warn('Each TabLayout child must be a <View>. Was ' + child.type.displayName);
-            }
-
-            return createElement(child.type, newProps);
-        });
     }
 }
 

@@ -41,6 +41,7 @@ public class MTabLayout extends TabLayout {
     private int mTabTextSelectedColor = Color.argb(100, 0, 0, 0);
     private float mTabTextSize;
     private int mTabSidePadding;
+    private boolean mSmoothScrollViewPager;
 
     public MTabLayout(Context context) {
         this(context, null);
@@ -133,12 +134,16 @@ public class MTabLayout extends TabLayout {
     }
 
     public void setupViewPager(int viewPagerId, @Nullable ReadableArray tabs) {
+        this.setupViewPager(viewPagerId, tabs, true);
+    }
+
+    public void setupViewPager(int viewPagerId, @Nullable ReadableArray tabs, boolean smoothScrollViewPager) {
         ViewPager viewPager = (ViewPager)getRootView().findViewById(viewPagerId);
         mViewPager = viewPager;
 
         viewPager.addOnPageChangeListener(mTabPageChangeListener);
         viewPager.addOnPageChangeListener(mViewPagerPageChangeListener);
-
+        mSmoothScrollViewPager = smoothScrollViewPager;
         if (tabs != null) {
             removeAllTabs();
             setTabs(tabs);
@@ -223,7 +228,7 @@ public class MTabLayout extends TabLayout {
 
                 mRemovedTabPageChangeListener = true;
                 mViewPager.removeOnPageChangeListener(mTabPageChangeListener);
-                mViewPager.setCurrentItem(tabIndex, true);
+                mViewPager.setCurrentItem(tabIndex, mSmoothScrollViewPager);
             }
         };
 

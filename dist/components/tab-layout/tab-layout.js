@@ -6,7 +6,7 @@ var __assign = (this && this.__assign) || Object.assign || function(t) {
     }
     return t;
 };
-import { Component, createElement, Children, PropTypes } from "react";
+import { Component, PropTypes } from "react";
 import { requireNativeComponent, View, UIManager, findNodeHandle } from 'react-native';
 const Commands = UIManager.MaoKitsTabLayoutAndroid.Commands;
 const SETUP_VIEW_PAGER = Commands.setupViewPager;
@@ -16,14 +16,14 @@ export default class TabLayout extends Component {
         return (React.createElement(RCTTabLayout, __assign({}, this.props, {style: [
             { height: 48 },
             this.props.style
-        ]}), this._childrenWithOverridenStyle()));
+        ]})));
     }
-    setViewPager(viewPager, tabs) {
+    setViewPager(viewPager, tabs, smoothScroll = true) {
         if (!viewPager) {
             return;
         }
         const viewPagerID = findNodeHandle(viewPager);
-        UIManager.dispatchViewManagerCommand(findNodeHandle(this), SETUP_VIEW_PAGER, [viewPagerID, tabs]);
+        UIManager.dispatchViewManagerCommand(findNodeHandle(this), SETUP_VIEW_PAGER, [viewPagerID, tabs, smoothScroll]);
     }
     setViewSize(width, height) {
         let sizeMap = {};
@@ -34,31 +34,6 @@ export default class TabLayout extends Component {
             sizeMap["height"] = height;
         }
         UIManager.dispatchViewManagerCommand(findNodeHandle(this), SET_VIEW_SIZE, [sizeMap]);
-    }
-    _childrenWithOverridenStyle() {
-        if (!this.props.children) {
-            return;
-        }
-        return Children.map(this.props.children, (child, index) => {
-            let newProps = Object.assign({
-                key: index,
-                style: [
-                    {
-                        justifyContent: 'center',
-                        alignItems: 'center'
-                    },
-                    child.props.style,
-                    this.props.activeTabStyle
-                ]
-            }, child.props);
-            if (child.type &&
-                child.type.displayName &&
-                (child.type.displayName !== 'RCTView') &&
-                (child.type.displayName !== 'View')) {
-                console.warn('Each TabLayout child must be a <View>. Was ' + child.type.displayName);
-            }
-            return createElement(child.type, newProps);
-        });
     }
 }
 TabLayout.propTypes = Object.assign({}, View.propTypes, {

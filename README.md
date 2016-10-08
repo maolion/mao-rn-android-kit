@@ -113,7 +113,10 @@ fitsSystemWindows: boolean;
 
 方法
 ```
-//设置目标元素 app:layout_behavior 为  AppBarLayout.ScrollingViewBehavior
+/**
+ * 设置目标元素 app:layout_behavior 为  AppBarLayout.ScrollingViewBehavior
+ * @param {Component} view 目标视图, 必须是 NestedScrollView 或 RecyclerView， 或者这两者的父容器
+ */
 setScrollingViewBehavior(view: Component);
 ```
 
@@ -183,10 +186,22 @@ tabSidePadding: number;
 
 方法
 ```
-//绑定 viewPager
-setViewPager(viewPager: ViewPagerAndroid, tabs?: {text: string}[]);
+/**
+ * 绑定 viewPager
+ * @param {ViewPagerAndroid} viewPager
+ *  绑定的viewPager组件
+ * @param {{text: string}[]} tabs
+ *  设置选项卡项目
+ * @param {boolean} smoothScroll
+ *  从选项卡被选中后触发viewPager的同步切换时 是否开启平滑滚动的动画效果，默认开启
+ */
+setViewPager(viewPager: ViewPagerAndroid, tabs: {text: string}[], smoothScroll: boolean);
 
-//设置 宽高尺寸
+/**
+ * 设置 宽高尺寸, 使用 TabLayout的 Layoutparams 修改这些尺寸信息
+ * @param {number | "wrap_content" | "match_parent"} width
+ * @param {number | "wrap_content" | "match_parent"} height
+ */
 setViewSize(width: number | "wrap_content" | "match_parent", height?: number | "wrap_content" | "match_parent");
 ```
 
@@ -213,25 +228,46 @@ showVerticalScrollIndicator: boolean;
 
 方法
 ```
-//获取设备实际屏幕高度
+/** 
+ * 获取设备实际屏幕高度
+ * @return {boolean}
+ */
 getScreenHeight(): number;
 
-//获取设备实际屏幕宽度
+/**
+ * 获取设备实际屏幕宽度
+ * @return {boolean}
+ */
 getScreenWidth(): number;
 
-// 获取魅族SmartBar高度
+/** 
+ * 获取魅族SmartBar高度
+ * @return {boolean}
+ */
 getSmartBarHeight(): number;
 
-// 获取软键盘导航按钮高度
+/**
+ * 获取软键盘导航按钮高度
+ * @return {boolean}
+ */
 getSoftMenuBarHeight(): number;
 
-// 获取状态栏高度
+/**
+ * 获取状态栏高度
+ * @return {boolean}
+ */
 getStatusBarHeight(): number;
 
-// 获取APP可视容器宽度
+/**
+ * 获取APP可视容器宽度
+ * @return {boolean}
+ */
 getAppClientWidth(): number;
 
-// 获取APP可视容器高度
+/**
+ * 获取APP可视容器高度
+ * @return {boolean}
+ */
 getAppClientHeight(): number;
 ```
 ----
@@ -240,13 +276,31 @@ getAppClientHeight(): number;
 
 方法
 ```
-// 将弹出窗口显示在指定窗口下方
-showAsDropdown(viewId: Component, x: number, y: number): void;
+/**
+ * 将弹出窗口显示在目标视图元素下方
+ * @param {Component}  view 
+ *  目标视图元素
+ * @param {number} x
+ *  x轴偏移
+ * @param {number} y
+ *  y轴偏移
+ */
+showAsDropdown(view: Component, x: number, y: number): void;
 
-// 将弹出窗口显示在指定位置
+/**
+ * 将弹出窗口显示在指定位置
+ * @param {number} gravity
+ *  详细值参考 [Gravity](https://developer.android.com/reference/android/view/Gravity.html)
+ * @param {number} x
+ *  x轴偏移
+ * @param {number} y
+ *  y轴偏移
+ */
 showAsLocation(gravity: number, x: number, y: number): void;
 
-// 隐藏弹出窗口
+/**
+ * 隐藏弹出层窗口
+ */
 hide(): void;
 ```
 

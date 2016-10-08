@@ -139,9 +139,8 @@ declare module 'mao-rn-android-kit/components/tab-layout/tab-layout' {
 	        activeTabStyle: React.Requireable<any>;
 	    };
 	    render(): JSX.Element;
-	    setViewPager(viewPager: ViewPagerAndroidStatic, tabs?: Tab[]): void;
+	    setViewPager(viewPager: ViewPagerAndroidStatic, tabs: Tab[], smoothScroll?: boolean): void;
 	    setViewSize(width: SizeParam, height?: SizeParam): void;
-	    private _childrenWithOverridenStyle();
 	}
 
 }
