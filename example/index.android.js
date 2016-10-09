@@ -48,7 +48,7 @@ class App extends Component<any, any> {
             { text: "tab18" },
             { text: "tab19" },
             { text: "tab20" },
-        ], true);
+        ], false);
     }
 
     render() {

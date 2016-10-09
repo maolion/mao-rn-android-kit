@@ -226,8 +226,11 @@ public class MTabLayout extends TabLayout {
                     return;
                 }
 
-                mRemovedTabPageChangeListener = true;
-                mViewPager.removeOnPageChangeListener(mTabPageChangeListener);
+                if (mSmoothScrollViewPager) {
+                    mRemovedTabPageChangeListener = true;
+                    mViewPager.removeOnPageChangeListener(mTabPageChangeListener);
+                }
+
                 mViewPager.setCurrentItem(tabIndex, mSmoothScrollViewPager);
             }
         };

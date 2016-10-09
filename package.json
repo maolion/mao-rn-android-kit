@@ -1,6 +1,6 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.3.10",
+  "version": "0.3.11",
   "author": "maolion.j@gmail.com",
   "description": "mao-rn-android-kit 用React Native 中使用的一些Android原生模块/组件",
   "keywords": [
