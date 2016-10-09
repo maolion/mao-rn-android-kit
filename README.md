@@ -1,3 +1,4 @@
+[![NPM Package](https://badge.fury.io/js/mao-rn-android-kit.svg)](https://www.npmjs.com/package/mao-rn-android-kit)
 # mao-rn-android-kit
 
 为 React Native 开发 提供的一些Android原生模块/组件
