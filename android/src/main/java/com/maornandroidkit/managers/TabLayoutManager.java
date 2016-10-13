@@ -74,8 +74,8 @@ public class TabLayoutManager extends ViewGroupManager<MTabLayout> {
     }
 
     @ReactProp(name = "tabTextSize")
-    public void setTabTextSize(MTabLayout view, int textSize) {
-        view.setTabTextSize(textSize);
+    public void setTabTextSize(MTabLayout view, double textSize) {
+        view.setTabTextSize(Utils.px2sp(textSize));
     }
 
     @ReactProp(name = "tabTextColor", customType = "Color")
@@ -95,8 +95,8 @@ public class TabLayoutManager extends ViewGroupManager<MTabLayout> {
     }
 
     @ReactProp(name = "tabIndicatorHeight")
-    public void setSelectedTabIndicatorHeight(MTabLayout view, int height) {
-        view.setSelectedTabIndicatorHeight(Utils.dpToPx(height));
+    public void setSelectedTabIndicatorHeight(MTabLayout view, double height) {
+        view.setSelectedTabIndicatorHeight(Utils.dp2px(height));
     }
 
     @ReactProp(name = "tabGravity")
@@ -118,13 +118,13 @@ public class TabLayoutManager extends ViewGroupManager<MTabLayout> {
     }
 
     @ReactProp(name = "tabSidePadding")
-    public void setTabSidePadding(MTabLayout view, int padding) {
-        view.setTabSidePadding(padding);
+    public void setTabSidePadding(MTabLayout view, double padding) {
+        view.setTabSidePadding(Utils.dp2px(padding));
     }
 
     @ReactProp(name = "tabHeight")
-    public void setHeight(MTabLayout view, int height) {
-        view.setHeight(height);
+    public void setHeight(MTabLayout view, double height) {
+        view.setHeight(Utils.dp2px(height));
     }
 
     public boolean needsCustomLayoutForChildren() {

@@ -103,8 +103,8 @@ public class MPopupWindow extends ReactViewGroup {
         this.mPopupWindow.showAtLocation(
                 this.getRootView(),
                 gravity,
-                Utils.dpToPx(x),
-                Utils.dpToPx(y)
+                x,
+                y
         );
     }
 
@@ -114,8 +114,8 @@ public class MPopupWindow extends ReactViewGroup {
 
     private void resize(int x, int y) {
         this.mPopupWindow.update(
-                Utils.dpToPx(x),
-                Utils.dpToPx(y),
+                x,
+                y,
                 mPopupWindowContentView.getChildAt(0).getWidth(),
                 mPopupWindowContentView.getChildAt(0).getHeight()
         );

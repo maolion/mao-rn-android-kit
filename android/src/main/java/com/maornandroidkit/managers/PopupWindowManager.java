@@ -17,6 +17,7 @@ import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.views.view.ReactViewGroup;
 import com.maornandroidkit.Console;
+import com.maornandroidkit.Utils;
 import com.maornandroidkit.widgets.MPopupWindow;
 
 import java.util.Locale;
@@ -57,16 +58,16 @@ public class PopupWindowManager extends ViewGroupManager<MPopupWindow> {
             case PopupWindowManager.COMMAND_SHOW_POPUP_AS_DROPDOWN:
                 view.showPopAsDropdown(
                         args.getInt(0),
-                        args.getInt(1),
-                        args.getInt(2)
+                        Utils.dp2px(args.getDouble(1)),
+                        Utils.dp2px(args.getDouble(2))
                 );
                 break;
 
             case PopupWindowManager.COMMAND_SHOW_POPUP_AS_LOCATION:
                 view.showPopAsLocation(
                         args.getInt(0),
-                        args.getInt(1),
-                        args.getInt(2)
+                        Utils.dp2px(args.getDouble(1)),
+                        Utils.dp2px(args.getDouble(2))
                 );
                 break;
             case PopupWindowManager.COMMAND_HIDE_POPUP:

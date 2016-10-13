@@ -49,7 +49,7 @@ public class MTabLayout extends TabLayout {
 
     public MTabLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mTabSidePadding = Utils.dpToPx(10);
+        mTabSidePadding = Utils.dp2px(10);
         initListeners();
     }
 
@@ -66,12 +66,11 @@ public class MTabLayout extends TabLayout {
     }
 
     public void setHeight(int height) {
-        mHeight = Utils.dpToPx(height);
+        mHeight = height;
         requestLayout();
     }
 
     public void setTabSidePadding(int padding) {
-        padding = Utils.dpToPx(padding);
         mTabSidePadding = padding;
 
         for (int i = 0, l = getTabCount(); i < l; i++) {
@@ -86,7 +85,7 @@ public class MTabLayout extends TabLayout {
     }
 
     public void setSize(ReadableMap sizeMap) {
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) getLayoutParams();
+        ViewGroup.LayoutParams params =  getLayoutParams();
 
         if (sizeMap.hasKey("width")) {
             try {
@@ -98,7 +97,7 @@ public class MTabLayout extends TabLayout {
                     params.width = ViewGroup.LayoutParams.WRAP_CONTENT;
                 }
             } catch (Exception e) {
-                params.width = Utils.dpToPx(sizeMap.getInt("width"));
+                params.width = Utils.dp2px(sizeMap.getInt("width"));
             }
         }
 
@@ -111,7 +110,7 @@ public class MTabLayout extends TabLayout {
                     params.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                 }
             } catch (Exception e) {
-                params.height = Utils.dpToPx(sizeMap.getInt("height"));
+                params.height = Utils.dp2px(sizeMap.getInt("height"));
             }
         }
 

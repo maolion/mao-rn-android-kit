@@ -48,7 +48,7 @@ class App extends Component<any, any> {
             { text: "tab18" },
             { text: "tab19" },
             { text: "tab20" },
-        ], false);
+        ], true);
     }
 
     render() {
@@ -105,7 +105,7 @@ class App extends Component<any, any> {
                             tabIndicatorColor="#fff"
                             tabTextColor="rgba(255, 255, 255, .6)"
                             tabIndicatorHeight={1}
-                            tabTextSize={16}
+                            tabTextSize={6}
                             tabSidePadding={10}
                             tabHeight={38} />
                     </AppBarLayoutAndroid>

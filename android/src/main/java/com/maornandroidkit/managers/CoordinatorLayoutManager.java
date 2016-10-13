@@ -94,7 +94,7 @@ public class CoordinatorLayoutManager extends ViewGroupManager<CoordinatorLayout
                         width = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
                     }
                 } catch (Exception e) {
-                    width = Utils.dpToPx(paramMap.getInt("width"));
+                    width = Utils.dp2px(paramMap.getDouble("width"));
                 }
             }
 
@@ -107,7 +107,7 @@ public class CoordinatorLayoutManager extends ViewGroupManager<CoordinatorLayout
                         height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
                     }
                 } catch (Exception e) {
-                    height = Utils.dpToPx(paramMap.getInt("height"));
+                    height = Utils.dp2px(paramMap.getDouble("height"));
                 }
             }
 
