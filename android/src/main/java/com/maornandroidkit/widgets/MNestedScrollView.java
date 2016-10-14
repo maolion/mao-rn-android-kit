@@ -12,13 +12,13 @@ import android.view.ViewGroup;
 import com.facebook.react.bridge.ReactContext;
 import com.facebook.react.common.SystemClock;
 import com.facebook.react.uimanager.MeasureSpecAssertions;
+import com.facebook.react.uimanager.ReactClippingViewGroup;
+import com.facebook.react.uimanager.ReactClippingViewGroupHelper;
 import com.facebook.react.uimanager.UIManagerModule;
 import com.facebook.react.uimanager.events.NativeGestureUtil;
 import com.facebook.react.views.scroll.OnScrollDispatchHelper;
 import com.facebook.react.views.scroll.ScrollEvent;
 import com.facebook.react.views.scroll.ScrollEventType;
-import com.facebook.react.views.view.ReactClippingViewGroup;
-import com.facebook.react.views.view.ReactClippingViewGroupHelper;
 
 public class MNestedScrollView extends NestedScrollView implements ReactClippingViewGroup {
     private final OnScrollDispatchHelper onScrollDispatchHelper;
