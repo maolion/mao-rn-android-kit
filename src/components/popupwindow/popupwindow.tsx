@@ -71,7 +71,7 @@ const RCTPopupWindow: any = requireNativeComponent(
 const styles = StyleSheet.create({
     container: {
         position: "absolute",
-        overflow: "visible",
+        overflow: "scroll",
         opacity: 0,
         height: 0,
         width: 999,

@@ -75,7 +75,7 @@ public class TabLayoutManager extends ViewGroupManager<MTabLayout> {
 
     @ReactProp(name = "tabTextSize")
     public void setTabTextSize(MTabLayout view, double textSize) {
-        view.setTabTextSize(Utils.px2sp(textSize));
+        view.setTabTextSize(Utils.dp2px(textSize));
     }
 
     @ReactProp(name = "tabTextColor", customType = "Color")

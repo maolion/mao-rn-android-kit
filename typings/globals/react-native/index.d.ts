@@ -1123,7 +1123,7 @@ declare namespace  __React {
         borderTopRightRadius?: number;
         borderTopWidth?: number
         opacity?: number;
-        overflow?: "visible" | "hidden"
+        overflow?: "visible" | "hidden" | "scroll"
         shadowColor?: string;
         shadowOffset?: {width: number, height: number};
         shadowOpacity?: number;
@@ -3696,7 +3696,7 @@ declare namespace  __React {
         borderBottomWidth?: number
         borderLeftWidth?: number
         opacity?: number
-        overflow?: "visible" | "hidden"
+        overflow?: "visible" | "hidden" | "scroll"
         shadowColor?: string
         shadowOffset?: {width: number; height: number}
         shadowOpacity?: number
