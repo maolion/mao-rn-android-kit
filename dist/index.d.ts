@@ -64,6 +64,7 @@ declare module 'mao-rn-android-kit/components/coordinator-layout/coordinator-lay
 	import * as React from 'react';
 	import { Component } from 'react';
 	import { ViewGroupProperties } from 'mao-rn-android-kit/components/types';
+	import AppBarLayout from 'mao-rn-android-kit/components/appbar-layout/appbar-layout';
 	export interface CoordinatorLayoutProps extends ViewGroupProperties {
 	}
 	export default class CoordinatorLayout extends Component<CoordinatorLayoutProps, any> {
@@ -75,6 +76,8 @@ declare module 'mao-rn-android-kit/components/coordinator-layout/coordinator-lay
 	    componentDidUpdate(): void;
 	    render(): JSX.Element;
 	    setScrollingViewBehavior(view: any): void;
+	    setNestedScrollEnabled(enabled: boolean): void;
+	    resetBehavior(appbar: AppBarLayout, smoothly?: boolean): void;
 	}
 
 }

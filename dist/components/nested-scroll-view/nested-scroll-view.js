@@ -103,7 +103,9 @@ const RCTNestedScrollView = requireNativeComponent('MaoKitsNestedScrollViewAndro
     nativeOnly: {}
 });
 const styles = StyleSheet.create({
-    base: {},
+    base: {
+        overflow: "scroll"
+    },
     contentContainerHorizontal: {
         alignSelf: 'flex-start',
         flexDirection: 'row',

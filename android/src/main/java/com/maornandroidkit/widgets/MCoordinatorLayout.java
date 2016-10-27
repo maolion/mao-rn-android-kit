@@ -40,10 +40,10 @@ public class MCoordinatorLayout extends CoordinatorLayout{
         }
     }
 
-    // @Override
-    // public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
-    //     return mNestedScrollEnabled && super.onStartNestedScroll(child, target, nestedScrollAxes);
-    // }
+     @Override
+     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
+         return mNestedScrollEnabled && super.onStartNestedScroll(child, target, nestedScrollAxes);
+     }
 
     public boolean isNestedScrollEnabled() {
         return mNestedScrollEnabled == true;

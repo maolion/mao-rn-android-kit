@@ -159,7 +159,7 @@ const RCTNestedScrollView:any = requireNativeComponent(
 
 const styles = StyleSheet.create({
     base: {
-        // flex: 1
+        overflow: "scroll"
     },
     contentContainerHorizontal: {
         alignSelf: 'flex-start',

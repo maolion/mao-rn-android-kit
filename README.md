@@ -119,8 +119,20 @@ fitsSystemWindows: boolean;
  * @param {Component} view 目标视图, 必须是 NestedScrollView 或 RecyclerView， 或者这两者的父容器
  */
 setScrollingViewBehavior(view: Component);
-```
 
+/**
+ * 将CoordinatorLayout 控制的AppBarLayout 伸缩效果重置到初始位置
+ * @param {AppBarLayout} appbar 
+ * @param {boolean} smoothly 是否开启平滑滚动的动画效果，默认不开启
+ */
+resetBehavior(appbar: AppBarLayout, smoothly: boolean);
+
+/**
+ * 控制 CoordinatorLayout 是否响应 scrollview 滚动
+ * @param {boolean} enabled 默认是允许
+ */
+setNestedScrollEnabled(enabled: boolean);
+```
 ----
 
 ### AppBarLayoutAndroid

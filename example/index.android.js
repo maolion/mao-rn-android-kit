@@ -60,6 +60,7 @@ class App extends Component<any, any> {
                     ref={(component) => this.coordinatorLayout = component}
                     fitsSystemWindows={false} >
                     <AppBarLayoutAndroid
+                        ref={(component) => this.appbar = component}
                         layoutParams={{
                             height: 94
                         }}
@@ -136,16 +137,14 @@ class App extends Component<any, any> {
                             <TouchableHighlight
                                 style={styles.menuItem}
                                 underlayColor="rgba(255, 255, 255, .1)"
-                                onPress={() => this.popupWindow2.hide()}
-                                >
+                                onPress={() => this.popupWindow2.hide()} >
                                 <Text style={styles.menuItemText}>menu item1</Text>
                             </TouchableHighlight>
                             <TouchableHighlight
                                 style={styles.menuItem}
                                 underlayColor="rgba(0, 0, 0, .1)"
                                 underlayColor="rgba(255, 255, 255, .1)"
-                                onPress={() => this.popupWindow2.hide()}
-                                >
+                                onPress={() => this.popupWindow2.hide()} >
                                 <Text style={styles.menuItemText}>menu item2</Text>
                             </TouchableHighlight>
                             <TouchableHighlight
@@ -174,11 +173,11 @@ class App extends Component<any, any> {
     getPages() {
         const pages = [];
         for (let i = 0; i < 20; i++) {
-            pages.push(<View key={i}>
-                <NestedScrollViewAndroid 
-                    style={{
+            pages.push(<View key={i} style={{
                         height: Dimensions.get('window').height - 70
                     }}>
+                <NestedScrollViewAndroid 
+                    >
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
