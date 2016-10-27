@@ -10,7 +10,6 @@ export interface CoordinatorLayoutProps extends ViewGroupProperties {
 
 const MaoKitsCoordinatorLayoutManager: any = UIManager.MaoKitsCoordinatorLayoutAndroid;
 const COMMAND_SET_SCROLLING_VIEW_BEHAVIOR = MaoKitsCoordinatorLayoutManager.Commands.setScrollingViewBehavior;
-const COMMAND_SET_NESTED_SCROLL_ENABLED = MaoKitsCoordinatorLayoutManager.Commands.setNestedScrollEnabled;
 const COMMAND_RESET_BEHOVIOR = MaoKitsCoordinatorLayoutManager.Commands.resetBehavior;
 
 export default class CoordinatorLayout 
@@ -44,19 +43,11 @@ export default class CoordinatorLayout
         );
     }
 
-    setNestedScrollEnabled(enabled: boolean) {
-        UIManager.dispatchViewManagerCommand(
-            findNodeHandle(this), 
-            COMMAND_SET_NESTED_SCROLL_ENABLED, 
-            [enabled]
-        );
-    }
-
-    resetBehavior(appbar: AppBarLayout, smoothly: boolean = false) {
+    resetBehavior(appbar: AppBarLayout, nestedScrollEnabled = true, smoothly: boolean = false) {
         UIManager.dispatchViewManagerCommand(
             findNodeHandle(this), 
             COMMAND_RESET_BEHOVIOR, 
-            [findNodeHandle(appbar), smoothly]
+            [findNodeHandle(appbar), nestedScrollEnabled, smoothly]
         );
     }
 }

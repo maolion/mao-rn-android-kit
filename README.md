@@ -123,15 +123,11 @@ setScrollingViewBehavior(view: Component);
 /**
  * 将CoordinatorLayout 控制的AppBarLayout 伸缩效果重置到初始位置
  * @param {AppBarLayout} appbar 
+ * @param {boolean} nestedScrollEnabled 控制 CoordinatorLayout 是否响应 scrollview 滚动, 默认是true
  * @param {boolean} smoothly 是否开启平滑滚动的动画效果，默认不开启
  */
-resetBehavior(appbar: AppBarLayout, smoothly: boolean);
+resetBehavior(appbar: AppBarLayout, nestedScrollEnabled, smoothly: boolean);
 
-/**
- * 控制 CoordinatorLayout 是否响应 scrollview 滚动
- * @param {boolean} enabled 默认是允许
- */
-setNestedScrollEnabled(enabled: boolean);
 ```
 ----
 

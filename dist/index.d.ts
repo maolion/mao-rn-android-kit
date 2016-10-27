@@ -76,8 +76,7 @@ declare module 'mao-rn-android-kit/components/coordinator-layout/coordinator-lay
 	    componentDidUpdate(): void;
 	    render(): JSX.Element;
 	    setScrollingViewBehavior(view: any): void;
-	    setNestedScrollEnabled(enabled: boolean): void;
-	    resetBehavior(appbar: AppBarLayout, smoothly?: boolean): void;
+	    resetBehavior(appbar: AppBarLayout, nestedScrollEnabled?: boolean, smoothly?: boolean): void;
 	}
 
 }

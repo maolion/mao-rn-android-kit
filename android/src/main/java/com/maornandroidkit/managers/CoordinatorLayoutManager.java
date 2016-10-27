@@ -26,7 +26,6 @@ public class CoordinatorLayoutManager extends ViewGroupManager<MCoordinatorLayou
     public static final int COMMAND_SET_CHILDREN_LAYOUT_PARAMS = 1;
     public static final int COMMAND_SET_SCROLLING_VIEW_BEHAVIOR = 2;
     public static final int COMMAND_RESET_BEHAVIOR = 3;
-    public static final int COMMAND_SET_NESTED_SCROLL_ENABLED = 4;
 
     @Override
     public String getName() {
@@ -50,8 +49,6 @@ public class CoordinatorLayoutManager extends ViewGroupManager<MCoordinatorLayou
                 CoordinatorLayoutManager.COMMAND_SET_CHILDREN_LAYOUT_PARAMS,
                 "setScrollingViewBehavior",
                 CoordinatorLayoutManager.COMMAND_SET_SCROLLING_VIEW_BEHAVIOR,
-                "setNestedScrollEnabled",
-                CoordinatorLayoutManager.COMMAND_SET_NESTED_SCROLL_ENABLED,
                 "resetBehavior",
                 CoordinatorLayoutManager.COMMAND_RESET_BEHAVIOR
         );
@@ -68,13 +65,12 @@ public class CoordinatorLayoutManager extends ViewGroupManager<MCoordinatorLayou
             case CoordinatorLayoutManager.COMMAND_SET_SCROLLING_VIEW_BEHAVIOR:
                 layout.setScrollingViewBehavior(rootView.findViewById(args.getInt(0)));
                 break;
-            case CoordinatorLayoutManager.COMMAND_SET_NESTED_SCROLL_ENABLED:
-                layout.setNestedScrollEnabled(args.getBoolean(0));
-                break;
             case CoordinatorLayoutManager.COMMAND_RESET_BEHAVIOR:
+                Log.i("args.getInt(0)", args.getInt(0) + ".");
                 layout.resetBehavior(
                         (AppBarLayout) rootView.findViewById(args.getInt(0)),
-                        args.getBoolean(1)
+                        args.getBoolean(1),
+                        args.getBoolean(2)
                 );
                 break;
             default:
