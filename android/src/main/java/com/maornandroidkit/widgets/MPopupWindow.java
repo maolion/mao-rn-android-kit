@@ -78,7 +78,7 @@ public class MPopupWindow extends ReactViewGroup {
     public void showPopAsDropdown(int viewId, int x, int y) {
         View anchor = this.getRootView().findViewById(viewId);
 
-        //this.initPopupWindowContentView();
+        this.initPopupWindowContentView();
 
         if (anchor == null) {
             this.showPopAsLocation(Gravity.START, x, y);
@@ -90,7 +90,7 @@ public class MPopupWindow extends ReactViewGroup {
     }
 
     public void showPopAsLocation(int gravity, int x, int y) {
-        //this.initPopupWindowContentView();
+        this.initPopupWindowContentView();
 
         this.resize(x, y);
         this.mPopupWindow.showAtLocation(
@@ -106,29 +106,7 @@ public class MPopupWindow extends ReactViewGroup {
     }
 
 
-//    @Override
-//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-//
-//        int count = this.getChildCount();
-//
-//        for (int i = 0; i < count; i++) {
-//            final View child = this.getChildAt(i);
-//            if (child.getVisibility() == GONE) {
-//                continue;
-//            }
-//
-//            final LayoutParams lp = (LayoutParams) child.getLayoutParams();
-//            Log.i("debug", "...." + lp.height);
-//            child.measure(
-//                    getChildMeasureSpec(widthMeasureSpec, this.getPaddingLeft() + this.getPaddingRight(), lp.width),
-//                    getChildMeasureSpec(heightMeasureSpec, this.getPaddingTop() + this.getPaddingBottom(), lp.height)
-//            );
-//        }
-//    }
-
     private void resize(int x, int y) {
-        //mPopupWindowContentView.getChildAt(0).requestLayout();
         this.mPopupWindow.update(
                 x,
                 y,
@@ -146,12 +124,6 @@ public class MPopupWindow extends ReactViewGroup {
 
             mPopupWindowContentView.addView(view);
             view.requestLayout();
-            Log.i("denug", view.getHeight() + "..");
-//            mPopupWindowContentView.measure(
-//                    MeasureSpec.makeMeasureSpec()
-//                    mPopupWindowContentView.getMeasuredWidth(),
-//                    mPopupWindowContentView.getMeasuredHeight()
-//            );
 
             mPopupWindowContentViewInited = true;
         }
@@ -185,36 +157,5 @@ public class MPopupWindow extends ReactViewGroup {
         }
 
         mPopupWindowContentView.addView(child, index);
-    }
-
-    @Override
-    public View getChildAt(int index) {
-        return mPopupWindowContentView.getChildAt(index);
-    }
-
-    @Override
-    public void removeView(View view) {
-        mPopupWindowContentView.removeView(view);
-    }
-
-    @Override
-    public void removeViewAt(int index) {
-        mPopupWindowContentView.removeViewAt(index);
-    }
-
-    @Override
-    public void removeAllViews() {
-        super.removeAllViews();
-        mPopupWindowContentView.removeAllViews();
-    }
-
-    @Override
-    public int getChildCount() {
-        return mPopupWindowContentView.getChildCount();
-    }
-
-    @Override
-    public boolean getClipChildren() {
-        return mPopupWindowContentView.getClipChildren();
     }
 }
