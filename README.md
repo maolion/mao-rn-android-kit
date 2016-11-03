@@ -76,7 +76,8 @@ import {
     AppBarLayoutAndroid,
     TabLayoutAndroid,
     NestedScrollViewAndroid,
-    ExtraDimensionsAndroid
+    ExtraDimensionsAndroid,
+    PopupWindowAndroid
 } from 'mao-rn-android-kit';
 
 
