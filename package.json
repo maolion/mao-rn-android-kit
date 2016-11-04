@@ -1,6 +1,6 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.3.17",
+  "version": "0.3.18",
   "author": "maolion.j@gmail.com",
   "description": "mao-rn-android-kit 用React Native 中使用的一些Android原生模块/组件",
   "keywords": [
@@ -30,9 +30,9 @@
   },
   "homepage": "https://github.com/maolion/mao-rn-android-kit",
   "scripts": {
-    "debug": "node -harmony devtools/debug.js",
+    "develop": "node -harmony devtools/debug.js",
     "build": "node -harmony devtools/build.js",
-    "prepublish": "npm run build"
+    "prepublish": "rimraf dist && npm run build"
   },
   "dependencies": {
     "react-mixins-decorator": "^0.1.10",
@@ -42,6 +42,7 @@
   "devDependencies": {
     "chokidar": "^1.6.1",
     "fs-extra": "^1.0.0",
+    "rimraf": "^2.5.4",
     "typescript": "^2.0.7",
     "x-dts-generator": "^1.0.0"
   }
