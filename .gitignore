@@ -47,3 +47,5 @@ android/keystores/debug.keystore
 .vscode
 dist
 devtools/local-debug.js
+typings/*
+!typings/extends/
