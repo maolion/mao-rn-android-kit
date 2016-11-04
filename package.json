@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/maolion/mao-rn-android-kit",
   "scripts": {
-    "develop": "tsc -v && node -harmony devtools/debug.js",
+    "start": "tsc -v && node -harmony devtools/debug.js",
     "build": "tsc -v && node -harmony devtools/build.js",
     "prepublish": "rimraf dist && npm run build",
     "deploy": "npm publish"
