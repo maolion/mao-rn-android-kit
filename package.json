@@ -1,8 +1,8 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.3.18",
+  "version": "0.3.20",
   "author": "maolion.j@gmail.com",
-  "description": "mao-rn-android-kit 用React Native 中使用的一些Android原生模块/组件",
+  "description": "为 React Native 开发 提供的一些Android原生模块/组件 (react native, CoordinatorLayout, AppBarLayout, TabLayout, NestedScrollView, PopupWindow)",
   "keywords": [
     "mao-rn-android-kit",
     "react-native",

@@ -21,7 +21,8 @@ tsc(Constants.SOURCE_DIR, {
                 files: [
                     Path.join(Constants.SOURCE_DIR, 'index.ts'),
                     Path.join(Constants.CWD, 'typings/index.d.ts'),
-                    Path.join(Constants.CWD, 'typings/interfaces.d.ts')
+                    Path.join(Constants.CWD, 'typings/extends/react-native/react-native.d.ts'),
+                    Path.join(Constants.CWD, 'typings/extends/interfaces.d.ts')
                 ],
                 main: 'mao-rn-android-kit/src/index',
                 exclude: [
