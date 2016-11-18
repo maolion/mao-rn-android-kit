@@ -1,4 +1,4 @@
-import { Component, createElement, Children, PropTypes } from "react";
+import { PureComponent, createElement, Children, PropTypes } from "react";
 import { 
     requireNativeComponent, 
     View, 
@@ -32,7 +32,7 @@ const Commands = UIManager.MaoKitsTabLayoutAndroid.Commands;
 const SETUP_VIEW_PAGER = Commands.setupViewPager;
 const SET_VIEW_SIZE = Commands.setViewSize;
 
-export default class TabLayout extends Component<TabLayoutProps, any> {
+export default class TabLayout extends PureComponent<TabLayoutProps, any> {
 
     static propTypes = Object.assign({}, View.propTypes, {
         tabs: PropTypes.arrayOf(PropTypes.shape({

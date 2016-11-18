@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { requireNativeComponent, View, findNodeHandle, UIManager } from 'react-native'; 
 import Layout from '../layout/layout';
 import { ViewGroupProperties, AppBarViewProperties } from '../types';
@@ -13,7 +13,7 @@ export interface AppBarLayoutProps extends AppBarViewProperties {
 }
 
 export default class AppBarLayout 
-    extends Component<AppBarLayoutProps, any> 
+    extends PureComponent<AppBarLayoutProps, any> 
 {
     static SCROLL_FLAG_ENTRY_ALWAYS = Constants['SCROLL_FLAG_ENTRY_ALWAYS'];
     static SCROLL_FLAG_ENTRY_ALWAYS_COLLAPSED = Constants['SCROLL_FLAG_ENTRY_ALWAYS_COLLAPSED'];

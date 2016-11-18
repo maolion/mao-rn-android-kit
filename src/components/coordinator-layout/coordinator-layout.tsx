@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import { requireNativeComponent, View, findNodeHandle, UIManager } from 'react-native'; 
 import Layout from '../layout/layout';
 import { ViewGroupProperties } from '../types';
@@ -13,7 +13,7 @@ const COMMAND_SET_SCROLLING_VIEW_BEHAVIOR = MaoKitsCoordinatorLayoutManager.Comm
 const COMMAND_RESET_BEHOVIOR = MaoKitsCoordinatorLayoutManager.Commands.resetBehavior;
 
 export default class CoordinatorLayout 
-    extends Component<CoordinatorLayoutProps, any> 
+    extends PureComponent<CoordinatorLayoutProps, any> 
 {
     static propTypes = Object.assign({}, ViewGroupProperties)
 

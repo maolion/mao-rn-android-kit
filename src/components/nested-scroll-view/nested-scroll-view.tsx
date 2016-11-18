@@ -1,4 +1,4 @@
-import { Component, PropTypes } from 'react';
+import { PureComponent, PropTypes } from 'react';
 
 import { 
     requireNativeComponent, 
@@ -23,7 +23,7 @@ export interface NestedScrollViewProps extends ScrollViewProperties {
 
 @reactMixins([ScrollResponder.Mixin])
 class NestedScrollView 
-    extends Component<NestedScrollViewProps, any>
+    extends PureComponent<NestedScrollViewProps, any>
 {
     
     static propTypes = Object.assign({}, ScrollView.propTypes, {
@@ -31,7 +31,7 @@ class NestedScrollView
     })
 
     private _scrollView: NativeComponent;
-    private _innerView: Component<any, any>;
+    private _innerView: PureComponent<any, any>;
 
     constructor(props: NestedScrollViewProps, context: any) {
         super(props, context);

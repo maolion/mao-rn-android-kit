@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component, PropTypes } from 'react';
+import { PureComponent, PropTypes } from 'react';
 import { requireNativeComponent, StyleSheet, View, ViewStyle, findNodeHandle, UIManager } from 'react-native'; 
 import { ViewGroupProperties } from '../types';
 
@@ -16,7 +16,7 @@ const COMMAND_SHOW_POPUP_AS_LOCALTION = Commands.showPopupAsLocation;
 const COMMAND_HIDE_POPUP = Commands.hidePopup;
 
 export default class PopupWindow 
-    extends Component<PopupWindowProps, any> 
+    extends PureComponent<PopupWindowProps, any> 
 {
     static propTypes = Object.assign({
         focusable: PropTypes.bool,
