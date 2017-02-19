@@ -66,7 +66,6 @@ public class CoordinatorLayoutManager extends ViewGroupManager<MCoordinatorLayou
                 layout.setScrollingViewBehavior(rootView.findViewById(args.getInt(0)));
                 break;
             case CoordinatorLayoutManager.COMMAND_RESET_BEHAVIOR:
-                Log.i("args.getInt(0)", args.getInt(0) + ".");
                 layout.resetBehavior(
                         (AppBarLayout) rootView.findViewById(args.getInt(0)),
                         args.getBoolean(1),

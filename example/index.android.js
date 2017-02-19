@@ -53,7 +53,6 @@ class App extends Component<any, any> {
 
     render() {
         
-
         return (
             <View style={styles.container}>
                 <CoordinatorLayoutAndroid
@@ -70,8 +69,7 @@ class App extends Component<any, any> {
                                 height: 56,
                                 scrollFlags: (
                                     AppBarLayoutAndroid.SCROLL_FLAG_SCROLL | 
-                                    AppBarLayoutAndroid.SCROLL_FLAG_ENTRY_ALWAYS |
-                                    AppBarLayoutAndroid.SCROLL_FLAG_SNAP
+                                    AppBarLayoutAndroid.SCROLL_FLAG_ENTRY_ALWAYS
                                )
                             }}
                             style={{ flexDirection: "row", height: 50, paddingLeft: 10, paddingRight: 10, backgroundColor: "transparent", justifyContent: "center" }}
@@ -116,7 +114,6 @@ class App extends Component<any, any> {
                         >
                         {this.getPages()}
                     </ViewPagerAndroid>
-                    
                 </CoordinatorLayoutAndroid>
                 
                 <PopupWindowAndroid 
@@ -208,7 +205,9 @@ class App extends Component<any, any> {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor:"transparent",
         flex: 1,
+        overflow: "scroll"
     },
     welcome: {
         fontSize: 20,

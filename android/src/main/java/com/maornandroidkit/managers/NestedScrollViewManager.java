@@ -12,6 +12,7 @@ import com.facebook.react.uimanager.ViewGroupManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.views.scroll.ReactScrollViewCommandHelper;
 
+import com.maornandroidkit.Console;
 import com.maornandroidkit.widgets.MNestedScrollView;
 
 import java.util.Map;
@@ -21,8 +22,6 @@ public class NestedScrollViewManager
         implements ReactScrollViewCommandHelper.ScrollCommandHandler<MNestedScrollView>
 {
     private static final String NAME = "MaoKitsNestedScrollViewAndroid";
-
-
 
     @Override
     public String getName() {
@@ -67,6 +66,14 @@ public class NestedScrollViewManager
         } else {
             view.scrollTo(x, y);
         }
+    }
+
+    @Override
+    public void scrollToEnd(
+            MNestedScrollView view,
+            ReactScrollViewCommandHelper.ScrollToEndCommandData data
+    ) {
+        Console.log("motherfuck");
     }
 
     @Override

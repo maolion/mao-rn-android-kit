@@ -175,7 +175,6 @@ public class MTabLayout extends TabLayout {
 
                 addTab(tab);
 
-                //Log.i("debug", "hello");
                 if (tabView == null) {
                     continue;
                 }
@@ -257,12 +256,16 @@ public class MTabLayout extends TabLayout {
         setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                setSelectedTabStyle(getTabView(tab.getPosition()));
+                if (tab != null)  {
+                    setSelectedTabStyle(getTabView(tab.getPosition()));
+                }
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                setUnselectTabStyle(getTabView(tab.getPosition()));
+                if (tab != null) {
+                    setUnselectTabStyle(getTabView(tab.getPosition()));
+                }
             }
 
             @Override
