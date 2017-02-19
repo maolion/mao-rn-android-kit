@@ -73,7 +73,14 @@ public class NestedScrollViewManager
             MNestedScrollView view,
             ReactScrollViewCommandHelper.ScrollToEndCommandData data
     ) {
-        Console.log("motherfuck");
+        int scrollWidth = view.getChildAt(0).getWidth() + view.getPaddingRight();
+        int scrollHeight = view.getChildAt(0).getHeight() + view.getPaddingBottom();
+
+        if (data.mAnimated) {
+            view.smoothScrollBy(scrollWidth, scrollHeight);
+        } else {
+            view.scrollTo(scrollWidth, scrollHeight);
+        }
     }
 
     @Override
