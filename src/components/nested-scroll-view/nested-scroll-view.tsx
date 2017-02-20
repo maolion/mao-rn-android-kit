@@ -35,7 +35,13 @@ class NestedScrollView
 
     constructor(props: NestedScrollViewProps, context: any) {
         super(props, context);
-        this.state = (this as typeof ScrollResponder.Mixin).scrollResponderMixinGetInitialState();
+        let scrollResponder: typeof ScrollResponder.Mixin = this;
+
+        this.state = scrollResponder.scrollResponderMixinGetInitialState();
+        scrollResponder.scrollResponderKeyboardWillShow = scrollResponder.scrollResponderKeyboardWillShow.bind(this);
+        scrollResponder.scrollResponderKeyboardDidShow = scrollResponder.scrollResponderKeyboardDidShow.bind(this);
+        scrollResponder.scrollResponderKeyboardWillHide = scrollResponder.scrollResponderKeyboardWillHide.bind(this);
+        scrollResponder.scrollResponderKeyboardDidHide = scrollResponder.scrollResponderKeyboardDidHide.bind(this);
     }
 
     setNativeProps(props: Object) {

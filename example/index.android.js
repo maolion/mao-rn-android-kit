@@ -9,7 +9,8 @@ import {
     Dimensions,
     ViewPagerAndroid,
     TouchableHighlight,
-    ToolbarAndroid
+    ToolbarAndroid,
+    TextInput
 } from 'react-native';
 
 global.React = React;
@@ -176,6 +177,10 @@ class App extends Component<any, any> {
                 <NestedScrollViewAndroid 
                     >
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
+                    <TextInput
+                        style={{ height: 50, backgroundColor: 'yellow' }}
+                    >
+                    </TextInput>
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
