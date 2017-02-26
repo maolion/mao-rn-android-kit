@@ -1,6 +1,6 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "author": "maolion.j@gmail.com",
   "description": "为 React Native 开发 提供的一些Android原生模块/组件 (react native, CoordinatorLayout, AppBarLayout, TabLayout, NestedScrollView, PopupWindow)",
   "keywords": [
@@ -22,7 +22,7 @@
     "url": "https://github.com/maolion/mao-rn-android-kit/issues"
   },
   "main": "./dist/index.js",
-  "typings": "./dist/index.d.ts",
+  "typings": "./dist/typings/index.d.ts",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -38,14 +38,12 @@
   },
   "dependencies": {
     "react-mixins-decorator": "^0.1.10",
-    "thenfail": "^0.4.12",
-    "x-dts-generator": "^1.0.6"
+    "thenfail": "^0.4.12"
   },
   "devDependencies": {
     "chokidar": "^1.6.1",
     "fs-extra": "^1.0.0",
     "rimraf": "^2.5.4",
-    "typescript": "^2.1.6",
-    "x-dts-generator": "^1.0.0"
+    "typescript": "^2.1.6"
   }
 }

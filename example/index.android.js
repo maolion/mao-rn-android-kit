@@ -25,7 +25,15 @@ import {
     GravityAndroid
 } from 'mao-rn-android-kit';
 
-class App extends Component<any, any> {
+class App extends Component {
+    componentWillMount() {
+        this.viewPagerHeight = 
+            ExtraDimensionsAndroid.getAppClientHeight() - 
+            ExtraDimensionsAndroid.getStatusBarHeight() -
+            38
+        ;
+    }
+
     componentDidMount() {
         this.coordinatorLayout.setScrollingViewBehavior(this.viewPager);
         this.tabLayout.setViewPager(this.viewPager, [
@@ -40,16 +48,9 @@ class App extends Component<any, any> {
             { text: "tab9" },
             { text: "tab10" },
             { text : "tab11" },
-            { text: "tab12" },
-            { text: "tab13" },
-            { text: "tab14" },
-            { text: "tab15" },
-            { text: "tab16" },
-            { text: "tab17" },
-            { text: "tab18" },
-            { text: "tab19" },
-            { text: "tab20" },
+            { text: "tab12" }
         ], true);
+
     }
 
     render() {
@@ -73,7 +74,7 @@ class App extends Component<any, any> {
                                     AppBarLayoutAndroid.SCROLL_FLAG_ENTRY_ALWAYS
                                )
                             }}
-                            style={{ flexDirection: "row", height: 50, paddingLeft: 10, paddingRight: 10, backgroundColor: "transparent", justifyContent: "center" }}
+                            style={{ flexDirection: "row", height: 56, paddingLeft: 10, paddingRight: 10, backgroundColor: "transparent", justifyContent: "center" }}
                         >
                             <View style={{ flex: 1, justifyContent: "center"}}>
                                 <Text style={{ color: "#fff" }}>Hello, World</Text>
@@ -83,7 +84,7 @@ class App extends Component<any, any> {
                                     underlayColor="rgba(0, 0, 0, .1)" 
                                     style={{ padding: 15 }} 
                                     onPress={() => this.popupWindow1.showAsLocation(GravityAndroid.BOTTOM, 0, 0)} >
-                                    <Text style={{ color: "#fff" }}>A</Text>
+                                    <Text style={{ color: "#fff" }}>Menu1</Text>
                                 </TouchableHighlight>
                                 
                             </View>
@@ -93,7 +94,7 @@ class App extends Component<any, any> {
                                     underlayColor="rgba(0, 0, 0, .1)" 
                                     style={{ padding: 15 }} 
                                     onPress={() => this.popupWindow2.showAsDropdown(this.refs['dropdown_toggle'], 0, 56)} >
-                                    <Text style={{ color: "#fff" }}>B</Text>
+                                    <Text style={{ color: "#fff" }}>Menu2</Text>
                                 </TouchableHighlight>
                             </View>
 
@@ -105,13 +106,13 @@ class App extends Component<any, any> {
                             tabIndicatorColor="#fff"
                             tabTextColor="rgba(255, 255, 255, .6)"
                             tabIndicatorHeight={1}
-                            tabTextSize={6}
+                            tabTextSize={5}
                             tabSidePadding={10}
                             tabHeight={38} />
                     </AppBarLayoutAndroid>
                     <ViewPagerAndroid
                         ref={(compoent) => this.viewPager = compoent}
-                        style={{ flex: 1, backgroundColor: "transparent", height:  Dimensions.get('window').height - 70 }}
+                        style={{ flex: 1, backgroundColor: "transparent", height: this.viewPagerHeight }}
                         >
                         {this.getPages()}
                     </ViewPagerAndroid>
@@ -170,17 +171,14 @@ class App extends Component<any, any> {
 
     getPages() {
         const pages = [];
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 12; i++) {
             pages.push(<View key={i} style={{
-                        height: Dimensions.get('window').height - 70
+                        height: this.viewPagerHeight 
                     }}>
                 <NestedScrollViewAndroid 
                     >
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
-                    <TextInput
-                        style={{ height: 50, backgroundColor: 'yellow' }}
-                    >
-                    </TextInput>
+                    
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
                     <Text style={{ margin: 8 }}>{this.getText()}</Text>
@@ -202,7 +200,10 @@ class App extends Component<any, any> {
         }
         return pages;
     }
-
+/**<TextInput
+                        style={{ height: 50, backgroundColor: 'yellow' }}
+                    >
+                    </TextInput> */
     getText() {
         return 'React Native使你能够在Javascript和React的基础上获得完全一致的开发体验，构建世界一流的原生APP。 React Native着力于提高多平台开发的开发效率 —— 仅需学习一次，编写任何平台。(Learn once, write anywhere) Facebook已经在多项产品中使用了React Native，并且将持续地投入建设React Native。';
     }

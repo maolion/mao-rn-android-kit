@@ -14,7 +14,8 @@ module.exports = function tsc(targetDir, options) {
                 args: [
                     options.watch ? '-w' : '',
                     options.declaration ? '-d' : '',
-                    options.outDir ? `--outDir ${options.outDir}` : ''
+                    options.outDir ? `--outDir ${options.outDir}` : '',
+                    options.declarationDir ? `--declarationDir ${options.declarationDir}` : ''
                 ],
                 cwd: targetDir, 
                 log: function(data) {

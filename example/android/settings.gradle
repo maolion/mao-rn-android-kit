@@ -3,8 +3,8 @@ rootProject.name = 'example'
 include ':app'
 
 include ':mao-rn-android-kit'
-//project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../../android/') // for debug
-project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../node_modules/mao-rn-android-kit/android')
+project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../../android/') // for debug
+//project(':mao-rn-android-kit').projectDir = new File(settingsDir, '../node_modules/mao-rn-android-kit/android')
 
 // for debug
 // include ':react-native'
