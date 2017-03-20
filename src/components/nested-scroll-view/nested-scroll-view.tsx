@@ -21,6 +21,8 @@ export interface NestedScrollViewProps extends ScrollViewProperties {
     onContentSizeChange?: (width: number, height: number) => void;
 }
 
+(global as any).React = React;
+
 @reactMixins([ScrollResponder.Mixin])
 class NestedScrollView 
     extends PureComponent<NestedScrollViewProps, any>

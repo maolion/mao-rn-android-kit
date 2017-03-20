@@ -14,7 +14,6 @@
         "jsx": "react"
     },
     "include" : [
-        "node_modules/react-mixins-decorator/dist/index.d.ts",
         "src/**/*",
         "typings/**/*"
     ],

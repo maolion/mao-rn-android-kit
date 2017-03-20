@@ -12,6 +12,8 @@ const MaoKitsCoordinatorLayoutManager: any = UIManager.MaoKitsCoordinatorLayoutA
 const COMMAND_SET_SCROLLING_VIEW_BEHAVIOR = MaoKitsCoordinatorLayoutManager.Commands.setScrollingViewBehavior;
 const COMMAND_RESET_BEHOVIOR = MaoKitsCoordinatorLayoutManager.Commands.resetBehavior;
 
+(global as any).React = React;
+
 export default class CoordinatorLayout 
     extends PureComponent<CoordinatorLayoutProps, any> 
 {

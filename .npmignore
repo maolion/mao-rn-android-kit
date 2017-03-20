@@ -1,5 +1,5 @@
 .gitignore
-index.android.js
+dist/
 src/
 devtools/
 android/app/
@@ -26,6 +26,7 @@ tsconfig.json
 typings.json
 typings/
 .vscode/
+deploy.sh
 .buckconfig
 .flowconfig
 .npmignore

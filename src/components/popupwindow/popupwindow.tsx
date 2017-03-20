@@ -15,6 +15,8 @@ const COMMAND_SHOW_POPUP_AS_DROPDOWN = Commands.showPopupAsDropdown;
 const COMMAND_SHOW_POPUP_AS_LOCALTION = Commands.showPopupAsLocation;
 const COMMAND_HIDE_POPUP = Commands.hidePopup;
 
+(global as any).React = React;
+
 export default class PopupWindow 
     extends PureComponent<PopupWindowProps, any> 
 {

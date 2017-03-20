@@ -32,6 +32,8 @@ const Commands = UIManager.MaoKitsTabLayoutAndroid.Commands;
 const SETUP_VIEW_PAGER = Commands.setupViewPager;
 const SET_VIEW_SIZE = Commands.setViewSize;
 
+(global as any).React = React;
+
 export default class TabLayout extends PureComponent<TabLayoutProps, any> {
 
     static propTypes = Object.assign({}, View.propTypes, {

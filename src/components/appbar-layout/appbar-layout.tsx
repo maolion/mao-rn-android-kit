@@ -12,6 +12,8 @@ const DEFAULT_PROPS: any = {
 export interface AppBarLayoutProps extends AppBarViewProperties {
 }
 
+(global as any).React = React;
+
 export default class AppBarLayout 
     extends PureComponent<AppBarLayoutProps, any> 
 {
