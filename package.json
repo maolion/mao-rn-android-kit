@@ -31,9 +31,9 @@
   "homepage": "https://github.com/maolion/mao-rn-android-kit",
   "scripts": {
     "start": "tsc -v && tsc --watch",
-    "build": "rimraf dist tsc -v && tsc --declaration --outDir dist",
+    "build": "rimraf dist && tsc -v && tsc --declaration --outDir dist",
     "build-local": "npm run build && rimraf ./example/node_modules/mao-rn-android-kit && mkdir ./example/node_modules/mao-rn-android-kit && cp -r ./dist ./example/node_modules/mao-rn-android-kit && cp package.json ./example/node_modules/mao-rn-android-kit",
-    "deploy": "./deploy.sh"
+    "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
     "react-mixins-decorator": "^0.1.15"
