@@ -1,6 +1,6 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.4.8",
+  "version": "0.4.10",
   "author": "maolion.j@gmail.com",
   "description": "为 React Native 开发 提供的一些Android原生模块/组件 (react native, CoordinatorLayout, AppBarLayout, TabLayout, NestedScrollView, PopupWindow)",
   "keywords": [
@@ -30,10 +30,11 @@
   },
   "homepage": "https://github.com/maolion/mao-rn-android-kit",
   "scripts": {
-    "start": "tsc -v && tsc --watch",
-    "build": "rimraf dist && tsc -v && tsc --declaration --outDir dist",
-    "build-local": "npm run build && rimraf ./example/node_modules/mao-rn-android-kit && mkdir ./example/node_modules/mao-rn-android-kit && cp -r ./dist ./example/node_modules/mao-rn-android-kit && cp package.json ./example/node_modules/mao-rn-android-kit",
-    "deploy": "./scripts/deploy.sh"
+    "start": "tsc --watch",
+    "build": "tsc --declaration",
+    "deploy": "./scripts/deploy.sh",
+    "publish-to-example": "npm run build && rimraf ./example/node_modules/mao-rn-android-kit && mkdir ./example/node_modules/mao-rn-android-kit && cp -r ./dist ./example/node_modules/mao-rn-android-kit && cp package.json ./example/node_modules/mao-rn-android-kit",
+    "prepublish": "exit 1"
   },
   "dependencies": {
     "react-mixins-decorator": "^0.1.15"

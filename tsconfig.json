@@ -10,6 +10,7 @@
         "preserveConstEnums" : true,
         "noLib": false,
         "sourceMap": false,
+        "outDir": "./dist",
         "experimentalDecorators": true,
         "jsx": "react"
     },

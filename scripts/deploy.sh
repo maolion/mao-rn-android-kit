@@ -1,42 +1,29 @@
 #!/bin/sh
 
-echo "deploy starting..."
+echo "deploying ..."
 
-diff=$(git --no-pager diff)
+echo "cleaning previouse build files ..."
+rm -rf ./dist
 
-if ! [ -z "$diff" ]
-then 
-    git status
-    exit 1
-fi
-
-git add .
-
-stash=$(git stash)
-stashed="1"
-
-if [ "$stash" == "No local changes to save" ]
-then
-    stashed="0"
-fi
-
+echo "building ..."
 npm run build || exit 0
 
-cp -r ./dist/** ./
+echo "copying ..."
+mkdir ./dist/android
+cp -r ./android/src ./dist/android/src
+cp ./android/build.gradle ./dist/android/build.gradle
+
+cp ./package.json ./dist/package.json
+
+perl -pi -w -e 's/"prepublish": "exit 1"/"prepublish": ""/g;' ./dist/package.json
+
+cd ./dist
+
+echo "publishing ..."
 
 if ! [ -z "$1" ]
 then
     npm publish --tag $1
-else 
+else
     npm publish
 fi
-
-git clean -fd
-
-if [ "$stashed" == "1" ]
-then
-    git stash pop
-    git reset .
-fi
-
-
