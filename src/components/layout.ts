@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { UIManager, findNodeHandle } from 'react-native';
-import { ViewGroupProperties } from '../types';
+import { ViewGroupProperties } from './types';
 
 (global as any).React = React;
 

@@ -1,7 +1,7 @@
 import { PureComponent } from 'react';
 import { requireNativeComponent, View, findNodeHandle, UIManager } from 'react-native'; 
-import Layout from '../layout/layout';
-import { ViewGroupProperties, AppBarViewProperties } from '../types';
+import Layout from './layout';
+import { ViewGroupProperties, AppBarViewProperties } from './types';
 const MaoKitsAppBarLayoutAndroidManager = UIManager.MaoKitsAppBarLayoutAndroid;
 const Constants:Dictionary<number> = MaoKitsAppBarLayoutAndroidManager.Constants;
 

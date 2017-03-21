@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { PureComponent, PropTypes } from 'react';
 import { requireNativeComponent, StyleSheet, View, ViewStyle, findNodeHandle, UIManager } from 'react-native'; 
-import { ViewGroupProperties } from '../types';
+import { ViewGroupProperties } from './types';
 
 export interface PopupWindowProps extends ViewGroupProperties {
     focusable?: boolean;

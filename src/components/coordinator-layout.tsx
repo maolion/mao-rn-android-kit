@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PureComponent } from 'react';
 import { requireNativeComponent, View, findNodeHandle, UIManager } from 'react-native'; 
-import Layout from '../layout/layout';
-import { ViewGroupProperties } from '../types';
-import AppBarLayout from '../appbar-layout/appbar-layout';
+import Layout from './layout';
+import { ViewGroupProperties } from './types';
+import AppBarLayout from './appbar-layout';
 export interface CoordinatorLayoutProps extends ViewGroupProperties {
     
 }

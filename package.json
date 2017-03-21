@@ -1,6 +1,6 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.4.10",
+  "version": "0.4.13",
   "author": "maolion.j@gmail.com",
   "description": "为 React Native 开发 提供的一些Android原生模块/组件 (react native, CoordinatorLayout, AppBarLayout, TabLayout, NestedScrollView, PopupWindow)",
   "keywords": [
@@ -32,8 +32,8 @@
   "scripts": {
     "start": "tsc --watch",
     "build": "tsc --declaration",
+    "debug": "./scripts/debug.sh",
     "deploy": "./scripts/deploy.sh",
-    "publish-to-example": "npm run build && rimraf ./example/node_modules/mao-rn-android-kit && mkdir ./example/node_modules/mao-rn-android-kit && cp -r ./dist ./example/node_modules/mao-rn-android-kit && cp package.json ./example/node_modules/mao-rn-android-kit",
     "prepublish": "exit 1"
   },
   "dependencies": {
