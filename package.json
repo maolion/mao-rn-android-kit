@@ -42,7 +42,6 @@
   "devDependencies": {
     "chokidar": "^1.6.1",
     "fs-extra": "^2.1.2",
-    "rimraf": "^2.6.1",
     "typescript": "^2.2.1"
   }
 }
