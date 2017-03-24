@@ -17,7 +17,7 @@ export default class Layout {
         let childrelLayoutParams: any[] = [];
         const hasDefaultParams = !!defaultParams;
 
-        React.Children.map(component.props.children, (child: any, index: number) => {
+        React.Children.map(component.props.children || [], (child: any, index: number) => {
             if (!child.props.layoutParams && !hasDefaultParams) {
                 return;
             }
@@ -26,7 +26,8 @@ export default class Layout {
                 {},
                 defaultParams,
                 child.props.layoutParams,
-                { childIndex: index } ));
+                { childIndex: index }
+            ));
         });
 
         if (!childrelLayoutParams.length) {

@@ -6,8 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "mao-rn-android-kit": "^0.4.11",
+    "mao-rn-android-kit": "^0.4.14",
     "react": "^15.4.2",
-    "react-native": "^0.41.2"
+    "react-native": "^0.42.3"
   }
 }
