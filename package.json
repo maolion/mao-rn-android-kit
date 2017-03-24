@@ -1,6 +1,6 @@
 {
   "name": "mao-rn-android-kit",
-  "version": "0.4.15",
+  "version": "0.4.16",
   "author": "maolion.j@gmail.com",
   "description": "为 React Native 开发 提供的一些Android原生模块/组件 (react native, CoordinatorLayout, AppBarLayout, TabLayout, NestedScrollView, PopupWindow)",
   "keywords": [
@@ -39,8 +39,6 @@
     "prepublish": "exit 1"
   },
   "dependencies": {
-    "react": "^15.4.2",
-    "react-native": "^0.42.3"
   },
   "devDependencies": {
     "tslint": "^4.5.1",
