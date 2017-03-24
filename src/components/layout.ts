@@ -8,15 +8,16 @@ export default class Layout {
     static setChildrenLayoutParams(
         component: React.Component<ViewGroupProperties, any>,
         manager: any,
-        defaultParams?: any
-    ): void {
+        defaultParams?: any ): void {
+
         if (!component || !manager) {
             return;
         }
+
         let childrelLayoutParams: any[] = [];
         const hasDefaultParams = !!defaultParams;
 
-        React.Children.map(component.props.children, (child:any, index: number) => {
+        React.Children.map(component.props.children, (child: any, index: number) => {
             if (!child.props.layoutParams && !hasDefaultParams) {
                 return;
             }
@@ -25,19 +26,16 @@ export default class Layout {
                 {},
                 defaultParams,
                 child.props.layoutParams,
-                { childIndex: index }
-            ));
+                { childIndex: index } ));
         });
-                
+
         if (!childrelLayoutParams.length) {
             return;
         }
-        
+
         UIManager.dispatchViewManagerCommand(
             findNodeHandle(component),
             manager.Commands.setChildrenLayoutParams,
-            [childrelLayoutParams]
-        );
-
+            [childrelLayoutParams] );
     }
 }

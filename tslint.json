@@ -1,0 +1,6 @@
+{
+  "extends": "vts",
+  "rules": {
+    "trailing-comma": false
+  }
+}

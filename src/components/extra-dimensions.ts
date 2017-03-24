@@ -1,39 +1,39 @@
 import { NativeModules } from 'react-native';
 
-const ExtraDimensions: any =  NativeModules['MaoKitsExtraDimensionsAndroid'];
+const ExtraDimensions: any =  NativeModules.MaoKitsExtraDimensionsAndroid;
 /**
  * 获取设备实际屏幕高度
  */
 export function getScreenHeight() {
-    return ExtraDimensions['SCREEN_HEIGHT'];
+    return ExtraDimensions.SCREEN_HEIGHT;
 }
 
 /**
  * 获取设备实际屏幕宽度
  */
 export function getScreenWidth() {
-    return ExtraDimensions['SCREEN_WIDTH'];
+    return ExtraDimensions.SCREEN_WIDTH;
 }
 
 /**
  * 获取魅族SmartBar高度
  */
 export function getSmartBarHeight() {
-    return ExtraDimensions['SMART_BAR_HEIGHT'];
+    return ExtraDimensions.SMART_BAR_HEIGHT;
 }
 
 /**
  * 获取软键盘导航按钮高度
  */
 export function getSoftMenuBarHeight() {
-    return ExtraDimensions['SOFT_MENU_BAR_HEIGHT'];
+    return ExtraDimensions.SOFT_MENU_BAR_HEIGHT;
 }
 
 /**
  * 获取状态栏高度
  */
 export function getStatusBarHeight() {
-    return ExtraDimensions['STATUS_BAR_HEIGHT'];
+    return ExtraDimensions.STATUS_BAR_HEIGHT;
 }
 
 /**
@@ -48,9 +48,9 @@ export function getAppClientWidth() {
  */
 export function getAppClientHeight() {
     return (
-        getScreenHeight() - 
+        getScreenHeight() -
         getSmartBarHeight() -
-        //getStatusBarHeight() -
+        // getStatusBarHeight() -
         getSoftMenuBarHeight()
     );
 }
