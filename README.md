@@ -3,9 +3,9 @@
 
 为 React Native 开发 提供的一些Android原生模块/组件
 
-![cover](demo.gif)
+![examples](./examples.png)
 
----- 
+----
 
 包含组件
 
@@ -123,7 +123,7 @@ setScrollingViewBehavior(view: Component);
 
 /**
  * 将CoordinatorLayout 控制的AppBarLayout 伸缩效果重置到初始位置
- * @param {AppBarLayout} appbar 
+ * @param {AppBarLayout} appbar
  * @param {boolean} nestedScrollEnabled 控制 CoordinatorLayout 是否响应 scrollview 滚动, 默认是true
  * @param {boolean} smoothly 是否开启平滑滚动的动画效果，默认不开启
  */
@@ -168,13 +168,13 @@ tabs: { text: string }[];
 //选项卡字体大小
 tabTextSize: number;
 
-//选项卡项目默认字体颜色 
+//选项卡项目默认字体颜色
 tabTextColor: string;
 
-//选项卡项目选中字体颜色 
+//选项卡项目选中字体颜色
 tabSelectedTextColor: string;
 
-//选项卡下标线颜色 
+//选项卡下标线颜色
 tabIndicatorColor: string;
 
 //选项卡下标线高度
@@ -238,7 +238,7 @@ showVerticalScrollIndicator: boolean;
 
 方法
 ```
-/** 
+/**
  * 获取设备实际屏幕高度
  * @return {boolean}
  */
@@ -250,7 +250,7 @@ getScreenHeight(): number;
  */
 getScreenWidth(): number;
 
-/** 
+/**
  * 获取魅族SmartBar高度
  * @return {boolean}
  */
@@ -288,7 +288,7 @@ getAppClientHeight(): number;
 ```
 /**
  * 将弹出窗口显示在目标视图元素下方
- * @param {Component}  view 
+ * @param {Component}  view
  *  目标视图元素
  * @param {number} x
  *  x轴偏移
@@ -323,7 +323,7 @@ focusable?: boolea;
 touchable?: boolea;
 
 // 点击弹出窗口外时 是否隐藏弹出窗口
-outsideTouchable?: boolean; 
+outsideTouchable?: boolean;
 ```
 
 ----

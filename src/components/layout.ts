@@ -2,8 +2,6 @@ import * as React from 'react';
 import { UIManager, findNodeHandle } from 'react-native';
 import { ViewGroupProperties } from './types';
 
-(global as any).React = React;
-
 export default class Layout {
     static setChildrenLayoutParams(
         component: React.Component<ViewGroupProperties, any>,

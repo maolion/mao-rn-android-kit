@@ -1,11 +1,12 @@
+import * as React from 'react';
 import { PureComponent, createElement, Children, PropTypes } from "react";
-import { 
-    requireNativeComponent, 
-    View, 
+import {
+    requireNativeComponent,
+    View,
     ViewProperties,
     UIManager,
     findNodeHandle,
-    ViewPagerAndroidStatic 
+    ViewPagerAndroidStatic
 } from 'react-native';
 
 export interface Tab {
@@ -32,8 +33,6 @@ const Commands = UIManager.MaoKitsTabLayoutAndroid.Commands;
 const SETUP_VIEW_PAGER = Commands.setupViewPager;
 const SET_VIEW_SIZE = Commands.setViewSize;
 
-(global as any).React = React;
-
 export default class TabLayout extends PureComponent<TabLayoutProps, any> {
 
     static propTypes = Object.assign({}, View.propTypes, {
@@ -55,7 +54,7 @@ export default class TabLayout extends PureComponent<TabLayoutProps, any> {
 
     render() {
         return (
-            <RCTTabLayout 
+            <RCTTabLayout
                  {...this.props}
                  style={[
                      { height: 48 },
@@ -70,12 +69,12 @@ export default class TabLayout extends PureComponent<TabLayoutProps, any> {
         }
 
         const viewPagerID = findNodeHandle(viewPager as any);
-        
+
         UIManager.dispatchViewManagerCommand(
             findNodeHandle(this),
             SETUP_VIEW_PAGER,
             [viewPagerID, tabs, smoothScroll]
-        );  
+        );
     }
 
     setViewSize(width: SizeParam, height?: SizeParam) {
@@ -87,7 +86,7 @@ export default class TabLayout extends PureComponent<TabLayoutProps, any> {
         if (height != undefined) {
             sizeMap["height"] = height;
         }
-        
+
         UIManager.dispatchViewManagerCommand(
             findNodeHandle(this),
             SET_VIEW_SIZE,
@@ -97,7 +96,7 @@ export default class TabLayout extends PureComponent<TabLayoutProps, any> {
 }
 
 const RCTTabLayout: any = requireNativeComponent(
-    "MaoKitsTabLayoutAndroid", 
+    "MaoKitsTabLayoutAndroid",
     TabLayout,
     {
         nativeOnly: {}

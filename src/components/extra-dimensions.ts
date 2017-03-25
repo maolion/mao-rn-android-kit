@@ -1,6 +1,7 @@
 import { NativeModules } from 'react-native';
 
 const ExtraDimensions: any =  NativeModules.MaoKitsExtraDimensionsAndroid;
+
 /**
  * 获取设备实际屏幕高度
  */
@@ -54,3 +55,13 @@ export function getAppClientHeight() {
         getSoftMenuBarHeight()
     );
 }
+
+export default {
+    getScreenHeight,
+    getScreenWidth,
+    getSmartBarHeight,
+    getSoftMenuBarHeight,
+    getStatusBarHeight,
+    getAppClientWidth,
+    getAppClientHeight
+};

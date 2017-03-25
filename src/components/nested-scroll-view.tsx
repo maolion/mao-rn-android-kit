@@ -1,15 +1,16 @@
+import * as React from 'react';
 import { PureComponent, PropTypes } from 'react';
 
-import { 
-    requireNativeComponent, 
-    StyleSheet, 
-    findNodeHandle, 
-    ScrollViewProperties, 
-    View, 
-    UIManager, 
-    NativeComponent, 
-    ViewProperties, 
-    ScrollView 
+import {
+    requireNativeComponent,
+    StyleSheet,
+    findNodeHandle,
+    ScrollViewProperties,
+    View,
+    UIManager,
+    NativeComponent,
+    ViewProperties,
+    ScrollView
 } from 'react-native';
 
 import * as ScrollResponder from 'react-native/Libraries/Components/ScrollResponder';
@@ -21,13 +22,13 @@ export interface NestedScrollViewProps extends ScrollViewProperties {
     onContentSizeChange?: (width: number, height: number) => void;
 }
 
-(global as any).React = React;
+declare var global: any;
 
 @reactMixins([ScrollResponder.Mixin])
-class NestedScrollView 
+class NestedScrollView
     extends PureComponent<NestedScrollViewProps, any>
 {
-    
+
     static propTypes = Object.assign({}, ScrollView.propTypes, {
         showVerticalScrollIndicator: PropTypes.bool
     })
@@ -49,7 +50,7 @@ class NestedScrollView
     setNativeProps(props: Object) {
         this._scrollView.setNativeProps(props);
     }
-    
+
     getScrollResponder(): any {
         return this;
     }
@@ -60,18 +61,18 @@ class NestedScrollView
 
     scrollTo(destX?: number, destY?: number) {
         this.getScrollResponder().scrollResponderScrollTo(
-            destX || 0, 
+            destX || 0,
             destY || 0
         );
     }
 
     scrollWithoutAnimationTo(destX?: number, destY?: number) {
         this.getScrollResponder().scrollResponderScrollWithoutAnimationTo(
-            destX || 0, 
+            destX || 0,
             destY || 0
         );
     }
-    
+
     handleScroll(event: any) {
         if ((global as any).__DEV__) {
             if (this.props.onScroll && !this.props.scrollEventThrottle) {
@@ -86,7 +87,7 @@ class NestedScrollView
         }
 
         if (this.props.keyboardDismissMode === 'on-drag') {
-            (global as any).dismissKeyboard && (global as any).dismissKeyboard(); 
+            (global as any).dismissKeyboard && (global as any).dismissKeyboard();
         }
 
         (this as any).scrollResponderHandleScroll(event);
@@ -138,7 +139,7 @@ class NestedScrollView
                     {...(this.props.onContentSizeChange ? {
                         onLayout: this._handleContentOnLayout.bind(this)
                     } : {})}
-                    style={[ 
+                    style={[
                         this.props.horizontal && styles.contentContainerHorizontal,
                         this.props.contentContainerStyle
                     ]}
@@ -150,7 +151,7 @@ class NestedScrollView
                 </View>
             </RCTNestedScrollView>);
     }
-    
+
     private _handleContentOnLayout(event: any) {
         const {width, height} = event.nativeEvent.layout;
         this.props.onContentSizeChange && this.props.onContentSizeChange(width, height);

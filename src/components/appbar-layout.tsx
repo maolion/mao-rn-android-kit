@@ -1,5 +1,6 @@
+import * as React from 'react';
 import { PureComponent } from 'react';
-import { requireNativeComponent, View, findNodeHandle, UIManager } from 'react-native'; 
+import { requireNativeComponent, View, findNodeHandle, UIManager } from 'react-native';
 import Layout from './layout';
 import { ViewGroupProperties, AppBarViewProperties } from './types';
 const MaoKitsAppBarLayoutAndroidManager = UIManager.MaoKitsAppBarLayoutAndroid;
@@ -12,10 +13,8 @@ const DEFAULT_PROPS: any = {
 export interface AppBarLayoutProps extends AppBarViewProperties {
 }
 
-(global as any).React = React;
-
-export default class AppBarLayout 
-    extends PureComponent<AppBarLayoutProps, any> 
+export default class AppBarLayout
+    extends PureComponent<AppBarLayoutProps, any>
 {
     static SCROLL_FLAG_ENTRY_ALWAYS = Constants['SCROLL_FLAG_ENTRY_ALWAYS'];
     static SCROLL_FLAG_ENTRY_ALWAYS_COLLAPSED = Constants['SCROLL_FLAG_ENTRY_ALWAYS_COLLAPSED'];
@@ -23,7 +22,7 @@ export default class AppBarLayout
     static SCROLL_FLAG_SCROLL = Constants['SCROLL_FLAG_SCROLL'];
     static SCROLL_FLAG_SNAP = Constants['SCROLL_FLAG_SNAP'];
     static propTypes = Object.assign({}, AppBarViewProperties);
-    
+
     componentDidMount() {
         Layout.setChildrenLayoutParams(this, MaoKitsAppBarLayoutAndroidManager, DEFAULT_PROPS);
     }
@@ -34,7 +33,7 @@ export default class AppBarLayout
 
     render() {
         return (
-            <RCTAppBarLayout 
+            <RCTAppBarLayout
                 {...this.props}
             >
             {this.props.children}
@@ -44,7 +43,7 @@ export default class AppBarLayout
 }
 
 const RCTAppBarLayout: any = requireNativeComponent(
-    "MaoKitsAppBarLayoutAndroid", 
+    "MaoKitsAppBarLayoutAndroid",
     AppBarLayout,
     {
         nativeOnly: {}

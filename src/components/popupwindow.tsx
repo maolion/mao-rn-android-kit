@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { PureComponent, PropTypes } from 'react';
-import { requireNativeComponent, StyleSheet, View, ViewStyle, findNodeHandle, UIManager } from 'react-native'; 
+import { requireNativeComponent, StyleSheet, View, ViewStyle, findNodeHandle, UIManager } from 'react-native';
 import { ViewGroupProperties } from './types';
 
 export interface PopupWindowProps extends ViewGroupProperties {
@@ -15,10 +15,8 @@ const COMMAND_SHOW_POPUP_AS_DROPDOWN = Commands.showPopupAsDropdown;
 const COMMAND_SHOW_POPUP_AS_LOCALTION = Commands.showPopupAsLocation;
 const COMMAND_HIDE_POPUP = Commands.hidePopup;
 
-(global as any).React = React;
-
-export default class PopupWindow 
-    extends PureComponent<PopupWindowProps, any> 
+export default class PopupWindow
+    extends PureComponent<PopupWindowProps, any>
 {
     static propTypes = Object.assign({
         focusable: PropTypes.bool,
@@ -28,7 +26,7 @@ export default class PopupWindow
 
     render() {
         return (
-            <RCTPopupWindow 
+            <RCTPopupWindow
                 {...this.props}
                 style={styles.container}
             >
@@ -63,7 +61,7 @@ export default class PopupWindow
 }
 
 const RCTPopupWindow: any = requireNativeComponent(
-    "MaoKitsPopupWindowAndroid", 
+    "MaoKitsPopupWindowAndroid",
     PopupWindow,
     {
         nativeOnly: {}

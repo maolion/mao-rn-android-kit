@@ -8,11 +8,9 @@ import GravityAndroid from './components/gravity';
 import * as ExtraDimensionsAndroid from './components/extra-dimensions';
 import * as Types from './components/types';
 
-(global as any).React = React;
-
 export {
     PopupWindowAndroid,
-    AppBarLayoutAndroid, 
+    AppBarLayoutAndroid,
     CoordinatorLayoutAndroid,
     NestedScrollViewAndroid,
     TabLayoutAndroid,

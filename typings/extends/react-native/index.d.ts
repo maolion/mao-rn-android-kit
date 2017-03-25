@@ -1914,11 +1914,11 @@ declare namespace  __React {
         /**
          * Specifies the side of the screen from which the drawer will slide in.
          */
-        positions: { 
+        positions: {
             Left: number;
             Right: number;
         }
-        
+
         /**
          * Opens the drawer.
          */
@@ -3236,11 +3236,11 @@ declare namespace  __React {
         debugOverlay?: boolean
 
     }
-    
+
    /**
    * Class that contains the info and methods for app navigation.
    */
-    export interface NavigationContext { 
+    export interface NavigationContext {
         parent: NavigationContext;
         top: NavigationContext;
         currentRoute: any;
@@ -6055,9 +6055,9 @@ declare module "react-native" {
     export = ReactNative
 }
 
-declare var global: __React.GlobalStatic
+//declare var global: __React.GlobalStatic
 
-declare function require( name: string ): any
+//declare function require( name: string ): any
 
 /**
  * This variable is set to true when react-native is running in Dev mode
