@@ -66,7 +66,7 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.menu}>
                     <Button
-                        disabled={false}
+                        disabled={true}
                         onPress={this._navTo.bind(this, 'example-1')}
                         title="Example #1"
                         color="#2196F3" />
@@ -82,7 +82,7 @@ export default class Home extends Component {
                     <View style={styles.menuItemSeparate} />
 
                     <Button
-                        disabled={false}
+                        disabled={true}
                         onPress={this._navTo.bind(this, 'tab-layout')}
                         title="Tab layout"
                         color="#2196F3" />
@@ -90,7 +90,7 @@ export default class Home extends Component {
                     <View style={styles.menuItemSeparate} />
 
                     <Button
-                        disabled={false}
+                        disabled={true}
                         onPress={this._navTo.bind(this, 'popupwindow')}
                         title="popupwindow"
                         color="#2196F3" />
@@ -98,7 +98,7 @@ export default class Home extends Component {
                     <View style={styles.menuItemSeparate} />
 
                     <Button
-                        disabled={false}
+                        disabled={true}
                         onPress={this._navTo.bind(this, 'extra-dimensions')}
                         title="Extra dimensions"
                         color="#2196F3" />
