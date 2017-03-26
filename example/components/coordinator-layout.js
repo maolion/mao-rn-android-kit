@@ -81,25 +81,31 @@ const styles = StyleSheet.create({
 const ITEM_COLORS = ['#E91E63', '#673AB7', '#2196F3', '#00BCD4', '#4CAF50', '#CDDC39']
 
 export default class CoordinatorLayout extends Component {
+    _scrollHeight = (
+        ExtraDimensionsAndroid.getStatusBarHeight() +
+        ExtraDimensionsAndroid.getAppClientHeight() -
+        ExtraDimensionsAndroid.getStatusBarHeight() -
+        38
+    );
 
-    constructor(props, context) {
-        super(props, context);
+    _coordinatorLayout = null;
+    _appBarLayout = null;
+    _scrollView = null;
 
-        this._scrollHeight =
-            ExtraDimensionsAndroid.getAppClientHeight() -
-            ExtraDimensionsAndroid.getStatusBarHeight() -
-            38
-        ;
+    _setCoordinatorLayout = component => {
+        this._coordinatorLayout = component;
+    };
 
-        this._coordinatorLayout = null;
-        this._appBarLayout = null;
-        this._contentView = null;
+    _setAppBarLayout = component => {
+        this._appBarLayout = component;
+    };
 
-        this._initSetter();
-    }
+    _setScrollView = component => {
+        this._scrollView = component;
+    };
 
     componentDidMount() {
-        this._coordinatorLayout.setScrollingViewBehavior(this._contentView);
+        this._coordinatorLayout.setScrollingViewBehavior(this._scrollView);
     }
 
     render() {
@@ -107,10 +113,10 @@ export default class CoordinatorLayout extends Component {
             <View style={commonStyles.container}>
                 <CoordinatorLayoutAndroid
                     fitsSystemWindows={false}
-                    ref={this.setCoordinatorLayout}>
+                    ref={this._setCoordinatorLayout}>
 
                     <AppBarLayoutAndroid
-                        ref={this.setAppBarLayout}
+                        ref={this._setAppBarLayout}
                         layoutParams={{
                             height: 94 // required
                         }}
@@ -137,7 +143,7 @@ export default class CoordinatorLayout extends Component {
 
                     <View
                         style={[styles.scrollView, { height: this._scrollHeight }]}
-                        ref={this.setContentView}>
+                        ref={this._setScrollView}>
                         <NestedScrollViewAndroid>
                             {this._getItems(30)}
                         </NestedScrollViewAndroid>
@@ -164,19 +170,5 @@ export default class CoordinatorLayout extends Component {
         }
 
         return items;
-    }
-
-    _initSetter() {
-        this.setCoordinatorLayout = component => {
-            this._coordinatorLayout = component;
-        };
-
-        this.setAppBarLayout = component => {
-            this._appBarLayout = component;
-        };
-
-        this.setContentView = component => {
-            this._contentView = component;
-        }
     }
 }

@@ -51,7 +51,7 @@ export function getAppClientHeight() {
     return (
         getScreenHeight() -
         getSmartBarHeight() -
-        // getStatusBarHeight() -
+        getStatusBarHeight() -
         getSoftMenuBarHeight()
     );
 }

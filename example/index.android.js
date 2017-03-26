@@ -13,25 +13,12 @@ import routes from './routes';
 
 class App extends Component {
 
-    constructor(props, context) {
-        super(props, context);
+    componentWillMount() {
+        BackAndroid.addEventListener('hardwareBackPress', this._handleHardwareBackPress);
+    }
 
-        this._navigator = null;
-
-        this._setNavigator = component => {
-            this._navigator = component;
-        }
-
-        BackAndroid.addEventListener('hardwareBackPress', () => {
-            let navigator = this._navigator;
-
-            if (navigator && navigator.getCurrentRoutes().length > 1) {
-                navigator.pop();
-                return true;
-            }
-
-            return false;
-        });
+    componentWillUnmount() {
+        BackAndroid.removeEventListener('hardwareBackPress', this._handleHardwareBackPress);
     }
 
     render() {
@@ -43,12 +30,27 @@ class App extends Component {
         );
     }
 
+    _navigator = null;
+
+    _handleHardwareBackPress = () => {
+        let navigator = this._navigator;
+
+        if (navigator && navigator.getCurrentRoutes().length > 1) {
+            navigator.pop();
+            return true;
+        }
+
+        return false;
+    };
+
+    _setNavigator = component => {
+        this._navigator = component;
+    };
+
     _renderScene(route, navigator) {
         let target = routes[route.id];
         return (<target.component navigator={navigator} />)
     }
 }
-
-
 
 AppRegistry.registerComponent('example', () => App);
