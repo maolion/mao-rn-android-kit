@@ -84,9 +84,9 @@ public class MPopupWindow extends ReactViewGroup {
             this.showPopAsLocation(Gravity.START, x, y);
             return;
         }
-        this.resize(x, y);
 
-        mPopupWindow.showAsDropDown(anchor);
+        this.resize(x, y);
+        mPopupWindow.showAsDropDown(anchor, x, y);
     }
 
     public void showPopAsLocation(int gravity, int x, int y) {
