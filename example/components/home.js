@@ -82,7 +82,6 @@ export default class Home extends Component {
                     <View style={styles.menuItemSeparate} />
 
                     <Button
-                        disabled={true}
                         onPress={this._navTo.bind(this, 'tab-layout')}
                         title="Tab layout"
                         color="#2196F3" />
