@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactNative from 'react-native';
 import { Component } from 'react';
+
 import {
     AppRegistry,
     StyleSheet,
@@ -18,6 +19,7 @@ import {
 } from 'mao-rn-android-kit';
 
 import BackButton from './back-button';
+import MyButton from './my-button';
 
 import commonStyles from '../styles';
 
@@ -82,14 +84,6 @@ const styles = StyleSheet.create({
         padding: 10
     },
 
-    myButton: {
-        height: 40,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingLeft: 10,
-        paddingRight: 10
-    },
-
     otherButtonArea: {
         flex: 1,
         justifyContent: 'center',
@@ -109,18 +103,6 @@ const styles = StyleSheet.create({
     }
 });
 
-class MyButton extends Component {
-    render() {
-        return (
-            <TouchableHighlight
-                {...this.props}
-                style={[styles.myButton, this.props.style]}
-                underlayColor={this.props.underlayColor || 'rgba(0, 0, 0, .2)'}>
-                <Text style={{ color: this.props.color || '#000' }} >{this.props.text}</Text>
-            </TouchableHighlight>
-        )
-    }
-}
 
 export default class Popupwindow extends Component {
     _btn1 = null;
