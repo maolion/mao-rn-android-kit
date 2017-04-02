@@ -1,6 +1,14 @@
 {
   "extends": "vts",
   "rules": {
-    "trailing-comma": false
+    "trailing-comma": [ false ],
+    "no-console": [false],
+    "variable-name": [
+      true,
+      "ban-keywords",
+      "allow-pascal-case",
+      "allow-trailing-underscore",
+      "allow-leading-underscore"
+    ]
   }
 }
