@@ -66,7 +66,6 @@ export default class Home extends Component {
                 </View>
                 <View style={styles.menu}>
                     <Button
-                        disabled={true}
                         onPress={this._navTo.bind(this, 'example-1')}
                         title="Example #1"
                         color="#2196F3" />
