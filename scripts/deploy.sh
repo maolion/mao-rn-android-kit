@@ -15,7 +15,7 @@ cp ./android/build.gradle ./dist/android/build.gradle
 
 cp ./package.json ./dist/package.json
 
-perl -pi -w -e 's/"prepublish": "exit 1"/"prepublish": ""/g;' ./dist/package.json
+perl -pi -w -e 's/"prepublishOnly": "exit 1"/"prepublishOnly": ""/g;' ./dist/package.json
 
 cd ./dist
 
