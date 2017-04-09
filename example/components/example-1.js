@@ -223,6 +223,7 @@ export default class CoordinatorLayout extends Component {
                         <ViewPagerAndroid
                             onPageScroll={this._handleViewPagerPageScroll}
                             onPageScrollStateChanged={this._handleViewPagerPageScrollStateChanged}
+                            onPageSelected={this._handleViewPagerPageSelected}
                             style={[styles.viewPager, { height: this._scrollHeight }]}
                             ref={this._setViewPager}>
                             {this._getPages()}
@@ -300,11 +301,20 @@ export default class CoordinatorLayout extends Component {
 
     _handleViewPagerPageScrollStateChanged = scrollState => {
         if (scrollState === 'settling') {
-            let page = this.refs['page_' + this._currentViewPagerPageIndex];
+            this._loadPage(this._currentViewPagerPageIndex);
+        }
+    }
 
-            if (page && !page.isLoaded()) {
-                page.load();
-            }
+    _handleViewPagerPageSelected = event => {
+        let nativeEvent = event.nativeEvent;
+        this._loadPage(nativeEvent.position);
+    }
+
+    _loadPage(index) {
+        let page = this.refs['page_' + index];
+
+        if (page && !page.isLoaded()) {
+            page.load();
         }
     }
 
@@ -368,7 +378,7 @@ class Page extends Component {
                         styles.pageItem,
                         { backgroundColor: ITEM_COLORS[i % ITEM_COLORS.length] }
                     ]}>
-                    <Text style={styles.pageItemContent}>P{this.props.pageIndex} - ITEM #{i}</Text>
+                    <Text style={styles.pageItemContent}>P{this.props.pageIndex + 1} - ITEM #{i}</Text>
                 </View>
             );
         }
