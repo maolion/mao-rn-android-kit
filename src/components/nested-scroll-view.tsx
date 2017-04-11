@@ -40,7 +40,7 @@ class NestedScrollView extends PureComponent<NestedScrollViewProps, any> {
     scrollResponder.scrollResponderKeyboardDidHide = scrollResponder.scrollResponderKeyboardDidHide.bind(this);
   }
 
-  setNativeProps(props: Object) {
+  setNativeProps(props: any) {
     this._scrollView.setNativeProps(props);
   }
 
@@ -126,7 +126,7 @@ class NestedScrollView extends PureComponent<NestedScrollViewProps, any> {
         onRefreshStart={
           onRefreshStart ? (() => {
             onRefreshStart((this as any).endRefreshing);
-          }) : null
+          }) : undefined
         }
       >
         <View
