@@ -19,91 +19,94 @@ import java.util.Map;
 
 public class NestedScrollViewManager
         extends ViewGroupManager<MNestedScrollView>
-        implements ReactScrollViewCommandHelper.ScrollCommandHandler<MNestedScrollView>
-{
-    private static final String NAME = "MaoKitsNestedScrollViewAndroid";
+        implements ReactScrollViewCommandHelper.ScrollCommandHandler<MNestedScrollView> {
+  private static final String NAME = "MaoKitsNestedScrollViewAndroid";
 
-    @Override
-    public String getName() {
-        return NAME;
+  @Override
+  public String getName() {
+    return NAME;
+  }
+
+
+  @Override
+  public MNestedScrollView createViewInstance(ThemedReactContext context) {
+    MNestedScrollView view = new MNestedScrollView(context);
+    view.setLayoutParams(new ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+    ));
+
+    return view;
+  }
+
+  @Override
+  public
+  @Nullable
+  Map<String, Integer> getCommandsMap() {
+    return ReactScrollViewCommandHelper.getCommandsMap();
+  }
+
+  @Override
+  public void receiveCommand(
+          MNestedScrollView view,
+          int commandId, @Nullable ReadableArray args
+  ) {
+    ReactScrollViewCommandHelper.receiveCommand(this, view, commandId, args);
+  }
+
+  @Override
+  public void scrollTo(
+          MNestedScrollView view,
+          ReactScrollViewCommandHelper.ScrollToCommandData data
+  ) {
+    int x = data.mDestX;
+    int y = data.mDestY;
+
+    if (data.mAnimated) {
+      view.smoothScrollTo(x, y);
+    } else {
+      view.scrollTo(x, y);
     }
+  }
 
-    @Override
-    public MNestedScrollView createViewInstance(ThemedReactContext context) {
-        MNestedScrollView view = new MNestedScrollView(context);
-        view.setLayoutParams(new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-        ));
+  @Override
+  public void scrollToEnd(
+          MNestedScrollView view,
+          ReactScrollViewCommandHelper.ScrollToEndCommandData data
+  ) {
+    int scrollWidth = view.getChildAt(0).getWidth() + view.getPaddingRight();
+    int scrollHeight = view.getChildAt(0).getHeight() + view.getPaddingBottom();
 
-        return view;
+    if (data.mAnimated) {
+      view.smoothScrollBy(scrollWidth, scrollHeight);
+    } else {
+      view.scrollTo(scrollWidth, scrollHeight);
     }
+  }
 
-    @Override
-    public @Nullable
-    Map<String, Integer> getCommandsMap() {
-        return ReactScrollViewCommandHelper.getCommandsMap();
-    }
+  @Override
+  public
+  @Nullable
+  Map getExportedCustomDirectEventTypeConstants() {
+    return MapBuilder.builder()
+            .put("topScroll", MapBuilder.of("registrationName", "onScroll"))
+            .put("topScrollBeginDrag", MapBuilder.of("registrationName", "onScrollBeginDrag"))
+            .put("topScrollEndDrag", MapBuilder.of("registrationName", "onScrollEndDrag"))
+            .put("topScrollAnimationEnd", MapBuilder.of("registrationName", "onScrollAnimationEnd"))
+            .put("topMomentumScrollBegin", MapBuilder.of("registrationName", "onMomentumScrollBegin"))
+            .put("topMomentumScrollEnd", MapBuilder.of("registrationName", "onMomentumScrollEnd"))
+            .build();
 
-    @Override
-    public void receiveCommand(
-            MNestedScrollView view,
-            int commandId, @Nullable ReadableArray args
-    ) {
-        ReactScrollViewCommandHelper.receiveCommand(this, view, commandId, args);
-    }
-
-    @Override
-    public void scrollTo(
-            MNestedScrollView view,
-            ReactScrollViewCommandHelper.ScrollToCommandData data
-    ) {
-        int x = data.mDestX;
-        int y = data.mDestY;
-
-        if (data.mAnimated) {
-            view.smoothScrollTo(x, y);
-        } else {
-            view.scrollTo(x, y);
-        }
-    }
-
-    @Override
-    public void scrollToEnd(
-            MNestedScrollView view,
-            ReactScrollViewCommandHelper.ScrollToEndCommandData data
-    ) {
-        int scrollWidth = view.getChildAt(0).getWidth() + view.getPaddingRight();
-        int scrollHeight = view.getChildAt(0).getHeight() + view.getPaddingBottom();
-
-        if (data.mAnimated) {
-            view.smoothScrollBy(scrollWidth, scrollHeight);
-        } else {
-            view.scrollTo(scrollWidth, scrollHeight);
-        }
-    }
-
-    @Override
-    public @Nullable Map getExportedCustomDirectEventTypeConstants() {
-        return MapBuilder.builder()
-                .put("topScroll", MapBuilder.of("registrationName", "onScroll"))
-                .put("topScrollBeginDrag", MapBuilder.of("registrationName", "onScrollBeginDrag"))
-                .put("topScrollEndDrag", MapBuilder.of("registrationName", "onScrollEndDrag"))
-                .put("topScrollAnimationEnd", MapBuilder.of("registrationName", "onScrollAnimationEnd"))
-                .put("topMomentumScrollBegin", MapBuilder.of("registrationName", "onMomentumScrollBegin"))
-                .put("topMomentumScrollEnd", MapBuilder.of("registrationName", "onMomentumScrollEnd"))
-                .build();
-
-    }
+  }
 
 
-    @ReactProp(name = "showVerticalScrollIndicator")
-    public void setShowVerticalScrollIndicator(MNestedScrollView view, boolean value) {
-        view.setVerticalScrollBarEnabled(value);
-    }
+  @ReactProp(name = "showVerticalScrollIndicator")
+  public void setShowVerticalScrollIndicator(MNestedScrollView view, boolean value) {
+    view.setVerticalScrollBarEnabled(value);
+  }
 
-    @ReactProp(name = ReactClippingViewGroupHelper.PROP_REMOVE_CLIPPED_SUBVIEWS)
-    public void setRemoveClippedSubviews(MNestedScrollView view, boolean removeClippedSubviews) {
-        view.setRemoveClippedSubviews(removeClippedSubviews);
-    }
+  @ReactProp(name = ReactClippingViewGroupHelper.PROP_REMOVE_CLIPPED_SUBVIEWS)
+  public void setRemoveClippedSubviews(MNestedScrollView view, boolean removeClippedSubviews) {
+    view.setRemoveClippedSubviews(removeClippedSubviews);
+  }
 }

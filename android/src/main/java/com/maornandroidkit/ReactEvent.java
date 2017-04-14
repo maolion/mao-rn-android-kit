@@ -14,39 +14,40 @@ import com.facebook.react.uimanager.events.RCTEventEmitter;
 
 public class ReactEvent extends Event<ReactEvent> {
 
-    public static void emit(@NonNull View view, @NonNull int viewTag, @NonNull String eventName) {
-        emit(view, viewTag, eventName);
-    }
+  public static void emit(@NonNull View view, @NonNull int viewTag, @NonNull String eventName) {
+    emit(view, viewTag, eventName);
+  }
 
-    public static void emit(@NonNull View view, @NonNull String eventName) {
-        emit(view, new ReactEvent(view.getId(), eventName));
-    }
+  public static void emit(@NonNull View view, @NonNull String eventName) {
+    emit(view, new ReactEvent(view.getId(), eventName));
+  }
 
-    public static void emit(@NonNull View view, @NonNull Event event) {
-        ReactContext reactContext = (ReactContext) view.getContext();
+  public static void emit(@NonNull View view, @NonNull Event event) {
+    ReactContext reactContext = (ReactContext) view.getContext();
 
-        event.dispatch(reactContext.getJSModule(RCTEventEmitter.class));
-    }
+    event.dispatch(reactContext.getJSModule(RCTEventEmitter.class));
+  }
 
-    private String mEventName;
-    public ReactEvent(int viewTag, String eventName) {
-        super();
-        mEventName = eventName;
-        super.init(viewTag);
-    }
+  private String mEventName;
 
-    @Override
-    public String getEventName() {
-        return mEventName;
-    }
+  public ReactEvent(int viewTag, String eventName) {
+    super();
+    mEventName = eventName;
+    super.init(viewTag);
+  }
 
-    @Override
-    public void dispatch(RCTEventEmitter rctEventEmitter) {
-        rctEventEmitter.receiveEvent(getViewTag(), getEventName(), serializeEventData());
-    }
+  @Override
+  public String getEventName() {
+    return mEventName;
+  }
 
-    protected WritableMap serializeEventData() {
-        WritableMap event = Arguments.createMap();
-        return event;
-    }
+  @Override
+  public void dispatch(RCTEventEmitter rctEventEmitter) {
+    rctEventEmitter.receiveEvent(getViewTag(), getEventName(), serializeEventData());
+  }
+
+  protected WritableMap serializeEventData() {
+    WritableMap event = Arguments.createMap();
+    return event;
+  }
 }

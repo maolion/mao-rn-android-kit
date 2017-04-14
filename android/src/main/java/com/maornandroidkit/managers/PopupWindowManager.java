@@ -24,90 +24,96 @@ import java.util.Locale;
 import java.util.Map;
 
 public class PopupWindowManager extends ViewGroupManager<MPopupWindow> {
-    public static final String NAME = "MaoKitsPopupWindowAndroid";
+  public static final String NAME = "MaoKitsPopupWindowAndroid";
 
-    public static final int COMMAND_SHOW_POPUP_AS_DROPDOWN = 1;
-    public static final int COMMAND_SHOW_POPUP_AS_LOCATION = 2;
-    public static final int COMMAND_HIDE_POPUP = 3;
+  public static final int COMMAND_SHOW_POPUP_AS_DROPDOWN = 1;
+  public static final int COMMAND_SHOW_POPUP_AS_LOCATION = 2;
+  public static final int COMMAND_HIDE_POPUP = 3;
 
-    public String getName() {
-        return PopupWindowManager.NAME;
-    }
-    @Override
-    public MPopupWindow createViewInstance(ThemedReactContext context) {
+  public String getName() {
+    return PopupWindowManager.NAME;
+  }
 
-        return new MPopupWindow(context);
-    }
+  @Override
+  public MPopupWindow createViewInstance(ThemedReactContext context) {
 
-    @Override
-    public Map<String, Integer> getCommandsMap() {
-        return MapBuilder.of(
-                "showPopupAsDropdown",
-                PopupWindowManager.COMMAND_SHOW_POPUP_AS_DROPDOWN,
-                "showPopupAsLocation",
-                PopupWindowManager.COMMAND_SHOW_POPUP_AS_LOCATION,
-                "hidePopup",
-                PopupWindowManager.COMMAND_HIDE_POPUP
+    return new MPopupWindow(context);
+  }
+
+  @Override
+  public Map<String, Integer> getCommandsMap() {
+    return MapBuilder.of(
+            "showPopupAsDropdown",
+            PopupWindowManager.COMMAND_SHOW_POPUP_AS_DROPDOWN,
+            "showPopupAsLocation",
+            PopupWindowManager.COMMAND_SHOW_POPUP_AS_LOCATION,
+            "hidePopup",
+            PopupWindowManager.COMMAND_HIDE_POPUP
+    );
+  }
+
+  @Override
+  public void receiveCommand(MPopupWindow view, int commandType, @Nullable ReadableArray args) {
+
+    switch (commandType) {
+      case PopupWindowManager.COMMAND_SHOW_POPUP_AS_DROPDOWN:
+        view.showPopAsDropdown(
+                args.getInt(0),
+                Utils.dp2px(args.getDouble(1)),
+                Utils.dp2px(args.getDouble(2))
         );
+        break;
+
+      case PopupWindowManager.COMMAND_SHOW_POPUP_AS_LOCATION:
+        view.showPopAsLocation(
+                args.getInt(0),
+                Utils.dp2px(args.getDouble(1)),
+                Utils.dp2px(args.getDouble(2))
+        );
+        break;
+      case PopupWindowManager.COMMAND_HIDE_POPUP:
+        view.hide();
+        break;
+      default:
+        throw new JSApplicationIllegalArgumentException(String.format(
+                "Unsupported commadn %d received by $s",
+                commandType,
+                this.getClass().getSimpleName()
+        ));
     }
+  }
 
-    @Override
-    public void receiveCommand(MPopupWindow view, int commandType, @Nullable ReadableArray args) {
+  @ReactProp(name = "focusable")
+  public void setFocusable(MPopupWindow view, boolean focusable) {
+    view.setFocusable(focusable);
+  }
 
-        switch (commandType) {
-            case PopupWindowManager.COMMAND_SHOW_POPUP_AS_DROPDOWN:
-                view.showPopAsDropdown(
-                        args.getInt(0),
-                        Utils.dp2px(args.getDouble(1)),
-                        Utils.dp2px(args.getDouble(2))
-                );
-                break;
+  @ReactProp(name = "outsideTouchable")
+  public void setOutsideTouchable(MPopupWindow view, boolean touchable) {
+    view.setOutsideTouchable(touchable);
+  }
 
-            case PopupWindowManager.COMMAND_SHOW_POPUP_AS_LOCATION:
-                view.showPopAsLocation(
-                        args.getInt(0),
-                        Utils.dp2px(args.getDouble(1)),
-                        Utils.dp2px(args.getDouble(2))
-                );
-                break;
-            case PopupWindowManager.COMMAND_HIDE_POPUP:
-                view.hide();
-                break;
-            default:
-                throw new JSApplicationIllegalArgumentException(String.format(
-                        "Unsupported commadn %d received by $s",
-                        commandType,
-                        this.getClass().getSimpleName()
-                ));
-        }
+  @ReactProp(name = "touchable")
+  public void setTouchable(MPopupWindow view, boolean touchable) {
+    view.setTouchable(touchable);
+  }
+
+  @ReactProp(name = "hitSlop")
+  public void setHitSlop(final ReactViewGroup view, @Nullable ReadableMap hitSlop) {
+    if (hitSlop == null) {
+      view.setHitSlopRect(null);
+    } else {
+      view.setHitSlopRect(new Rect(
+              (int) PixelUtil.toPixelFromDIP(hitSlop.getDouble("left")),
+              (int) PixelUtil.toPixelFromDIP(hitSlop.getDouble("top")),
+              (int) PixelUtil.toPixelFromDIP(hitSlop.getDouble("right")),
+              (int) PixelUtil.toPixelFromDIP(hitSlop.getDouble("bottom"))
+      ));
     }
+  }
 
-    @ReactProp(name = "focusable")
-    public void setFocusable(MPopupWindow view, boolean focusable) {
-        view.setFocusable(focusable);
-    }
+  public boolean shouldPromoteGrandchildren() {
+    return false;
+  }
 
-    @ReactProp(name = "outsideTouchable")
-    public void setOutsideTouchable(MPopupWindow view, boolean touchable) {
-        view.setOutsideTouchable(touchable);
-    }
-
-    @ReactProp(name = "touchable")
-    public void setTouchable(MPopupWindow view, boolean touchable) {
-        view.setTouchable(touchable);
-    }
-
-    @ReactProp(name = "hitSlop")
-    public void setHitSlop(final ReactViewGroup view, @Nullable ReadableMap hitSlop) {
-        if (hitSlop == null) {
-            view.setHitSlopRect(null);
-        } else {
-            view.setHitSlopRect(new Rect(
-                    (int) PixelUtil.toPixelFromDIP(hitSlop.getDouble("left")),
-                    (int) PixelUtil.toPixelFromDIP(hitSlop.getDouble("top")),
-                    (int) PixelUtil.toPixelFromDIP(hitSlop.getDouble("right")),
-                    (int) PixelUtil.toPixelFromDIP(hitSlop.getDouble("bottom"))
-            ));
-        }
-    }
 }
