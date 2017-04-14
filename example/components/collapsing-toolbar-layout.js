@@ -10,21 +10,25 @@ import {
   TextInput
 } from 'react-native';
 
+import ToolbarAndroid from 'ToolbarAndroid';
+import nativeImageSource from 'nativeImageSource';
+
 import {
   ExtraDimensionsAndroid,
   AppBarLayoutAndroid,
   CoordinatorLayoutAndroid,
-  NestedScrollViewAndroid
+  CollapsingToolbarLayoutAndroid,
+  NestedScrollViewAndroid,
+  LayoutParamsAndroid
 } from 'mao-rn-android-kit';
 
 import BackButton from './back-button';
-
 import commonStyles from '../styles';
 
 const styles = StyleSheet.create({
   appbar: {
     backgroundColor: "#2278F6",
-    height: 94
+    height: 300
   },
 
   navbar: {
@@ -81,7 +85,13 @@ const styles = StyleSheet.create({
 
 const ITEM_COLORS = ['#E91E63', '#673AB7', '#2196F3', '#00BCD4', '#4CAF50', '#CDDC39']
 
-export default class CoordinatorLayout extends Component {
+const BACK_ICON = {
+  uri: 'back_white',
+  width: 16,
+  height: 16
+};
+
+export default class CollapsingToolbarLayout extends Component {
   _scrollHeight = (
     ExtraDimensionsAndroid.getStatusBarHeight() +
     ExtraDimensionsAndroid.getAppClientHeight() -
@@ -119,24 +129,40 @@ export default class CoordinatorLayout extends Component {
           <AppBarLayoutAndroid
             ref={this._setAppBarLayout}
             style={styles.appbar} >
-            <View
-              style={styles.navbar}
+            <CollapsingToolbarLayoutAndroid
+              expandedTitleMarginStart={20}
+              expandedTitleMarginBottom={20}
+              collapsedTitleColor="#ffffff"
+              contentScrimColor="#2278F6"
+              expandedTitleColor="#ffffff"
               layoutParams={{
-                height: 56, // required
                 scrollFlags: (
                   AppBarLayoutAndroid.SCROLL_FLAG_SCROLL |
-                  AppBarLayoutAndroid.SCROLL_FLAG_ENTRY_ALWAYS
+                  AppBarLayoutAndroid.SCROLL_FLAG_SNAP |
+                  AppBarLayoutAndroid.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED
                 )
               }}>
-              <BackButton
-                onPress={() => { this.props.navigator.pop() }}
-                style={styles.backBtn} />
-              <Text style={styles.caption}>CoordinatorLayout</Text>
-            </View>
-            <View
-              style={styles.heading}>
-              <Text style={styles.headingText}>Heading</Text>
-            </View>
+              <View
+                style={{
+                  flex: 1,
+                  backgroundColor: '#4CAF50'
+                }}
+                layoutParams={{
+                  collapseParallaxMultiplie: 0.7,
+                  collapseMode: CollapsingToolbarLayoutAndroid.CollapseMode.COLLAPSE_MODE_PARALLAX
+                }}>
+              </View>
+              <ToolbarAndroid
+                title="Collapsing Toolbar Layout"
+                titleColor="#ffffff"
+                navIcon={BACK_ICON}
+                onIconClicked={this._goBack}
+                layoutParams={{
+                  height: 56, // required
+                  collapseMode: CollapsingToolbarLayoutAndroid.CollapseMode.COLLAPSE_MODE_PIN // required
+                }}>
+              </ToolbarAndroid>
+            </CollapsingToolbarLayoutAndroid>
           </AppBarLayoutAndroid>
 
           <View
@@ -168,5 +194,9 @@ export default class CoordinatorLayout extends Component {
     }
 
     return items;
+  }
+
+  _goBack = () => {
+    this.props.navigator.pop();
   }
 }

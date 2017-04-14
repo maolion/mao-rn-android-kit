@@ -81,6 +81,14 @@ export default class Home extends Component {
           <View style={styles.menuItemSeparate} />
 
           <Button
+            style={styles.button}
+            onPress={this._navTo.bind(this, 'collasping-toolbar-layout')}
+            title="Collapsing Toolbar layout"
+            color="#2196F3" />
+
+          <View style={styles.menuItemSeparate} />
+
+          <Button
             onPress={this._navTo.bind(this, 'tab-layout')}
             title="Tab layout"
             color="#2196F3" />
