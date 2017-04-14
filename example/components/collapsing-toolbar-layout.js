@@ -96,7 +96,7 @@ export default class CollapsingToolbarLayout extends Component {
     ExtraDimensionsAndroid.getStatusBarHeight() +
     ExtraDimensionsAndroid.getAppClientHeight() -
     ExtraDimensionsAndroid.getStatusBarHeight() -
-    38
+    56
   );
 
   _coordinatorLayout = null;
