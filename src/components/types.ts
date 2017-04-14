@@ -3,20 +3,13 @@ import { PropTypes } from 'react';
 import { View, ViewProperties } from 'react-native';
 
 export interface LayoutParams {
-  width?: number | 'match_parent' | 'wrap_parent';
-  height?: number | 'match_parent' | 'wrap_content';
+  width?: number;
+  height?: number;
 }
 
 export const LayoutParams = {
-  width: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.oneOf(['match_parent', 'wrap_content'])
-  ]),
-
-  height: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.oneOf(['match_parent', 'wrap_content'])
-  ])
+  width: PropTypes.number,
+  height: PropTypes.number
 };
 
 export interface ViewGroupProperties extends ViewProperties {

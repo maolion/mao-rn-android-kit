@@ -11,6 +11,7 @@
 
 - CoordinatorLayout
 - AppBarLayout
+- CollapsingTollbarLayout
 - TabLayout
 - NestedScrollView
 - PopupWindow
@@ -326,6 +327,69 @@ touchable?: boolea;
 outsideTouchable?: boolean;
 ```
 
+----
+
+### CollapsToolbarLayout
+
+方法
+
+```
+
+```
+
+属性
+```
+// 遮罩颜色
+contentScrimColor: string(color value);
+
+// toolbar 标题 在 CollapseToolBarLayout 收起时显示位置
+collapsedTitleGravity: number;
+
+// toolbar 标题 在 CollapseToolBarLayout 收起时显示的字体颜色
+collapsedTitleColor: string(color value);
+
+// toolbar 标题 在 CollapseToolBarLayout 展开时显示的字体颜色
+expandedTitleColor: string(color value);
+
+// toolbar 标题 在 CollapseToolBarLayout 展开时显示位置
+expandedTitleGravity: number(Gravity);
+
+// toolbar 标题 在 CollapseToolBarLayout 展开时 外边距控制
+expandedTitleMargin: number[];
+
+// toolbar 标题 在 CollapseToolBarLayout 展开时 外左边距控制
+expandedTitleMarginStart: number;
+
+// toolbar 标题 在 CollapseToolBarLayout 展开时 外上边距控制
+expandedTitleMarginTop: number;
+
+// toolbar 标题 在 CollapseToolBarLayout 展开时 外右边距控制
+expandedTitleMarginEnd: number;
+
+// toolbar 标题 在 CollapseToolBarLayout 展开时 外下边距控制
+expandedTitleMarginBottom: number;
+
+// 遮罩过度动画持续时间(ms)
+scrimAnimationDuration: number;
+
+// 设置收起多少高度时,显示遮罩的内容
+scrimVisibleHeightTrigger: number;
+
+// 是否显示遮罩
+scrimsShown: boolean;
+
+// 是否显示遮罩动画
+scrimsShownAnimate: boolean;
+
+// 状态栏遮罩颜色
+statusBarScrimColor: string;
+
+// 标题
+title: string;
+
+// 启用标题开关
+titleEnable: boolean;
+```
 ----
 
 ### GravityAndroid
