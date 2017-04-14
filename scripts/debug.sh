@@ -1,12 +1,9 @@
 #!/bin/sh
 
-echo "deploying ..."
 rm -rf ./dist
 
-echo "building ..."
-npm run build || exit 0
+tsc -d
 
-echo "copying ..."
 target=./example/node_modules/mao-rn-android-kit
 rm -rf $target
 cp -r ./dist $target
