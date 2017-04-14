@@ -48,6 +48,7 @@ export default class AppBarLayout extends PureComponent<AppBarLayoutProps, any> 
   static SCROLL_FLAG_EXIT_UNTIL_COLLAPSED = Constants.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED;
   static SCROLL_FLAG_SCROLL = Constants.SCROLL_FLAG_SCROLL;
   static SCROLL_FLAG_SNAP = Constants.SCROLL_FLAG_SNAP;
+
   static propTypes = Object.assign({}, AppBarViewProperties);
 }
 

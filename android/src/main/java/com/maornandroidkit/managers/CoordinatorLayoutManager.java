@@ -22,110 +22,84 @@ import java.util.Map;
 
 public class CoordinatorLayoutManager extends ViewGroupManager<MCoordinatorLayout> {
 
-    public static final String NAME = "MaoKitsCoordinatorLayoutAndroid";
-    public static final int COMMAND_SET_CHILDREN_LAYOUT_PARAMS = 1;
-    public static final int COMMAND_SET_SCROLLING_VIEW_BEHAVIOR = 2;
-    public static final int COMMAND_RESET_BEHAVIOR = 3;
+  public static final String NAME = "MaoKitsCoordinatorLayoutAndroid";
+  public static final int COMMAND_SET_CHILDREN_LAYOUT_PARAMS = 1;
+  public static final int COMMAND_SET_SCROLLING_VIEW_BEHAVIOR = 2;
+  public static final int COMMAND_RESET_BEHAVIOR = 3;
 
-    @Override
-    public String getName() {
-        return CoordinatorLayoutManager.NAME;
-    }
+  @Override
+  public String getName() {
+    return CoordinatorLayoutManager.NAME;
+  }
 
-    @Override
-    public MCoordinatorLayout createViewInstance(ThemedReactContext context) {
-        MCoordinatorLayout layout = new MCoordinatorLayout(context);
-        layout.setLayoutParams(new CoordinatorLayout.LayoutParams(
-                CoordinatorLayout.LayoutParams.MATCH_PARENT,
-                CoordinatorLayout.LayoutParams.MATCH_PARENT
-        ));
-        return layout;
-    }
+  @Override
+  public MCoordinatorLayout createViewInstance(ThemedReactContext context) {
+    MCoordinatorLayout layout = new MCoordinatorLayout(context);
+    layout.setLayoutParams(new CoordinatorLayout.LayoutParams(
+            CoordinatorLayout.LayoutParams.MATCH_PARENT,
+            CoordinatorLayout.LayoutParams.MATCH_PARENT
+    ));
+    return layout;
+  }
 
-    @Override
-    public Map<String, Integer> getCommandsMap() {
-        return MapBuilder.of(
-                "setChildrenLayoutParams",
-                CoordinatorLayoutManager.COMMAND_SET_CHILDREN_LAYOUT_PARAMS,
-                "setScrollingViewBehavior",
-                CoordinatorLayoutManager.COMMAND_SET_SCROLLING_VIEW_BEHAVIOR,
-                "resetBehavior",
-                CoordinatorLayoutManager.COMMAND_RESET_BEHAVIOR
+  @Override
+  public Map<String, Integer> getCommandsMap() {
+    return MapBuilder.of(
+            "setChildrenLayoutParams",
+            CoordinatorLayoutManager.COMMAND_SET_CHILDREN_LAYOUT_PARAMS,
+            "setScrollingViewBehavior",
+            CoordinatorLayoutManager.COMMAND_SET_SCROLLING_VIEW_BEHAVIOR,
+            "resetBehavior",
+            CoordinatorLayoutManager.COMMAND_RESET_BEHAVIOR
+    );
+  }
+
+  @Override
+  public void receiveCommand(MCoordinatorLayout layout, int commandType, @Nullable ReadableArray args) {
+    View rootView = layout.getRootView();
+
+    switch (commandType) {
+      case CoordinatorLayoutManager.COMMAND_SET_CHILDREN_LAYOUT_PARAMS:
+        this.setChildrenLayoutParamsCommand(layout, args.getArray(0));
+        break;
+      case CoordinatorLayoutManager.COMMAND_SET_SCROLLING_VIEW_BEHAVIOR:
+        layout.setScrollingViewBehavior(rootView.findViewById(args.getInt(0)));
+        break;
+      case CoordinatorLayoutManager.COMMAND_RESET_BEHAVIOR:
+        layout.resetBehavior(
+                (AppBarLayout) rootView.findViewById(args.getInt(0)),
+                args.getBoolean(1),
+                args.getBoolean(2)
         );
+        break;
+      default:
+        throw new JSApplicationIllegalArgumentException(String.format(
+                "Unsupported commadn %d received by $s",
+                commandType,
+                this.getClass().getSimpleName()
+        ));
     }
+  }
 
-    @Override
-    public void receiveCommand(MCoordinatorLayout layout, int commandType, @Nullable ReadableArray args) {
-        View rootView = layout.getRootView();
+  @ReactProp(name = "fitsSystemWindows")
+  public void setFitsSystemWindows(MCoordinatorLayout layout, boolean fitsSystemWindows) {
+    layout.setFitsSystemWindows(fitsSystemWindows);
+  }
 
-        switch (commandType) {
-            case CoordinatorLayoutManager.COMMAND_SET_CHILDREN_LAYOUT_PARAMS:
-                this.setChildrenLayoutParamsCommand(layout, args.getArray(0));
-                break;
-            case CoordinatorLayoutManager.COMMAND_SET_SCROLLING_VIEW_BEHAVIOR:
-                layout.setScrollingViewBehavior(rootView.findViewById(args.getInt(0)));
-                break;
-            case CoordinatorLayoutManager.COMMAND_RESET_BEHAVIOR:
-                layout.resetBehavior(
-                        (AppBarLayout) rootView.findViewById(args.getInt(0)),
-                        args.getBoolean(1),
-                        args.getBoolean(2)
-                );
-                break;
-            default:
-                throw new JSApplicationIllegalArgumentException(String.format(
-                        "Unsupported commadn %d received by $s",
-                        commandType,
-                        this.getClass().getSimpleName()
-                ));
-        }
+  private void setChildrenLayoutParamsCommand(MCoordinatorLayout layout, @Nullable ReadableArray params) {
+    for (int i = 0, size = params.size(); i < size; i++) {
+      ReadableMap paramMap = params.getMap(i);
+      View childView = layout.getChildAt(paramMap.getInt("childIndex"));
+      CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams) childView.getLayoutParams();
+
+      int width = paramMap.hasKey("width") ?
+              Utils.dp2px(paramMap.getDouble("width")) : layoutParams.width;
+
+      int height = paramMap.hasKey("height") ?
+              Utils.dp2px(paramMap.getInt("height")) : layoutParams.height;
+
+      childView.setLayoutParams(new CoordinatorLayout.LayoutParams(width, height));
     }
-
-    @ReactProp(name = "fitsSystemWindows")
-    public void setFitsSystemWindows(MCoordinatorLayout layout, boolean fitsSystemWindows) {
-        layout.setFitsSystemWindows(fitsSystemWindows);
-    }
-
-    public boolean needsCustomLayoutForChildren() {
-        return true;
-    }
-
-    private void setChildrenLayoutParamsCommand(MCoordinatorLayout layout, @Nullable ReadableArray params) {
-        for (int i = 0, size = params.size(); i < size; i++) {
-            ReadableMap paramMap = params.getMap(i);
-            View childView = layout.getChildAt(paramMap.getInt("childIndex"));
-            CoordinatorLayout.LayoutParams layoutParams = (CoordinatorLayout.LayoutParams)childView.getLayoutParams();
-            int width = layoutParams.width;
-            int height = layoutParams.height;
-
-            if (paramMap.hasKey("width")) {
-                try {
-                    String widthStr = paramMap.getString("width");
-                    if ("match_parent".equals(widthStr)) {
-                        width = CoordinatorLayout.LayoutParams.MATCH_PARENT;
-                    } else if ("wrap_parent".equals(widthStr)) {
-                        width = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
-                    }
-                } catch (Exception e) {
-                    width = Utils.dp2px(paramMap.getDouble("width"));
-                }
-            }
-
-            if (paramMap.hasKey("height")) {
-                try {
-                    String heightStr = paramMap.getString("height");
-                    if ("match_parent".equals(heightStr)) {
-                        height = CoordinatorLayout.LayoutParams.MATCH_PARENT;
-                    } else if ("wrap_parent".equals(heightStr)) {
-                        height = CoordinatorLayout.LayoutParams.WRAP_CONTENT;
-                    }
-                } catch (Exception e) {
-                    height = Utils.dp2px(paramMap.getDouble("height"));
-                }
-            }
-
-            childView.setLayoutParams(new CoordinatorLayout.LayoutParams(width, height));
-        }
-    }
+  }
 
 }
